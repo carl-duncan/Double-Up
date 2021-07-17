@@ -64,7 +64,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                         onTap: null),
                   ),
                   Container(
-                    height: 250,
+                    height: 200,
                     child: CarouselSlider.builder(
                       options: CarouselOptions(
                         autoPlay: true,
@@ -151,7 +151,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       height: 50,
                       width: 110,
                       decoration: BoxDecoration(
-                          color: Constant.primary,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           image: DecorationImage(
                               image: NetworkImage(
                                 'https://source.unsplash.com/50${rng.nextInt(10)}x50${rng.nextInt(10)}/?food")',
