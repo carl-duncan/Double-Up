@@ -21,7 +21,7 @@ class _CardViewState extends State<CardView> {
       appBar: CupertinoNavigationBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         middle: Text(
-          "Dashboard",
+          "Purchase ${widget.card.caption} Card",
           style: Theme.of(context).textTheme.headline6,
         ),
         border: null,
