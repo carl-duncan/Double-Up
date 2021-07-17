@@ -1,6 +1,8 @@
 import 'package:double_up/pages/login/login_page.dart';
+import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,11 +11,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Repository.initClient();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MaterialApp(
       title: 'Double Up',
       themeMode: ThemeMode.system,
       theme: ThemeData(
-          // fontFamily: GoogleFonts.robotoMono().fontFamily,
           brightness: Brightness.light,
           scaffoldBackgroundColor: Colors.grey[20],
           appBarTheme: AppBarTheme(backgroundColor: Colors.grey[20]),
@@ -29,7 +34,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w600))),
       darkTheme: ThemeData(
           brightness: Brightness.dark,
-          // fontFamily: GoogleFonts.nunito().fontFamily,
           cardColor: Colors.grey[900].withOpacity(0.3),
           scaffoldBackgroundColor: Colors.black,
           appBarTheme: AppBarTheme(backgroundColor: Colors.black),
