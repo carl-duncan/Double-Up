@@ -69,20 +69,19 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       options: CarouselOptions(
                         autoPlay: true,
                         enlargeCenterPage: true,
-                        viewportFraction: 01,
-                        aspectRatio: 1.0,
+                        enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                        viewportFraction: 0.9,
+                        aspectRatio: 1.8,
                         initialPage: 0,
                       ),
                       itemBuilder: (context, index, index2) {
                         return Padding(
                           padding: Constant.padding,
-                          child: Container(
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: CachedNetworkImage(
-                                  imageUrl: "${cards[index].logo}",
-                                )),
-                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: CachedNetworkImage(
+                                imageUrl: "${cards[index].logo}",
+                              )),
                         );
                       },
                       itemCount: cards.length,
