@@ -7,6 +7,7 @@ import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/row.dart';
 import 'package:double_up/widgets/title.dart';
@@ -85,10 +86,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context, rootNavigator: true)
-                                    .push(CupertinoPageRoute(
-                                        builder: (context) => CardView(
-                                              card: cards[index],
-                                            )));
+                                    .push(createRoute(CardView(
+                                  card: cards[index],
+                                )));
                               },
                               child: Hero(
                                 tag: "Card:${cards[index].code}",
