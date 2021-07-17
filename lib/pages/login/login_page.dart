@@ -1,4 +1,6 @@
+import 'package:double_up/pages/sign_up/sign_up_page.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +26,7 @@ class LoginPage extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
+        padding: Constant.padding,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.,
           children: [
@@ -104,12 +106,17 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Dont have an account? "),
-                Text(
-                  "Click here!",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Constant.primary),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(createRoute(SignUpPage()));
+                  },
+                  child: Text(
+                    "Click here!",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .copyWith(color: Constant.primary),
+                  ),
                 )
               ],
             )
