@@ -1,4 +1,4 @@
-import 'package:double_up/pages/customer/navigator/navigate.dart';
+import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/repositories/blinksky_repository.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600))),
       debugShowCheckedModeBanner: false,
-      home: CustomerNavigate(),
+      home: LoginPage(),
     );
   }
 }

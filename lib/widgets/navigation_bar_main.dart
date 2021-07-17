@@ -11,6 +11,11 @@ CupertinoNavigationBar navigationBar(BuildContext context, String title) {
       style: Theme.of(context).textTheme.headline6,
     ),
     trailing: Badge(
+      position: BadgePosition.topStart(),
+      badgeContent: Text(
+        "5",
+        style: TextStyle(color: Colors.white),
+      ),
       child: Icon(
         FontAwesome5Solid.bell,
         size: 25,
