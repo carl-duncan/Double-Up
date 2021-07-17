@@ -1,3 +1,4 @@
+import 'package:double_up/pages/customer/dashboard/dashboard.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +26,12 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
 
   @override
   Widget build(BuildContext context) {
-    return loadUI(pages);
+    return loadUI();
   }
 
-  loadUI(List<Widget> _widgetOptions) {
+  loadUI() {
     pages = [];
-    pages.add(Container());
+    pages.add(CustomerDashboard());
     pages.add(Container());
     pages.add(Container());
     pages.add(Container());
@@ -69,7 +70,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
             return CupertinoTabView(
               builder: (BuildContext context) {
                 return Container(
-                  child: _widgetOptions[index],
+                  child: pages[index],
                 );
               },
             );

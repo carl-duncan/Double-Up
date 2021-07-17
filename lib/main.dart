@@ -1,4 +1,5 @@
 import 'package:double_up/pages/login/login_page.dart';
+import 'package:double_up/repositories/blinksky_repository.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Repository.initClient();
+    BlinkSkyRepository.getCatalog(context);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
