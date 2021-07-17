@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+
     return MaterialApp(
       title: 'Double Up',
       themeMode: ThemeMode.system,

@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:double_up/models/gift_card.dart';
+import 'package:double_up/models/category.dart';
 import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
+import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -37,17 +38,20 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: navigationBar(context, "Dashboard"),
-      body: StreamBuilder<List<GiftCard>>(
-          stream: dashboardBloc.giftCards,
+      body: StreamBuilder(
+          stream: dashboardBloc.combineLatestStream,
           builder: (context, snapshot) {
             Widget child = LoadingPage();
-            if (snapshot.hasData) child = loadUI(snapshot.data);
+            if (snapshot.hasData) {
+              DashboardBlocObject object = snapshot.data;
+              child = loadUI(object);
+            }
             return child;
           }),
     );
   }
 
-  loadUI(List<GiftCard> cards) {
+  loadUI(DashboardBlocObject object) {
     return AnimationLimiter(
       child: AnimationConfiguration.synchronized(
         duration: const Duration(milliseconds: Constant.load),
@@ -87,26 +91,27 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                               onTap: () {
                                 Navigator.of(context, rootNavigator: true)
                                     .push(createRoute(CardView(
-                                  card: cards[index],
+                                  card: object.giftCards[index],
                                 )));
                               },
                               child: Hero(
-                                tag: "Card:${cards[index].code}",
+                                tag: "Card:${object.giftCards[index].code}",
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
                                     child: CachedNetworkImage(
-                                      imageUrl: "${cards[index].logo}",
+                                      imageUrl:
+                                          "${object.giftCards[index].logo}",
                                     )),
                               ),
                             ),
                           );
                         },
-                        itemCount: cards.length,
+                        itemCount: object.giftCards.length,
                       ),
                     ),
                   )
                 ])),
-                getCategories(context),
+                getCategories(context, object.category),
                 SliverPadding(
                   padding: EdgeInsets.only(left: 15, right: 15),
                   sliver: SliverList(
@@ -138,15 +143,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
     );
   }
 
-  getCategories(BuildContext context) {
+  getCategories(BuildContext context, List<Category> categories) {
     var rng = new Random();
-    List<String> categories = [
-      "Dinner",
-      "Lunch",
-      "Breakfast",
-      "Fast Food",
-      "Pastries"
-    ];
+
     return SliverPadding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
       sliver: SliverList(
@@ -171,8 +170,8 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       decoration: BoxDecoration(
                           color: Theme.of(context).scaffoldBackgroundColor,
                           image: DecorationImage(
-                              image: NetworkImage(
-                                'https://source.unsplash.com/50${rng.nextInt(10)}x50${rng.nextInt(10)}/?food")',
+                              image: CachedNetworkImageProvider(
+                                '${Repository.s3}${categories[index].image}',
                               ),
                               fit: BoxFit.cover)),
                       child: Center(
@@ -187,7 +186,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                               ),
                             ),
                             Text(
-                              "${categories[index]}",
+                              "${categories[index].name}",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
