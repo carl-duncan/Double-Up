@@ -20,33 +20,37 @@ class IconButtonWidget extends StatelessWidget {
     bool cond = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          height: 45,
-          color: cond ? Colors.white : buttonColor,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                cond
-                    ? Icon(
-                        icon.icon,
-                        color: buttonColor,
-                      )
-                    : icon,
-                buttonText != null ? SizedBox(width: 10) : Container(),
-                buttonText != null
-                    ? Text(
-                        buttonText,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            .copyWith(color: cond ? buttonColor : Colors.white),
-                      )
-                    : Container(),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 5),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            height: 45,
+            color: cond ? Colors.white : buttonColor,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  cond
+                      ? Icon(
+                          icon.icon,
+                          color: buttonColor,
+                        )
+                      : Icon(
+                          icon.icon,
+                          color: Colors.white,
+                        ),
+                  buttonText != null ? SizedBox(width: 10) : Container(),
+                  buttonText != null
+                      ? Text(
+                          buttonText,
+                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                              color: cond ? buttonColor : Colors.white),
+                        )
+                      : Container(),
+                ],
+              ),
             ),
           ),
         ),

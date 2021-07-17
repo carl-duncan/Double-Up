@@ -1,7 +1,6 @@
-import 'package:double_up/pages/test_page.dart';
+import 'package:double_up/pages/login/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600))),
       debugShowCheckedModeBanner: false,
-      home: TestPage(),
+      home: LoginPage(),
     );
   }
 }

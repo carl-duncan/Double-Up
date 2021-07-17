@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,9 +17,11 @@ class TestPage extends StatelessWidget {
           "Dashboard",
           style: Theme.of(context).textTheme.headline6,
         ),
-        trailing: Icon(
-          FontAwesome5Solid.bell,
-          size: 25,
+        trailing: Badge(
+          child: Icon(
+            FontAwesome5Solid.bell,
+            size: 25,
+          ),
         ),
         leading: Icon(
           FontAwesome5Solid.user,
