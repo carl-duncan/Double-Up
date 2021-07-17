@@ -1,3 +1,4 @@
+import 'package:double_up/pages/customer/navigator/navigate.dart';
 import 'package:double_up/pages/sign_up/sign_up_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
@@ -74,7 +75,9 @@ class LoginPage extends StatelessWidget {
             IconButtonWidget(
                 buttonText: "Sign in",
                 buttonColor: Constant.primary,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(createRoute(CustomerNavigate()));
+                },
                 icon: Icon(
                   AntDesign.login,
                 )),
