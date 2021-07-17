@@ -1,11 +1,18 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
+import 'package:double_up/widgets/row.dart';
+import 'package:double_up/widgets/title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class CustomerDashboard extends StatefulWidget {
   @override
@@ -30,7 +37,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
       body: StreamBuilder<List<GiftCard>>(
           stream: dashboardBloc.giftCards,
           builder: (context, snapshot) {
-            Widget child = Container();
+            Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(snapshot.data);
             return child;
           }),
@@ -38,20 +45,140 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   }
 
   loadUI(List<GiftCard> cards) {
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: Constant.padding,
-          sliver: SliverList(
-              delegate: SliverChildListDelegate.fixed([
-            ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: CachedNetworkImage(
-                  imageUrl: "${cards.first.logo}",
-                ))
-          ])),
-        )
-      ],
+    return AnimationLimiter(
+      child: AnimationConfiguration.synchronized(
+        duration: const Duration(milliseconds: Constant.load),
+        child: SlideAnimation(
+          verticalOffset: 50.0,
+          child: FadeInAnimation(
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                    delegate: SliverChildListDelegate.fixed([
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: TitleWidget(
+                        title: "Your Recommended Gift Card",
+                        subtitle: "Based on your shopping history we recommend",
+                        onTap: null),
+                  ),
+                  Container(
+                    height: 250,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: Constant.padding,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: CachedNetworkImage(
+                                imageUrl: "${cards[index].logo}",
+                              )),
+                        );
+                      },
+                      itemCount: cards.length,
+                    ),
+                  )
+                ])),
+                getCategories(context),
+                SliverPadding(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate.fixed([
+                      TitleWidget(
+                          title: "Your Recommended Products",
+                          subtitle:
+                              "Based on your shopping history we recommend",
+                          onTap: () {}),
+                    ]),
+                  ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                    return ProductRow(
+                        name: "Name of Product",
+                        category: "Category",
+                        description: "Description of the Product",
+                        onTap: null);
+                  }, childCount: 3)),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  getCategories(BuildContext context) {
+    var rng = new Random();
+    List<String> categories = [
+      "Dinner",
+      "Lunch",
+      "Breakfast",
+      "Fast Food",
+      "Pastries"
+    ];
+    return SliverPadding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+      sliver: SliverList(
+          delegate: SliverChildListDelegate.fixed([
+        TitleWidget(
+            title: "Categories",
+            subtitle: "All the goodies we offer to you.",
+            onTap: null),
+        Container(
+          height: 80,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    child: Container(
+                      height: 50,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          color: Constant.primary,
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                'https://source.unsplash.com/50${rng.nextInt(10)}x50${rng.nextInt(10)}/?food")',
+                              ),
+                              fit: BoxFit.cover)),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(
+                                MaterialCommunityIcons.food,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "${categories[index]}",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+              );
+            },
+            itemCount: categories.length,
+          ),
+        ),
+      ])),
     );
   }
 }
