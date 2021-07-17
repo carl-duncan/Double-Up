@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/models/gift_card.dart';
+import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
@@ -63,28 +64,45 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                         subtitle: "Based on your shopping history we recommend",
                         onTap: null),
                   ),
-                  Container(
-                    height: 200,
-                    child: CarouselSlider.builder(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                        viewportFraction: 0.9,
-                        aspectRatio: 1.8,
-                        initialPage: 0,
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Container(
+                      height: 200,
+                      child: CarouselSlider.builder(
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          pageSnapping: true,
+                          enableInfiniteScroll: true,
+                          enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                          viewportFraction: 0.9,
+                          // aspectRatio: 1,
+                          initialPage: 0,
+                        ),
+                        itemBuilder: (context, index, index2) {
+                          return Padding(
+                            padding: Constant.padding,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context, rootNavigator: true)
+                                    .push(CupertinoPageRoute(
+                                        builder: (context) => CardView(
+                                              card: cards[index],
+                                            )));
+                              },
+                              child: Hero(
+                                tag: "Card:${cards[index].code}",
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: CachedNetworkImage(
+                                      imageUrl: "${cards[index].logo}",
+                                    )),
+                              ),
+                            ),
+                          );
+                        },
+                        itemCount: cards.length,
                       ),
-                      itemBuilder: (context, index, index2) {
-                        return Padding(
-                          padding: Constant.padding,
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: CachedNetworkImage(
-                                imageUrl: "${cards[index].logo}",
-                              )),
-                        );
-                      },
-                      itemCount: cards.length,
                     ),
                   )
                 ])),
