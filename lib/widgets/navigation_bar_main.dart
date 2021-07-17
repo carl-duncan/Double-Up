@@ -10,16 +10,21 @@ CupertinoNavigationBar navigationBar(BuildContext context, String title) {
       "Dashboard",
       style: Theme.of(context).textTheme.headline6,
     ),
-    trailing: Badge(
-      position: BadgePosition.topStart(),
-      badgeContent: Text(
-        "5",
-        style: TextStyle(color: Colors.white),
-      ),
-      child: Icon(
-        FontAwesome5Solid.bell,
-        size: 25,
-      ),
+    trailing: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Badge(
+          position: BadgePosition.bottomEnd(),
+          badgeContent: Text(
+            "5",
+            style: TextStyle(color: Colors.white),
+          ),
+          child: Icon(
+            FontAwesome5Solid.bell,
+            size: 25,
+          ),
+        ),
+      ],
     ),
     leading: Icon(
       FontAwesome5Solid.user,

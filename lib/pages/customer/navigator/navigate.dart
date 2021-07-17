@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,7 +58,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
                 label: "Search",
               ),
               BottomNavigationBarItem(
-                icon: Icon(FontAwesome5Solid.gift),
+                icon: Badge(child: Icon(FontAwesome5Solid.gift)),
                 label: "Rewards",
               ),
               BottomNavigationBarItem(
