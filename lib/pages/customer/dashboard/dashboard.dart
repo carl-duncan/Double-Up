@@ -52,7 +52,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
           child: FadeInAnimation(
             child: CustomScrollView(
               slivers: [
-                navigationBar(context, "Dashboard"),
+                navigationBar(context, "Dashboard", 99),
                 TitleWidget(
                     title: "Your Recommended Gift Card",
                     subtitle: "Based on your shopping history.",

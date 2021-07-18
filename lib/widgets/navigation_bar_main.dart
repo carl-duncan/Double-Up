@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-navigationBar(BuildContext context, String title) {
+navigationBar(BuildContext context, String title, int num) {
   return SliverList(
       delegate: SliverChildListDelegate.fixed([
     CupertinoNavigationBar(
@@ -21,7 +21,7 @@ navigationBar(BuildContext context, String title) {
           Badge(
             position: BadgePosition.bottomEnd(),
             badgeContent: Text(
-              "5",
+              "$num",
               style: TextStyle(color: Colors.white),
             ),
             child: Material(

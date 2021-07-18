@@ -26,7 +26,7 @@ class TestPage extends StatelessWidget {
   loadUI(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "Search"),
+        navigationBar(context, "Search", 99),
       ],
     );
   }

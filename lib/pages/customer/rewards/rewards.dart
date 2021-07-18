@@ -44,7 +44,7 @@ class _RewardsState extends State<Rewards> {
   loadUI(BuildContext context, List<GiftCard> cards) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "My Rewards"),
+        navigationBar(context, "My Rewards", 99),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
