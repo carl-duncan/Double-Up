@@ -75,10 +75,10 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 TitleWidget(
                     title: "Recommended Places",
                     subtitle: "[TO BE FILLED OUT]",
-                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
+                    padding: Constant.padding.copyWith(top: 15, bottom: 0),
                     onTap: null),
-
-                // Utils.productsList(objects);
+                Utils.businessList(object.business),
+                Utils.endOfSliver()
               ],
             ),
           ),

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
-import 'package:double_up/widgets/business_row.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +65,7 @@ class _ProductPageState extends State<ProductPage> {
                   .bodyText2
                   .copyWith(color: Colors.grey),
             ),
-            BusinessRow(business: widget.product.business, onTap: () {})
+            // BusinessRow(business: widget.product.business, onTap: () {})
           ])),
         )
       ],

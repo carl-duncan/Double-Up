@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:double_up/models/business.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
@@ -7,6 +8,7 @@ import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/category_view/category_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/widgets/business_row.dart';
 import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/row.dart';
@@ -109,6 +111,16 @@ class Utils {
     );
   }
 
+  static businessList(List<Business> objects) {
+    return SliverPadding(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return BusinessRow(business: objects[index], onTap: () {});
+      }, childCount: objects.length)),
+    );
+  }
+
   static detailedCardsList(List<GiftCard> cards, BuildContext context) {
     return SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
@@ -169,5 +181,14 @@ class Utils {
         ),
       ])),
     );
+  }
+
+  static endOfSliver() {
+    return SliverList(
+        delegate: SliverChildListDelegate.fixed([
+      SizedBox(
+        height: 50,
+      )
+    ]));
   }
 }
