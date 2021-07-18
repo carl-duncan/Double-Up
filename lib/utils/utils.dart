@@ -4,6 +4,7 @@ import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/category_view/category_view.dart';
+import 'package:double_up/pages/customer/product_page/product_page.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
@@ -86,7 +87,14 @@ class Utils {
       padding: EdgeInsets.only(left: 15, right: 15).copyWith(bottom: 50),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
-        return ProductRow(product: objects[index], onTap: null);
+        return ProductRow(
+            product: objects[index],
+            onTap: () {
+              Navigator.of(context, rootNavigator: true)
+                  .push(createRoute(ProductPage(
+                product: objects[index],
+              )));
+            });
       }, childCount: objects.length)),
     );
   }

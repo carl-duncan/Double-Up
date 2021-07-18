@@ -3,6 +3,7 @@ import 'package:double_up/pages/customer/dashboard/dashboard.dart';
 import 'package:double_up/pages/customer/navigator/navigate_bloc.dart';
 import 'package:double_up/pages/customer/rewards/rewards.dart';
 import 'package:double_up/pages/customer/search/search_page.dart';
+import 'package:double_up/pages/profile/profile_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
     pages.add(CustomerDashboard());
     pages.add(SearchPage());
     pages.add(Rewards());
-    pages.add(Container());
+    pages.add(ProfilePage());
     return Stack(
       children: <Widget>[
         CupertinoTabScaffold(

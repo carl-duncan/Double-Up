@@ -29,14 +29,17 @@ class ProductRow extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
-                child: CachedNetworkImage(
-                  imageUrl: Repository.s3 + product.images.first,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      BlurHash(hash: "LGKc%zo#9^IU}YOY\$fOG%MS^t8Kj"),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                  height: 76,
-                  width: 76,
+                child: Hero(
+                  tag: product.id,
+                  child: CachedNetworkImage(
+                    imageUrl: Repository.s3 + product.images.first,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) =>
+                        BlurHash(hash: "LGKc%zo#9^IU}YOY\$fOG%MS^t8Kj"),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    height: 76,
+                    width: 76,
+                  ),
                 ),
               ),
             ),

@@ -58,7 +58,7 @@ class _RewardsState extends State<Rewards> {
                       .copyWith(fontSize: 12),
                 ),
                 Text(
-                  "\$187.00",
+                  "\$187.⁰⁰",
                   style: Theme.of(context).textTheme.headline2,
                 )
               ],

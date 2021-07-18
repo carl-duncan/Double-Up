@@ -13,7 +13,7 @@ navigationBar(BuildContext context, String title) {
         title,
         style: Theme.of(context).textTheme.headline6,
       ),
-      trailing: Row(
+      leading: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Badge(
