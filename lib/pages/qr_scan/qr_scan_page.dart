@@ -34,6 +34,7 @@ class _QRScanPageState extends State<QRScanPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: CupertinoNavigationBar(
+        border: null,
         backgroundColor: Colors.transparent,
       ),
       body: Column(
