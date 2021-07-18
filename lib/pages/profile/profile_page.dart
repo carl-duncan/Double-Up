@@ -69,12 +69,12 @@ class ProfilePage extends StatelessWidget {
             )
           ])),
         ),
-        TitleWidget(
-          title: "Shopping History",
-          subtitle: "[TO BE FILLED OUT]",
-          onTap: null,
-          padding: Constant.padding,
-        ),
+        // TitleWidget(
+        //   title: "Shopping History",
+        //   subtitle: "[TO BE FILLED OUT]",
+        //   onTap: null,
+        //   padding: Constant.padding,
+        // ),
         TitleWidget(
           title: "Favourite Products",
           subtitle: "[TO BE FILLED OUT]",

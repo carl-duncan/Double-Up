@@ -64,7 +64,12 @@ class _SearchPageState extends State<SearchPage> {
                 enabled: true),
           ])),
         ),
-        // Utils.categoryRow(object.category),
+        TitleWidget(
+            title: "Categories",
+            subtitle: "[TO BE FILLED OUT]",
+            padding: Constant.padding.copyWith(top: 15, bottom: 10),
+            onTap: null),
+        Utils.categoryRow(object.category),
         TitleWidget(
             title: "Gift Cards",
             subtitle: "Search Results for : ${searchPageBloc.controller.text}",

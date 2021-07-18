@@ -5,7 +5,6 @@ import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/pages/card_view/card_view.dart';
-import 'package:double_up/pages/category_view/category_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/business_row.dart';
@@ -162,17 +161,17 @@ class Utils {
       sliver: SliverList(
           delegate: SliverChildListDelegate.fixed([
         Container(
-          height: 80,
+          height: 60,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return CategoryCard(
                 category: objects[index],
                 onTap: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .push(createRoute(CategoryView(
-                    category: objects[index],
-                  )));
+                  // Navigator.of(context, rootNavigator: true)
+                  //     .push(createRoute(CategoryView(
+                  //   category: objects[index],
+                  // )));
                 },
               );
             },

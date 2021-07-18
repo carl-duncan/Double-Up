@@ -22,7 +22,6 @@ class CategoryCard extends StatelessWidget {
           child: Hero(
             tag: category.id,
             child: Container(
-              height: 50,
               decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   image: DecorationImage(
@@ -51,7 +50,7 @@ class CategoryCard extends StatelessWidget {
                         "${category.name}",
                         style: Theme.of(context)
                             .textTheme
-                            .headline6
+                            .bodyText1
                             .copyWith(color: Colors.white),
                       ),
                     ],
