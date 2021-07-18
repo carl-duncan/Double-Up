@@ -57,11 +57,15 @@ class _RewardsState extends State<Rewards> {
                   style: Theme.of(context)
                       .textTheme
                       .overline
-                      .copyWith(fontSize: 12),
+                      .copyWith(fontSize: 12, color: Colors.grey),
                 ),
                 Text(
                   "\$${obj.customer.balance}",
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headline2.copyWith(
+                      color: Theme.of(context).scaffoldBackgroundColor ==
+                              Colors.black
+                          ? Colors.white
+                          : Colors.black),
                 )
               ],
             ),
