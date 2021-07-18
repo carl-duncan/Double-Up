@@ -76,7 +76,13 @@ class _SearchPageState extends State<SearchPage> {
             subtitle: "Search Results for : ${searchPageBloc.controller.text}",
             padding: Constant.padding,
             onTap: null),
-        Utils.productsList(object.products)
+        Utils.productsList(object.products),
+        TitleWidget(
+            title: "Businesses",
+            subtitle: "Search Results for : ${searchPageBloc.controller.text}",
+            padding: Constant.padding.copyWith(top: 0),
+            onTap: null),
+        Utils.businessList(object.business)
       ],
     );
   }
