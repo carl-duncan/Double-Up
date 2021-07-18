@@ -35,15 +35,18 @@ class _ProductPageState extends State<ProductPage> {
     return CustomScrollView(
       slivers: [
         navigationBarPushed(context, widget.product.name),
-        SliverList(
-            delegate: SliverChildListDelegate.fixed([
-          Hero(
-            tag: widget.product.id,
-            child: CachedNetworkImage(
-                imageUrl: Repository.s3 + widget.product.images.first),
-          ),
-          Text(widget.product.toJson().toString())
-        ]))
+        SliverPadding(
+          padding: Constant.padding,
+          sliver: SliverList(
+              delegate: SliverChildListDelegate.fixed([
+            Hero(
+              tag: widget.product.id,
+              child: CachedNetworkImage(
+                  imageUrl: Repository.s3 + widget.product.images.first),
+            ),
+            Text(widget.product.toJson().toString())
+          ])),
+        )
       ],
     );
   }
