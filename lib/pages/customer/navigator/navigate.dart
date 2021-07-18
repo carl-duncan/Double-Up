@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard.dart';
+import 'package:double_up/pages/customer/search/search_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
   loadUI() {
     pages = [];
     pages.add(CustomerDashboard());
-    pages.add(Container());
+    pages.add(SearchPage());
     pages.add(Container());
     pages.add(Container());
     return Stack(

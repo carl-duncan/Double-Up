@@ -7,7 +7,7 @@ CupertinoNavigationBar navigationBar(BuildContext context, String title) {
   return CupertinoNavigationBar(
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     middle: Text(
-      "Dashboard",
+      title,
       style: Theme.of(context).textTheme.headline6,
     ),
     trailing: Row(

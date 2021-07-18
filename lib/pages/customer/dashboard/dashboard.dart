@@ -1,14 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/category_view/category_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/category_card.dart';
-import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
-import 'package:double_up/widgets/row.dart';
 import 'package:double_up/widgets/title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,35 +63,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                         subtitle: "Based on your shopping history we recommend",
                         onTap: null),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Container(
-                      height: 200,
-                      child: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                          pageSnapping: true,
-                          enableInfiniteScroll: true,
-                          enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                          viewportFraction: 0.9,
-                          initialPage: 0,
-                        ),
-                        itemBuilder: (context, index, index2) {
-                          return GiftCardView(
-                            card: object.giftCards[index],
-                            onTap: () {
-                              Navigator.of(context, rootNavigator: true)
-                                  .push(createRoute(CardView(
-                                card: object.giftCards[index],
-                              )));
-                            },
-                          );
-                        },
-                        itemCount: object.giftCards.length,
-                      ),
-                    ),
-                  )
+                  Utils.cardsCarousel(object.giftCards)
                 ])),
                 SliverPadding(
                   padding: const EdgeInsets.only(
@@ -137,18 +106,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     ]),
                   ),
                 ),
-                SliverPadding(
-                  padding:
-                      EdgeInsets.only(left: 15, right: 15).copyWith(bottom: 50),
-                  sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                    return ProductRow(
-                        name: "Name of Product",
-                        category: "Category",
-                        description: "Description of the Product",
-                        onTap: null);
-                  }, childCount: 3)),
-                )
+                Utils.productsList(object.products)
+
+                // Utils.productsList(objects);
               ],
             ),
           ),
