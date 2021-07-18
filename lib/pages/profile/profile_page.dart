@@ -1,5 +1,6 @@
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
+import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
@@ -31,7 +32,7 @@ class ProfilePage extends StatelessWidget {
   loadUI(BuildContext context, Customer customer) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "My Profile"),
+        navigationBar(context, customer.name),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
@@ -40,8 +41,7 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage(
-                    "https://media.istockphoto.com/photos/portrait-of-smiling-handsome-man-in-blue-tshirt-standing-with-crossed-picture-id1045886560?k=6&m=1045886560&s=612x612&w=0&h=hXrxai1QKrfdqWdORI4TZ-M0ceCVakt4o6532vHaS3I="),
+                backgroundImage: NetworkImage(Repository.s3 + customer.picture),
               ),
             ),
             Row(
