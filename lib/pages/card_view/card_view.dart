@@ -60,6 +60,14 @@ class _CardViewState extends State<CardView> {
                 suffix: AntDesign.phone,
                 label: null,
                 enabled: true),
+            Field(
+                hint: "Postal Code",
+                controller: null,
+                obscure: false,
+                type: TextInputType.number,
+                suffix: AntDesign.phone,
+                label: null,
+                enabled: true),
             IconButtonWidget(
                 buttonText: "Send Gift Card",
                 buttonColor: Constant.primary,

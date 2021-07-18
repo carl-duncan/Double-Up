@@ -93,7 +93,7 @@ class Utils {
 
   static productsList(List<Product> objects) {
     return SliverPadding(
-      padding: EdgeInsets.only(left: 15, right: 15).copyWith(bottom: 50),
+      padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
         return ProductRow(

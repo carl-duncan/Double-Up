@@ -23,8 +23,8 @@ class Customer {
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     balance = json['balance'];
-    cards = json['cards'].cast<int>();
-    favCards = json['fav_cards'].cast<int>();
+    if (json['cards'] != null) cards = json['cards'].cast<int>();
+    if (json['fav_cards'] != null) favCards = json['fav_cards'].cast<int>();
     if (json['fav_products'] != null) {
       favProducts = new List<Product>();
       json['fav_products'].forEach((v) {
@@ -33,7 +33,7 @@ class Customer {
     }
     name = json['name'];
     picture = json['picture'];
-    prefs = json['prefs'].cast<String>();
+    if (json['prefs'] != null) prefs = json['prefs'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {

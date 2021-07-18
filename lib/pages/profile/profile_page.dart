@@ -1,5 +1,7 @@
+import 'package:double_up/models/customer.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -14,10 +16,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: null,
+          stream: profilePageBloc.userSingleton.currentUser,
           builder: (context, snapshot) {
             Widget child = Container();
-            if (!snapshot.hasData) child = loadUI(context);
+            if (snapshot.hasData) child = loadUI(context, snapshot.data);
             return AnimatedSwitcher(
               duration: Duration(milliseconds: Constant.load),
               child: child,
@@ -26,7 +28,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  loadUI(BuildContext context) {
+  loadUI(BuildContext context, Customer customer) {
     return CustomScrollView(
       slivers: [
         navigationBar(context, "My Profile"),
@@ -79,6 +81,7 @@ class ProfilePage extends StatelessWidget {
           onTap: null,
           padding: Constant.padding,
         ),
+        Utils.productsList(customer.favProducts),
         TitleWidget(
           title: "Favourite Gift Cards",
           subtitle: "Your Favourite Gift Cards",
