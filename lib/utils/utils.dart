@@ -48,11 +48,7 @@ class Utils {
       padding: EdgeInsets.only(left: 15, right: 15).copyWith(bottom: 50),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
-        return ProductRow(
-            name: objects[index].name,
-            category: objects[index].category.name,
-            description: objects[index].description,
-            onTap: null);
+        return ProductRow(product: objects[index], onTap: null);
       }, childCount: objects.length)),
     );
   }

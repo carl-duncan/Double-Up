@@ -10,20 +10,20 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: navigationBar(context, "Search"),
       body: StreamBuilder(
           stream: null,
           builder: (context, snapshot) {
             Widget child = Container();
-            if (!snapshot.hasData) child = loadUI();
+            if (!snapshot.hasData) child = loadUI(context);
             return child;
           }),
     );
   }
 
-  loadUI() {
+  loadUI(BuildContext context) {
     return CustomScrollView(
       slivers: [
+        navigationBar(context, "Search"),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(

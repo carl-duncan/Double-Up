@@ -9,7 +9,7 @@ class Product {
   List<String> images;
   String name;
   String price;
-  double threshold;
+  num threshold;
 
   Product(
       {this.business,

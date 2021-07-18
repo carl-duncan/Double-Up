@@ -20,15 +20,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   @override
   void initState() {
     dashboardBloc = DashboardBloc(context);
-
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: navigationBar(context, "Dashboard"),
       body: StreamBuilder(
           stream: dashboardBloc.combineLatestStream,
           builder: (context, snapshot) {
@@ -45,28 +42,27 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   loadUI(DashboardBlocObject object) {
     return AnimationLimiter(
       child: AnimationConfiguration.synchronized(
-        duration: const Duration(milliseconds: Constant.load),
+        duration: Duration(milliseconds: Constant.load),
         child: SlideAnimation(
           verticalOffset: 50.0,
           child: FadeInAnimation(
             child: CustomScrollView(
               slivers: [
+                navigationBar(context, "Dashboard"),
                 TitleWidget(
                     title: "Your Recommended Gift Card",
                     subtitle: "Based on your shopping history we recommend",
                     padding: Constant.padding.copyWith(top: 20, bottom: 0),
                     onTap: null),
                 Utils.cardsCarousel(object.giftCards),
-
                 TitleWidget(
                     title: "Categories",
                     subtitle: "All the goodies we offer to you.",
                     padding: Constant.padding.copyWith(top: 0),
                     onTap: null),
                 Utils.categoryRow(object.category),
-
                 TitleWidget(
-                    title: "Recommended",
+                    title: "Recommended Products",
                     subtitle: "All the goodies we offer to you.",
                     padding: Constant.padding.copyWith(top: 0),
                     onTap: null),
