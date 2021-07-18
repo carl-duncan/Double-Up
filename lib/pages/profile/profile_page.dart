@@ -1,3 +1,4 @@
+import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
+  final ProfilePageBloc profilePageBloc = ProfilePageBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,8 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
                 radius: 100,
-                backgroundColor: Constant.primary,
+                backgroundImage: NetworkImage(
+                    "https://media.istockphoto.com/photos/portrait-of-smiling-handsome-man-in-blue-tshirt-standing-with-crossed-picture-id1045886560?k=6&m=1045886560&s=612x612&w=0&h=hXrxai1QKrfdqWdORI4TZ-M0ceCVakt4o6532vHaS3I="),
               ),
             ),
             Row(
@@ -57,7 +59,9 @@ class ProfilePage extends StatelessWidget {
                   child: IconButtonWidget(
                       buttonText: "Sign Out",
                       buttonColor: Constant.primary,
-                      onPressed: () {},
+                      onPressed: () {
+                        profilePageBloc.signOut(context);
+                      },
                       icon: Icon(AntDesign.logout)),
                 ),
               ],
