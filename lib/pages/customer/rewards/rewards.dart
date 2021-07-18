@@ -1,4 +1,3 @@
-import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/qr_scan/qr_scan_page.dart';
@@ -31,7 +30,7 @@ class _RewardsState extends State<Rewards> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: rewardsBloc.userSingleton.giftCards,
+          stream: rewardsBloc.combineLatestStream,
           builder: (context, snapshot) {
             Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(context, snapshot.data);
@@ -43,10 +42,10 @@ class _RewardsState extends State<Rewards> {
     );
   }
 
-  loadUI(BuildContext context, List<GiftCard> cards) {
+  loadUI(BuildContext context, RewardsBlocObject obj) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "My Rewards", 99),
+        navigationBar(context, "My Rewards", obj.notifications.length),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
@@ -61,7 +60,7 @@ class _RewardsState extends State<Rewards> {
                       .copyWith(fontSize: 12),
                 ),
                 Text(
-                  "\$187.⁰⁰",
+                  "\$${obj.customer.balance}",
                   style: Theme.of(context).textTheme.headline2,
                 )
               ],
@@ -82,7 +81,7 @@ class _RewardsState extends State<Rewards> {
             subtitle: "All your gift cards you have and their balances",
             padding: Constant.padding.copyWith(top: 15, bottom: 10),
             onTap: null),
-        Utils.detailedCardsList(cards, context)
+        Utils.detailedCardsList(obj.giftCards, context)
       ],
     );
   }

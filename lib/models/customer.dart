@@ -3,7 +3,7 @@ import 'package:double_up/models/product.dart';
 
 class Customer {
   String id;
-  int balance;
+  num balance;
   List<int> cards;
   List<int> favCards;
   List<GiftCard> favCardsResolved = [];
