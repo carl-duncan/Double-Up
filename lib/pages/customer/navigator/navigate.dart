@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard.dart';
+import 'package:double_up/pages/customer/navigator/navigate_bloc.dart';
 import 'package:double_up/pages/customer/search/search_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ class CustomerNavigate extends StatefulWidget {
 
 class _CustomerNavigateState extends State<CustomerNavigate> {
   List<Widget> pages = [];
+  NavigateBloc navigateBloc = NavigateBloc();
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
   @override
   void dispose() {
     super.dispose();
+    navigateBloc.userSingleton.dispose();
   }
 
   @override

@@ -1,18 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/repositories/blinksky_repository.dart';
 import 'package:double_up/repositories/repository.dart';
-import 'package:double_up/singleton/user_singleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
-class DashboardBloc {
+class DashboardBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
   BehaviorSubject<List<Product>> products = BehaviorSubject();
-  UserSingleton userSingleton = UserSingleton();
 
   DashboardBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine3(

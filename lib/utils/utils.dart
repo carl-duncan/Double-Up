@@ -55,7 +55,7 @@ class Utils {
 
   static categoryRow(List<Category> objects) {
     return SliverPadding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+      padding: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
       sliver: SliverList(
           delegate: SliverChildListDelegate.fixed([
         Container(
