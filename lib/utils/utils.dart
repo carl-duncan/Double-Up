@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
@@ -106,6 +107,38 @@ class Utils {
             });
       }, childCount: objects.length)),
     );
+  }
+
+  static detailedCardsList(List<GiftCard> cards, BuildContext context) {
+    return SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+      return ListTile(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CachedNetworkImage(
+            width: 90,
+            imageUrl: cards[index].logo,
+          ),
+        ),
+        title: Text(
+          "${cards[index].caption} (\$20)",
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        isThreeLine: true,
+        subtitle: Text.rich(
+          TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'Balance: ',
+                  style: Theme.of(context).textTheme.headline6),
+              TextSpan(
+                text: '\$10 USD\n',
+              ),
+            ],
+          ),
+        ),
+      );
+    }, childCount: cards.length));
   }
 
   static categoryRow(List<Category> objects) {

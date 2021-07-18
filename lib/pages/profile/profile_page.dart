@@ -87,7 +87,8 @@ class ProfilePage extends StatelessWidget {
           subtitle: "Your Favourite Gift Cards",
           onTap: null,
           padding: Constant.padding,
-        )
+        ),
+        Utils.detailedCardsList(customer.favCardsResolved, context)
       ],
     );
   }

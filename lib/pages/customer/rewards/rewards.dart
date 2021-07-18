@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -29,7 +29,7 @@ class _RewardsState extends State<Rewards> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: rewardsBloc.giftCards,
+          stream: rewardsBloc.userSingleton.giftCards,
           builder: (context, snapshot) {
             Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(context, snapshot.data);
@@ -77,34 +77,7 @@ class _RewardsState extends State<Rewards> {
             subtitle: "All your gift cards you have and their balances",
             padding: Constant.padding.copyWith(top: 15, bottom: 10),
             onTap: null),
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          return ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                imageUrl: cards[index].logo,
-              ),
-            ),
-            title: Text(
-              "${cards[index].caption} (\$20)",
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            isThreeLine: true,
-            subtitle: Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'Balance: ',
-                      style: Theme.of(context).textTheme.headline6),
-                  TextSpan(
-                    text: '\$10 USD\n',
-                  ),
-                ],
-              ),
-            ),
-          );
-        }, childCount: cards.length))
+        Utils.detailedCardsList(cards, context)
       ],
     );
   }

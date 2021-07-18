@@ -1,3 +1,4 @@
+import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
 
 class Customer {
@@ -5,6 +6,7 @@ class Customer {
   int balance;
   List<int> cards;
   List<int> favCards;
+  List<GiftCard> favCardsResolved = [];
   List<Product> favProducts;
   String name;
   String picture;

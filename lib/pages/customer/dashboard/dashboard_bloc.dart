@@ -3,19 +3,17 @@ import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
-import 'package:double_up/repositories/blinksky_repository.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DashboardBloc extends Bloc {
   CombineLatestStream combineLatestStream;
-  BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
   BehaviorSubject<List<Product>> products = BehaviorSubject();
 
   DashboardBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine3(
-        giftCards,
+        userSingleton.giftCards,
         userSingleton.categories,
         products,
         (a, b, c) =>
@@ -25,15 +23,14 @@ class DashboardBloc extends Bloc {
   }
 
   updateGiftCards(BuildContext context) async {
-    List<GiftCard> cards = await BlinkSkyRepository.getCatalog();
+    List<GiftCard> cards = await userSingleton.giftCards.first;
     for (GiftCard obj in cards) {
       await precacheImage(CachedNetworkImageProvider(obj.logo), context);
     }
-    giftCards.add(cards);
+    userSingleton.updateGiftCards();
   }
 
   dispose() {
-    giftCards.close();
     products.close();
   }
 
