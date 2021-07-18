@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
   loadUI(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "Profile"),
+        navigationBar(context, "My Profile"),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
