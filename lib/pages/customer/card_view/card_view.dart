@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -43,13 +43,9 @@ class _CardViewState extends State<CardView> {
           padding: Constant.padding,
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
-            Hero(
-              tag: "Card:${widget.card.code}",
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: CachedNetworkImage(
-                    imageUrl: "${widget.card.logo}",
-                  )),
+            GiftCardView(
+              card: widget.card,
+              onTap: () {},
             )
           ])),
         )
