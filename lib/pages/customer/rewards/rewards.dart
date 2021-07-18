@@ -79,9 +79,9 @@ class _RewardsState extends State<Rewards> {
         TitleWidget(
             title: "Order History",
             subtitle: "All your gift cards you have and their balances",
-            padding: Constant.padding.copyWith(top: 15, bottom: 10),
+            padding: Constant.padding.copyWith(top: 15, bottom: 15),
             onTap: null),
-        Utils.detailedCardsList(obj.giftCards, context)
+        Utils.detailedCardsList(obj.customer.cardsResolved, context)
       ],
     );
   }

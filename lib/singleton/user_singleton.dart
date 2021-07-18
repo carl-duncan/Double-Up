@@ -22,6 +22,8 @@ class UserSingleton {
 
   updateCurrentUser() async {
     Customer customer = await Repository.getUser(userId);
+    print(customer.cards);
+    customer.cardsResolved = await resolveCard(customer.cards);
     customer.favCardsResolved = await resolveCard(customer.favCards);
     currentUser.add(customer);
   }

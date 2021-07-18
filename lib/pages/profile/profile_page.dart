@@ -79,14 +79,14 @@ class ProfilePage extends StatelessWidget {
           title: "Favourite Products",
           subtitle: "Your Favourite Products",
           onTap: null,
-          padding: Constant.padding,
+          padding: Constant.padding.copyWith(bottom: 15),
         ),
         Utils.productsList(customer.favProducts),
         TitleWidget(
           title: "Favourite Gift Cards",
           subtitle: "Your Favourite Gift Cards",
           onTap: null,
-          padding: Constant.padding,
+          padding: Constant.padding.copyWith(bottom: 15),
         ),
         Utils.detailedCardsList(customer.favCardsResolved, context)
       ],

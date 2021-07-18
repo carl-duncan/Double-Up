@@ -7,6 +7,7 @@ class Customer {
   List<int> cards;
   List<int> favCards;
   List<GiftCard> favCardsResolved = [];
+  List<GiftCard> cardsResolved = [];
   List<Product> favProducts;
   String name;
   String picture;

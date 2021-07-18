@@ -116,27 +116,30 @@ class Utils {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: CachedNetworkImage(
-            width: 90,
+            width: 80,
             imageUrl: cards[index].logo,
           ),
         ),
         title: Text(
           "${cards[index].caption} (\$20)",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.bodyText2,
         ),
-        isThreeLine: true,
+        isThreeLine: false,
         subtitle: Text.rich(
           TextSpan(
             children: <TextSpan>[
               TextSpan(
                   text: 'Balance: ',
-                  style: Theme.of(context).textTheme.headline6),
+                  style: Theme.of(context).textTheme.caption),
               TextSpan(
                 text: '\$10 USD\n',
               ),
             ],
           ),
         ),
+        onTap: () {
+          print(cards[index].code);
+        },
       );
     }, childCount: cards.length));
   }
