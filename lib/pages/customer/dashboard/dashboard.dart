@@ -56,22 +56,27 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     context, "Dashboard", object.notifications.length),
                 TitleWidget(
                     title: "Your Recommended Gift Card",
-                    subtitle: "Based on your shopping history.",
+                    subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 20, bottom: 0),
                     onTap: null),
                 Utils.singleCard(object.giftCards[3], context),
                 TitleWidget(
                     title: "Categories",
-                    subtitle: "All the goodies we offer to you.",
+                    subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),
                 Utils.categoryRow(object.category),
                 TitleWidget(
                     title: "Recommended Products",
-                    subtitle: "All the goodies we offer to you.",
+                    subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),
-                Utils.productsList(object.products)
+                Utils.productsList(object.products),
+                TitleWidget(
+                    title: "Recommended Places",
+                    subtitle: "[TO BE FILLED OUT]",
+                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
+                    onTap: null),
 
                 // Utils.productsList(objects);
               ],

@@ -78,7 +78,7 @@ class _RewardsState extends State<Rewards> {
         // Utils.cardsCarousel(cards),
         TitleWidget(
             title: "Order History",
-            subtitle: "All your gift cards you have and their balances",
+            subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding.copyWith(top: 15, bottom: 15),
             onTap: null),
         Utils.detailedCardsList(obj.customer.cardsResolved, context)

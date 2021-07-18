@@ -71,20 +71,20 @@ class ProfilePage extends StatelessWidget {
         ),
         TitleWidget(
           title: "Shopping History",
-          subtitle: "All your receipts you claimed goes here!",
+          subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding,
         ),
         TitleWidget(
           title: "Favourite Products",
-          subtitle: "Your Favourite Products",
+          subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
         Utils.productsList(customer.favProducts),
         TitleWidget(
           title: "Favourite Gift Cards",
-          subtitle: "Your Favourite Gift Cards",
+          subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
