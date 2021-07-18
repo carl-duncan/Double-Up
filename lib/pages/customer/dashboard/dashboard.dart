@@ -62,13 +62,13 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 TitleWidget(
                     title: "Categories",
                     subtitle: "All the goodies we offer to you.",
-                    padding: Constant.padding.copyWith(top: 0),
+                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),
                 Utils.categoryRow(object.category),
                 TitleWidget(
                     title: "Recommended Products",
                     subtitle: "All the goodies we offer to you.",
-                    padding: Constant.padding.copyWith(top: 0),
+                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),
                 Utils.productsList(object.products)
 

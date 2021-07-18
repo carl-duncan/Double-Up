@@ -2,7 +2,6 @@ import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
-import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -49,11 +48,27 @@ class _RewardsState extends State<Rewards> {
           padding: Constant.padding,
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
+            Column(
+              children: [
+                Text(
+                  "Your Balance:",
+                  style: Theme.of(context)
+                      .textTheme
+                      .overline
+                      .copyWith(fontSize: 12),
+                ),
+                Text(
+                  "\$187.00",
+                  style: Theme.of(context).textTheme.headline2,
+                )
+              ],
+            ),
             IconButtonWidget(
-                buttonText: "Claim Rewards",
-                buttonColor: Constant.primary,
+                buttonText: "Scan QR Code",
+                buttonColor: Colors.black,
                 onPressed: () {},
-                icon: Icon(FontAwesome5Solid.gift)),
+                icon: Icon(AntDesign.qrcode)),
+            //
             // Text.rich(
             //   TextSpan(
             //     children: <TextSpan>[
@@ -68,11 +83,11 @@ class _RewardsState extends State<Rewards> {
             // ),
           ])),
         ),
-        Utils.cardsCarousel(cards),
+        // Utils.cardsCarousel(cards),
         TitleWidget(
             title: "Order History",
             subtitle: "All your gift cards you have and their balances",
-            padding: Constant.padding.copyWith(top: 0),
+            padding: Constant.padding.copyWith(top: 15),
             onTap: null),
       ],
     );

@@ -43,6 +43,30 @@ class Utils {
     ]));
   }
 
+  static cardsList(List<GiftCard> giftCards, {num height}) {
+    return SliverList(
+        delegate: SliverChildListDelegate.fixed([
+      Container(
+        height: height == null ? 100 : height,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GiftCardView(
+              card: giftCards[index],
+              onTap: () {
+                Navigator.of(context, rootNavigator: true)
+                    .push(createRoute(CardView(
+                  card: giftCards[index],
+                )));
+              },
+            );
+          },
+          itemCount: giftCards.length,
+        ),
+      )
+    ]));
+  }
+
   static singleCard(GiftCard card, BuildContext context) {
     return SliverList(
         delegate: SliverChildListDelegate.fixed([

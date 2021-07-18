@@ -18,40 +18,37 @@ class TitleWidget extends StatelessWidget {
       padding: padding,
       sliver: SliverList(
         delegate: SliverChildListDelegate.fixed([
-          Padding(
-            padding: const EdgeInsets.only(top: 15, bottom: 10),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    subtitle != null
-                        ? Text(
-                            subtitle,
-                            style: Theme.of(context)
-                                .textTheme
-                                .overline
-                                .copyWith(color: Colors.grey),
-                          )
-                        : Container()
-                  ],
-                ),
-                Spacer(),
-                onTap != null
-                    ? InkWell(
-                        child: Text(
-                          "See All",
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                        onTap: onTap,
-                      )
-                    : Container()
-              ],
-            ),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  subtitle != null
+                      ? Text(
+                          subtitle,
+                          style: Theme.of(context)
+                              .textTheme
+                              .overline
+                              .copyWith(color: Colors.grey),
+                        )
+                      : Container()
+                ],
+              ),
+              Spacer(),
+              onTap != null
+                  ? InkWell(
+                      child: Text(
+                        "See All",
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      onTap: onTap,
+                    )
+                  : Container()
+            ],
           )
         ]),
       ),

@@ -4,6 +4,7 @@ import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
+import 'package:double_up/widgets/title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -60,6 +61,17 @@ class _SearchPageState extends State<SearchPage> {
           ])),
         ),
         Utils.categoryRow(object.category),
+        TitleWidget(
+            title: "Gift Cards",
+            subtitle: "Search Results for : ",
+            padding: Constant.padding.copyWith(bottom: 0),
+            onTap: null),
+        Utils.cardsList(object.giftCards),
+        TitleWidget(
+            title: "Products",
+            subtitle: "Search Results for : ",
+            padding: Constant.padding,
+            onTap: null),
         Utils.productsList(object.products)
       ],
     );
