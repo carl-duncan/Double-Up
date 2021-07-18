@@ -34,7 +34,11 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               DashboardBlocObject object = snapshot.data;
               child = loadUI(object);
             }
-            return child;
+
+            return AnimatedSwitcher(
+              duration: Duration(milliseconds: Constant.load),
+              child: child,
+            );
           }),
     );
   }
@@ -54,7 +58,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     subtitle: "Based on your shopping history we recommend",
                     padding: Constant.padding.copyWith(top: 20, bottom: 0),
                     onTap: null),
-                Utils.cardsCarousel(object.giftCards),
+                Utils.singleCard(object.giftCards[3], context),
                 TitleWidget(
                     title: "Categories",
                     subtitle: "All the goodies we offer to you.",

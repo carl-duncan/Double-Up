@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard.dart';
 import 'package:double_up/pages/customer/navigator/navigate_bloc.dart';
+import 'package:double_up/pages/customer/rewards/rewards.dart';
 import 'package:double_up/pages/customer/search/search_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,7 +39,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
     pages = [];
     pages.add(CustomerDashboard());
     pages.add(SearchPage());
-    pages.add(Container());
+    pages.add(Rewards());
     pages.add(Container());
     return Stack(
       children: <Widget>[

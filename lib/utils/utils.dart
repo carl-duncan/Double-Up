@@ -43,6 +43,20 @@ class Utils {
     ]));
   }
 
+  static singleCard(GiftCard card, BuildContext context) {
+    return SliverList(
+        delegate: SliverChildListDelegate.fixed([
+      GiftCardView(
+        card: card,
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).push(createRoute(CardView(
+            card: card,
+          )));
+        },
+      )
+    ]));
+  }
+
   static productsList(List<Product> objects) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15).copyWith(bottom: 50),

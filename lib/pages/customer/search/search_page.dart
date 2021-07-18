@@ -1,4 +1,5 @@
 import 'package:double_up/pages/customer/search/search_page_bloc.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -30,9 +31,13 @@ class _SearchPageState extends State<SearchPage> {
       body: StreamBuilder(
           stream: searchPageBloc.combineLatestStream,
           builder: (context, snapshot) {
-            Widget child = Container();
+            Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(context, snapshot.data);
-            return child;
+            // return child;
+            return AnimatedSwitcher(
+              duration: Duration(milliseconds: Constant.load),
+              child: child,
+            );
           }),
     );
   }
