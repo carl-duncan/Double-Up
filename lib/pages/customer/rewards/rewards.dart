@@ -68,19 +68,6 @@ class _RewardsState extends State<Rewards> {
                 buttonColor: Colors.black,
                 onPressed: () {},
                 icon: Icon(AntDesign.qrcode)),
-            //
-            // Text.rich(
-            //   TextSpan(
-            //     children: <TextSpan>[
-            //       TextSpan(
-            //           text: 'Balance:',
-            //           style: Theme.of(context).textTheme.headline6),
-            //       TextSpan(
-            //           text: '\$5000',
-            //           style: Theme.of(context).textTheme.headline6),
-            //     ],
-            //   ),
-            // ),
           ])),
         ),
         // Utils.cardsCarousel(cards),

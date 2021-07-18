@@ -49,6 +49,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   carousel_slider: ^4.0.0
   hover_effect: ^0.6.0
+  qr_code_scanner: ^0.5.2
 
 dev_dependencies:
   flutter_test:
