@@ -71,13 +71,18 @@ class Utils {
   static singleCard(GiftCard card, BuildContext context) {
     return SliverList(
         delegate: SliverChildListDelegate.fixed([
-      GiftCardView(
-        card: card,
-        onTap: () {
-          Navigator.of(context, rootNavigator: true).push(createRoute(CardView(
-            card: card,
-          )));
-        },
+      Padding(
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+        child: GiftCardView(
+          card: card,
+          onTap: () {
+            Navigator.of(context, rootNavigator: true)
+                .push(createRoute(CardView(
+              card: card,
+            )));
+          },
+        ),
       )
     ]));
   }
