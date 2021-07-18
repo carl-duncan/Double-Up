@@ -1,4 +1,6 @@
 import 'package:badges/badges.dart';
+import 'package:double_up/pages/notifications/notifications.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,9 +24,18 @@ navigationBar(BuildContext context, String title) {
               "5",
               style: TextStyle(color: Colors.white),
             ),
-            child: Icon(
-              FontAwesome5Solid.bell,
-              size: 25,
+            child: Material(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: InkWell(
+                child: Icon(
+                  FontAwesome5Solid.bell,
+                  size: 25,
+                ),
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .push(createRoute(Notifications()));
+                },
+              ),
             ),
           ),
         ],
