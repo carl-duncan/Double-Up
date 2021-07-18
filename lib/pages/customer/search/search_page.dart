@@ -53,23 +53,27 @@ class _SearchPageState extends State<SearchPage> {
               delegate: SliverChildListDelegate.fixed([
             Field(
                 hint: "Search for Products, Gift Cards",
-                controller: null,
+                controller: searchPageBloc.controller,
                 label: null,
+                onChanged: (String value) {
+                  searchPageBloc.updateProducts(context, value);
+                  searchPageBloc.updateGiftCards(context, value);
+                },
                 obscure: false,
                 suffix: FontAwesome5Solid.search,
                 enabled: true),
           ])),
         ),
-        Utils.categoryRow(object.category),
+        // Utils.categoryRow(object.category),
         TitleWidget(
             title: "Gift Cards",
-            subtitle: "Search Results for : ",
+            subtitle: "Search Results for : ${searchPageBloc.controller.text}",
             padding: Constant.padding.copyWith(bottom: 0),
             onTap: null),
         Utils.cardsList(object.giftCards),
         TitleWidget(
             title: "Products",
-            subtitle: "Search Results for : ",
+            subtitle: "Search Results for : ${searchPageBloc.controller.text}",
             padding: Constant.padding,
             onTap: null),
         Utils.productsList(object.products)

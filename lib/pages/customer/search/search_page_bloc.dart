@@ -12,6 +12,7 @@ class SearchPageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
   BehaviorSubject<List<Product>> products = BehaviorSubject();
+  TextEditingController controller = TextEditingController();
 
   SearchPageBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine3(
@@ -20,25 +21,27 @@ class SearchPageBloc extends Bloc {
         products,
         (a, b, c) =>
             SearchPageBlocObject(giftCards: a, category: b, products: c));
-    updateGiftCards(context);
-    updateProducts(context);
+    updateGiftCards(context, "");
+    updateProducts(context, "");
   }
 
-  updateGiftCards(BuildContext context) async {
+  updateGiftCards(BuildContext context, String search) async {
     List<GiftCard> cards = await BlinkSkyRepository.getCatalog();
     for (GiftCard obj in cards) {
       await precacheImage(CachedNetworkImageProvider(obj.logo), context);
     }
+    cards.removeWhere((element) => !element.caption.contains(search));
     giftCards.add(cards);
   }
 
   dispose() {
     giftCards.close();
     products.close();
+    controller.dispose();
   }
 
-  updateProducts(BuildContext context) async {
-    List<Product> objects = await Repository.getProducts();
+  updateProducts(BuildContext context, String search) async {
+    List<Product> objects = await Repository.searchProducts(search);
     for (Product obj in objects) {
       await precacheImage(
           CachedNetworkImageProvider(Repository.s3 + obj.images.first),
