@@ -65,7 +65,7 @@ class _CardViewState extends State<CardView> {
                 controller: null,
                 obscure: false,
                 type: TextInputType.number,
-                suffix: AntDesign.phone,
+                suffix: Entypo.address,
                 label: null,
                 enabled: true),
             IconButtonWidget(
