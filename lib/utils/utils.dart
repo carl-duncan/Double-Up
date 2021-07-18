@@ -1,18 +1,21 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/pages/customer/card_view/card_view.dart';
+import 'package:double_up/pages/customer/category_view/category_view.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/row.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
-  static cardsCarousel(List<GiftCard> giftCards) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Container(
-        height: 200,
+  static cardsCarousel(List<GiftCard> giftCards, {num height}) {
+    return SliverList(
+        delegate: SliverChildListDelegate.fixed([
+      Container(
+        height: height == null ? 250 : height,
         child: CarouselSlider.builder(
           options: CarouselOptions(
             autoPlay: true,
@@ -36,8 +39,8 @@ class Utils {
           },
           itemCount: giftCards.length,
         ),
-      ),
-    );
+      )
+    ]));
   }
 
   static productsList(List<Product> objects) {
@@ -51,6 +54,33 @@ class Utils {
             description: objects[index].description,
             onTap: null);
       }, childCount: objects.length)),
+    );
+  }
+
+  static categoryRow(List<Category> objects) {
+    return SliverPadding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+      sliver: SliverList(
+          delegate: SliverChildListDelegate.fixed([
+        Container(
+          height: 80,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return CategoryCard(
+                category: objects[index],
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .push(createRoute(CategoryView(
+                    category: objects[index],
+                  )));
+                },
+              );
+            },
+            itemCount: objects.length,
+          ),
+        ),
+      ])),
     );
   }
 }
