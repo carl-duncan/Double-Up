@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/pages/customer/card_view/card_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/category_card.dart';
@@ -111,9 +110,10 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
+                          print(object.category[index].toJson().toString());
                           return CategoryCard(
-                              url: Repository.s3 + object.category[index].image,
-                              name: object.category[index].name);
+                            category: object.category[index],
+                          );
                         },
                         itemCount: object.category.length,
                       ),
