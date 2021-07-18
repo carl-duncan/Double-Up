@@ -82,7 +82,7 @@ class BusinessRow extends StatelessWidget {
                     TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Description',
+                            text: business.address,
                             style: Theme.of(context).textTheme.caption),
                       ],
                     ),
