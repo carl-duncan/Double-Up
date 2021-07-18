@@ -12,7 +12,7 @@ class GiftCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Constant.padding,
+      padding: Constant.padding.copyWith(left: 5, right: 5),
       child: InkWell(
         onTap: onTap,
         child: Hero(

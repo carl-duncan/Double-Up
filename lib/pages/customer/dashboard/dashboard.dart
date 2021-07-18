@@ -55,7 +55,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 navigationBar(context, "Dashboard"),
                 TitleWidget(
                     title: "Your Recommended Gift Card",
-                    subtitle: "Based on your shopping history we recommend",
+                    subtitle: "Based on your shopping history.",
                     padding: Constant.padding.copyWith(top: 20, bottom: 0),
                     onTap: null),
                 Utils.singleCard(object.giftCards[3], context),
