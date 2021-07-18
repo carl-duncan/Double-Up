@@ -67,8 +67,8 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
                 label: "Rewards",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.circle),
-                label: "Space",
+                icon: Icon(Icons.person),
+                label: "My Profile",
               ),
             ],
           ),

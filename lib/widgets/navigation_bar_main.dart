@@ -28,10 +28,10 @@ navigationBar(BuildContext context, String title) {
           ),
         ],
       ),
-      leading: Icon(
-        FontAwesome5Solid.user,
-        size: 25,
-      ),
+      // leading: Icon(
+      //   FontAwesome5Solid.user,
+      //   size: 25,
+      // ),
       border: null,
     )
   ]));
