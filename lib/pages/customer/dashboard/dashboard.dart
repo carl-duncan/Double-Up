@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/pages/customer/card_view/card_view.dart';
+import 'package:double_up/pages/customer/category_view/category_view.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
@@ -77,7 +78,6 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                           enableInfiniteScroll: true,
                           enlargeStrategy: CenterPageEnlargeStrategy.scale,
                           viewportFraction: 0.9,
-                          // aspectRatio: 1,
                           initialPage: 0,
                         ),
                         itemBuilder: (context, index, index2) {
@@ -110,9 +110,14 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          print(object.category[index].toJson().toString());
                           return CategoryCard(
                             category: object.category[index],
+                            onTap: () {
+                              Navigator.of(context, rootNavigator: true)
+                                  .push(createRoute(CategoryView(
+                                category: object.category[index],
+                              )));
+                            },
                           );
                         },
                         itemCount: object.category.length,
