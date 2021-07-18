@@ -41,10 +41,30 @@ class _ProductPageState extends State<ProductPage> {
               delegate: SliverChildListDelegate.fixed([
             Hero(
               tag: widget.product.id,
-              child: CachedNetworkImage(
-                  imageUrl: Repository.s3 + widget.product.images.first),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: CachedNetworkImage(
+                    imageUrl: Repository.s3 + widget.product.images.first),
+              ),
             ),
-            Text(widget.product.toJson().toString())
+            Padding(
+              padding: const EdgeInsets.only(top: 20, bottom: 10),
+              child: Text(
+                "\$${widget.product.price}",
+                style: Theme.of(context).textTheme.headline3,
+              ),
+            ),
+            Text(
+              "Description",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            Text(
+              widget.product.description,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  .copyWith(color: Colors.grey),
+            ),
           ])),
         )
       ],
