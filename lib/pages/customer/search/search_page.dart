@@ -46,7 +46,7 @@ class _SearchPageState extends State<SearchPage> {
   loadUI(BuildContext context, SearchPageBlocObject object) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, "Search", 99),
+        navigationBar(context, "Search", object.notification.length),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(

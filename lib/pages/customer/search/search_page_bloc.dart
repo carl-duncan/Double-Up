@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
+import 'package:double_up/models/notification.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,13 @@ class SearchPageBloc extends Bloc {
   TextEditingController controller = TextEditingController();
 
   SearchPageBloc(BuildContext context) {
-    combineLatestStream = CombineLatestStream.combine3(
+    combineLatestStream = CombineLatestStream.combine4(
         userSingleton.giftCards,
         userSingleton.categories,
         products,
-        (a, b, c) =>
-            SearchPageBlocObject(giftCards: a, category: b, products: c));
+        userSingleton.notifications,
+        (a, b, c, d) => SearchPageBlocObject(
+            giftCards: a, category: b, products: c, notification: d));
     updateGiftCards(context, "");
     updateProducts(context, "");
   }
@@ -51,6 +53,8 @@ class SearchPageBloc extends Bloc {
 class SearchPageBlocObject {
   List<GiftCard> giftCards;
   List<Category> category;
+  List<AppNotifications> notification;
   List<Product> products;
-  SearchPageBlocObject({this.giftCards, this.category, this.products});
+  SearchPageBlocObject(
+      {this.giftCards, this.category, this.products, this.notification});
 }
