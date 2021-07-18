@@ -40,26 +40,23 @@ class _CategoryViewState extends State<CategoryView> {
               centerTitle: true,
               title: Text(widget.category.name,
                   style: Theme.of(context).textTheme.headline6),
-              background: Hero(
-                tag: widget.category.id,
-                child: Container(
-                  child: ShaderMask(
-                      shaderCallback: (rect) {
-                        return LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Constant.primary, Colors.transparent],
-                        ).createShader(
-                            Rect.fromLTRB(0, 0, rect.width, rect.height));
-                      },
-                      blendMode: BlendMode.dstIn,
-                      child: Container(
-                        child: CachedNetworkImage(
-                          imageUrl: Repository.s3 + widget.category.image,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
-                ),
+              background: Container(
+                child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Constant.primary, Colors.transparent],
+                      ).createShader(
+                          Rect.fromLTRB(0, 0, rect.width, rect.height));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Container(
+                      child: CachedNetworkImage(
+                        imageUrl: Repository.s3 + widget.category.image,
+                        fit: BoxFit.cover,
+                      ),
+                    )),
               )),
         ),
         SliverPadding(

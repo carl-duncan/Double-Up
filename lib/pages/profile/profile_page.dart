@@ -1,6 +1,7 @@
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
@@ -26,6 +27,7 @@ class ProfilePage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         navigationBar(context, "Profile"),
+        SliverList(delegate: SliverChildListDelegate.fixed([]))
       ],
     );
   }
