@@ -65,7 +65,7 @@ class ProductRow extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                product.category.name,
+                                product.business.name,
                                 style: theme.textTheme.overline
                                     .copyWith(color: Colors.white),
                               )
