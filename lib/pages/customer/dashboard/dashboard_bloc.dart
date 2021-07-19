@@ -28,7 +28,7 @@ class DashboardBloc extends Bloc {
             notifications: d,
             business: e));
     updateGiftCards(context);
-    updateProducts(context);
+    updateProducts(context, null);
     updateBusinesses(context);
   }
 
@@ -45,8 +45,12 @@ class DashboardBloc extends Bloc {
     businesses.close();
   }
 
-  updateProducts(BuildContext context) async {
-    List<Product> objects = await Repository.getProducts();
+  updateProducts(BuildContext context, Category category) async {
+    List<Product> objects;
+    if (category == null)
+      objects = await Repository.getProducts();
+    else
+      objects = await Repository.getProductByCategory(category.id);
     for (Product obj in objects) {
       await precacheImage(
           CachedNetworkImageProvider(obj.images.first), context);

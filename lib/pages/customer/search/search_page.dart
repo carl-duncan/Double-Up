@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
             subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding.copyWith(top: 15, bottom: 10),
             onTap: null),
-        Utils.categoryRow(object.category),
+        Utils.categoryRow(object.category, null),
         TitleWidget(
             title: "Gift Cards",
             subtitle: "[TO BE FILLED OUT]",
