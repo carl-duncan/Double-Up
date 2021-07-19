@@ -169,7 +169,6 @@ class Utils {
               return CategoryCard(
                 category: objects[index],
                 onTap: () {
-                  subject.add(subject);
                   // Navigator.of(context, rootNavigator: false)
                   //     .push(createRoute(CategoryView(
                   //   category: objects[index],
