@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:rxdart/rxdart.dart';
@@ -23,11 +24,10 @@ class CardViewBloc extends Bloc {
         context: context,
         builder: (_) => NetworkGiffyDialog(
               image: CachedNetworkImage(
-                imageUrl:
-                    "https://i.pinimg.com/originals/11/8f/04/118f040c750fe58e235d2c9491368f03.gif",
+                imageUrl: Constant.dialog,
                 fit: BoxFit.cover,
               ),
-              title: Text('Scheduled Send',
+              title: Text('Scheduled Send?',
                   textAlign: TextAlign.center,
                   style:
                       TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600)),

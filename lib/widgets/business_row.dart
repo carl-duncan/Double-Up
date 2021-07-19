@@ -54,7 +54,7 @@ class BusinessRow extends StatelessWidget {
                         child: Container(
                           height: 20,
                           width: 100,
-                          color: Constant.primary,
+                          color: Constant.secondary,
                           child: Center(
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

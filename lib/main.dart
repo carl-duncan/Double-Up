@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'Double Up',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: ThemeData(
           brightness: Brightness.light,
           scaffoldBackgroundColor: Colors.grey[20],

@@ -102,7 +102,10 @@ class _CardViewState extends State<CardView> {
                             child: Center(
                               child: Text(
                                 "\$${amounts[index]}",
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(color: Colors.white),
                               ),
                             ),
                           ),

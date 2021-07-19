@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,20 +43,40 @@ class _ProductPageState extends State<ProductPage> {
               tag: widget.product.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child:
-                    CachedNetworkImage(imageUrl: widget.product.images.first),
+                child: CachedNetworkImage(
+                  imageUrl: widget.product.images.first,
+                  height: 200,
+                ),
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 10),
-              child: Text(
-                "\$${widget.product.price}",
-                style: Theme.of(context).textTheme.headline3,
+              padding: const EdgeInsets.only(top: 40, bottom: 20),
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: '\$${widget.product.price}',
+                        style: Theme.of(context).textTheme.headline6.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey)),
+                    TextSpan(
+                        text:
+                            ' \$${(num.parse(widget.product.price) * (1 - widget.product.threshold)).toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.headline4.copyWith(
+                            color: Theme.of(context).textTheme.headline6.color,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ),
             ),
-            Text(
-              "Description",
-              style: Theme.of(context).textTheme.headline6,
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                "Description",
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
             Text(
               widget.product.description,
@@ -64,6 +85,16 @@ class _ProductPageState extends State<ProductPage> {
                   .bodyText2
                   .copyWith(color: Colors.grey),
             ),
+
+            Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.3),
+              child: IconButtonWidget(
+                  buttonText: "Find Supermarket",
+                  buttonColor: Constant.secondary,
+                  onPressed: () {},
+                  icon: Icon(Icons.fastfood)),
+            )
             // BusinessRow(business: widget.product.business, onTap: () {})
           ])),
         )
