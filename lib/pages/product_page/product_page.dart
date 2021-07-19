@@ -5,6 +5,7 @@ import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -52,22 +53,40 @@ class _ProductPageState extends State<ProductPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 20),
-              child: Text.rich(
-                TextSpan(
-                  children: <TextSpan>[
+              child: Row(
+                children: [
+                  Text.rich(
                     TextSpan(
-                        text: '\$${widget.product.price}',
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey)),
-                    TextSpan(
-                        text:
-                            ' \$${(num.parse(widget.product.price) * (1 - widget.product.threshold)).toStringAsFixed(2)}',
-                        style: Theme.of(context).textTheme.headline4.copyWith(
-                            color: Theme.of(context).textTheme.headline6.color,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: '\$${widget.product.price}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                .copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey)),
+                        TextSpan(
+                            text:
+                                ' \$${(num.parse(widget.product.price) * (1 - widget.product.threshold)).toStringAsFixed(2)}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .color,
+                                    fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    FontAwesome5Solid.heart,
+                    color: Constant.red,
+                  )
+                ],
               ),
             ),
 
