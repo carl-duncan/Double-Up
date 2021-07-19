@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CardViewBloc extends Bloc {
@@ -14,7 +17,31 @@ class CardViewBloc extends Bloc {
   updateValue(String value) {
     this.value.add(value);
   }
-  dispose(){
+
+  sendGiftCard(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) => NetworkGiffyDialog(
+              image: CachedNetworkImage(
+                imageUrl:
+                    "https://i.pinimg.com/originals/11/8f/04/118f040c750fe58e235d2c9491368f03.gif",
+                fit: BoxFit.cover,
+              ),
+              title: Text('Scheduled Send',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600)),
+              description: Text(
+                'Would you like to schedule this message to be sent later?',
+                textAlign: TextAlign.center,
+              ),
+              buttonCancelText: Text("No"),
+              buttonOkText: Text("Yes"),
+              onOkButtonPressed: () {},
+            ));
+  }
+
+  dispose() {
     value.close();
   }
 }

@@ -137,7 +137,9 @@ class _CardViewState extends State<CardView> {
             IconButtonWidget(
                 buttonText: "Send Gift Card",
                 buttonColor: HexColor(widget.card.color),
-                onPressed: () {},
+                onPressed: () {
+                  cardViewBloc.sendGiftCard(context);
+                },
                 icon: Icon(FontAwesome5Solid.gift)),
           ])),
         ),
