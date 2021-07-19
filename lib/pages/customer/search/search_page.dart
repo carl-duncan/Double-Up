@@ -70,12 +70,12 @@ class _SearchPageState extends State<SearchPage> {
             padding: Constant.padding.copyWith(top: 15, bottom: 10),
             onTap: null),
         Utils.categoryRow(object.category, null),
-        TitleWidget(
-            title: "Gift Cards",
-            subtitle: "[TO BE FILLED OUT]",
-            padding: Constant.padding.copyWith(bottom: 0),
-            onTap: null),
-        Utils.cardsList(object.giftCards),
+        // TitleWidget(
+        //     title: "Gift Cards",
+        //     subtitle: "[TO BE FILLED OUT]",
+        //     padding: Constant.padding.copyWith(bottom: 0),
+        //     onTap: null),
+        // Utils.cardsList(object.giftCards),
         TitleWidget(
             title: "Products",
             subtitle: "[TO BE FILLED OUT]",

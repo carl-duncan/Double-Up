@@ -1,4 +1,3 @@
-import 'package:double_up/models/customer.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
@@ -16,7 +15,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: profilePageBloc.userSingleton.currentUser,
+          stream: profilePageBloc.combineLatestStream,
           builder: (context, snapshot) {
             Widget child = Container();
             if (snapshot.hasData) child = loadUI(context, snapshot.data);
@@ -28,10 +27,11 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  loadUI(BuildContext context, Customer customer) {
+  loadUI(BuildContext context, ProfilePageBlocObject object) {
     return CustomScrollView(
       slivers: [
-        navigationBar(context, customer.name, 99),
+        navigationBar(
+            context, object.customer.name, object.notifications.length),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
@@ -40,7 +40,7 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage(customer.picture),
+                backgroundImage: NetworkImage(object.customer.picture),
               ),
             ),
             Row(
@@ -80,14 +80,14 @@ class ProfilePage extends StatelessWidget {
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        Utils.productsList(customer.favProducts),
+        Utils.productsList(object.customer.favProducts),
         TitleWidget(
           title: "Favourite Gift Cards",
           subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        Utils.detailedCardsList(customer.favCardsResolved, context)
+        Utils.detailedCardsList(object.customer.favCardsResolved, context)
       ],
     );
   }
