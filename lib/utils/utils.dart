@@ -4,6 +4,7 @@ import 'package:double_up/models/business.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
+import 'package:double_up/pages/business_page/business_page.dart';
 import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
 import 'package:double_up/utils/transition.dart';
@@ -93,13 +94,14 @@ class Utils {
     ]));
   }
 
-  static productsList(List<Product> objects) {
+  static productsList(List<Product> objects, {bool hero}) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
         return ProductRow(
             product: objects[index],
+            hero: hero,
             onTap: () {
               Navigator.of(context, rootNavigator: true)
                   .push(createRoute(ProductPage(
@@ -115,7 +117,14 @@ class Utils {
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
-        return BusinessRow(business: objects[index], onTap: () {});
+        return BusinessRow(
+            business: objects[index],
+            onTap: () {
+              Navigator.of(context, rootNavigator: true)
+                  .push(createRoute(BusinessPage(
+                business: objects[index],
+              )));
+            });
       }, childCount: objects.length)),
     );
   }

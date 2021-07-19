@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class ProductRow extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
+  final bool hero;
   ProductRow({
     @required this.product,
     @required this.onTap,
+    this.hero,
   });
 
   @override
@@ -28,7 +30,7 @@ class ProductRow extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Hero(
-                  tag: product.id,
+                  tag: hero == null ? product.id : Random.secure(),
                   child: CachedNetworkImage(
                     imageUrl: product.images.first,
                     height: 76,
