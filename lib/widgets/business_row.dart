@@ -27,7 +27,7 @@ class BusinessRow extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 15),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(109),
                 child: Hero(
                   tag: business.id,
                   child: CachedNetworkImage(

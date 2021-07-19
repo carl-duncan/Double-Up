@@ -31,7 +31,6 @@ class ProductRow extends StatelessWidget {
                   tag: product.id,
                   child: CachedNetworkImage(
                     imageUrl: product.images.first,
-                    fit: BoxFit.cover,
                     height: 76,
                     width: 76,
                   ),
