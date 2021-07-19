@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/category.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -28,7 +27,7 @@ class CategoryCard extends StatelessWidget {
                       colorFilter: new ColorFilter.mode(
                           Colors.black.withOpacity(0.4), BlendMode.colorBurn),
                       image: CachedNetworkImageProvider(
-                        Repository.s3 + category.image,
+                        category.image,
                       ),
                       fit: BoxFit.cover)),
               child: Center(

@@ -45,8 +45,7 @@ class SearchPageBloc extends Bloc {
   updateBusinesses(BuildContext context) async {
     List<Business> objects = await Repository.getBusinesses();
     for (Business obj in objects) {
-      await precacheImage(
-          CachedNetworkImageProvider(Repository.s3 + obj.image), context);
+      await precacheImage(CachedNetworkImageProvider(obj.image), context);
     }
     this.businesses.add(objects);
   }
@@ -61,8 +60,7 @@ class SearchPageBloc extends Bloc {
     List<Product> objects = await Repository.searchProducts(search);
     for (Product obj in objects) {
       await precacheImage(
-          CachedNetworkImageProvider(Repository.s3 + obj.images.first),
-          context);
+          CachedNetworkImageProvider(obj.images.first), context);
     }
     this.products.add(objects);
   }

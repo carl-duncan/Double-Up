@@ -1,6 +1,5 @@
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
@@ -41,7 +40,7 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage(Repository.s3 + customer.picture),
+                backgroundImage: NetworkImage(customer.picture),
               ),
             ),
             Row(

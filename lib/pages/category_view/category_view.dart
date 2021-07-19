@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/category.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +52,7 @@ class _CategoryViewState extends State<CategoryView> {
                     blendMode: BlendMode.dstIn,
                     child: Container(
                       child: CachedNetworkImage(
-                        imageUrl: Repository.s3 + widget.category.image,
+                        imageUrl: widget.category.image,
                         fit: BoxFit.cover,
                       ),
                     )),

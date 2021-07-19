@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/business.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
@@ -32,7 +31,7 @@ class BusinessRow extends StatelessWidget {
                 child: Hero(
                   tag: business.id,
                   child: CachedNetworkImage(
-                    imageUrl: Repository.s3 + business.image,
+                    imageUrl: business.image,
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
                         BlurHash(hash: "LGKc%zo#9^IU}YOY\$fOG%MS^t8Kj"),

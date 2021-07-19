@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,8 +42,8 @@ class _ProductPageState extends State<ProductPage> {
               tag: widget.product.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                    imageUrl: Repository.s3 + widget.product.images.first),
+                child:
+                    CachedNetworkImage(imageUrl: widget.product.images.first),
               ),
             ),
             Padding(

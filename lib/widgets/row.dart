@@ -2,10 +2,8 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 
 class ProductRow extends StatelessWidget {
   final Product product;
@@ -32,11 +30,8 @@ class ProductRow extends StatelessWidget {
                 child: Hero(
                   tag: product.id,
                   child: CachedNetworkImage(
-                    imageUrl: Repository.s3 + product.images.first,
+                    imageUrl: product.images.first,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        BlurHash(hash: "LGKc%zo#9^IU}YOY\$fOG%MS^t8Kj"),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
                     height: 76,
                     width: 76,
                   ),
@@ -65,7 +60,7 @@ class ProductRow extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                product.business.name,
+                                product.category.name,
                                 style: theme.textTheme.overline
                                     .copyWith(color: Colors.white),
                               )

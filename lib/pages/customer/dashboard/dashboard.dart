@@ -55,11 +55,17 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 navigationBar(
                     context, "Dashboard", object.notifications.length),
                 TitleWidget(
-                    title: "Your Recommended Gift Card",
+                    title: "Recommended Gift Cards",
                     subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 20, bottom: 0),
                     onTap: null),
-                Utils.singleCard(object.giftCards[3], context),
+                Utils.cardsCarousel(object.giftCards),
+                TitleWidget(
+                    title: "Categories",
+                    subtitle: "[TO BE FILLED OUT]",
+                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
+                    onTap: null),
+                Utils.categoryRow(object.category),
                 TitleWidget(
                     title: "Recommended Products",
                     subtitle: "[TO BE FILLED OUT]",
