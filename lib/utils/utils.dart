@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/models/business.dart';
 import 'package:double_up/models/category.dart';
@@ -9,6 +8,7 @@ import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/business_row.dart';
+import 'package:double_up/widgets/card_row.dart';
 import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/row.dart';
@@ -132,35 +132,7 @@ class Utils {
   static detailedCardsList(List<GiftCard> cards, BuildContext context) {
     return SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
-      return ListTile(
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: CachedNetworkImage(
-            width: 80,
-            imageUrl: cards[index].logo,
-          ),
-        ),
-        title: Text(
-          "${cards[index].caption} (\$20)",
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-        isThreeLine: false,
-        subtitle: Text.rich(
-          TextSpan(
-            children: <TextSpan>[
-              TextSpan(
-                  text: 'Balance: ',
-                  style: Theme.of(context).textTheme.caption),
-              TextSpan(
-                text: '\$10 USD\n',
-              ),
-            ],
-          ),
-        ),
-        onTap: () {
-          print(cards[index].code);
-        },
-      );
+      return CardRow(card: cards[index], onTap: () {});
     }, childCount: cards.length));
   }
 
