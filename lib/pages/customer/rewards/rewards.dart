@@ -60,7 +60,7 @@ class _RewardsState extends State<Rewards> {
                       .copyWith(fontSize: 12, color: Colors.grey),
                 ),
                 Text(
-                  "\$${obj.customer.balance}",
+                  "\$${obj.customer.balance.toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.headline2.copyWith(
                       color: Theme.of(context).scaffoldBackgroundColor ==
                               Colors.black
