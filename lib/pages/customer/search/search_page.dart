@@ -83,7 +83,7 @@ class _SearchPageState extends State<SearchPage> {
             onTap: null),
         Utils.productsList(object.products),
         TitleWidget(
-            title: "Businesses",
+            title: "Supermarkets",
             subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding.copyWith(top: 0),
             onTap: null),

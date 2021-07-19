@@ -83,7 +83,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     onTap: null),
                 Utils.productsList(object.products),
                 TitleWidget(
-                    title: "Recommended Places",
+                    title: "Recommended Supermarkets",
                     subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 0),
                     onTap: null),
