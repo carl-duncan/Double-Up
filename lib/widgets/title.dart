@@ -33,7 +33,7 @@ class TitleWidget extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .overline
-                              .copyWith(color: Colors.grey),
+                              .copyWith(color: Colors.grey[500]),
                         )
                       : Container()
                 ],
