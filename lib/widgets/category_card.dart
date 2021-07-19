@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/category.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -22,14 +23,17 @@ class CategoryCard extends StatelessWidget {
             tag: category.id,
             child: Container(
               decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  image: DecorationImage(
-                      colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.4), BlendMode.colorBurn),
-                      image: CachedNetworkImageProvider(
-                        category.image,
-                      ),
-                      fit: BoxFit.cover)),
+                  color: Constant.secondary,
+                  image: category.image != null
+                      ? DecorationImage(
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.4),
+                              BlendMode.colorBurn),
+                          image: CachedNetworkImageProvider(
+                            category.image,
+                          ),
+                          fit: BoxFit.cover)
+                      : null),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),

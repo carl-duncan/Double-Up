@@ -1,3 +1,4 @@
+import 'package:double_up/models/category.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
@@ -21,6 +22,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   void initState() {
     dashboardBloc = DashboardBloc(context);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    dashboardBloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -65,9 +72,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),
-                Utils.categoryRow(object.category, null),
+                Utils.categoryRow(object.category,
+                    (Category object, int index) {
+                  dashboardBloc.updateProducts(context, object, index);
+                }),
                 TitleWidget(
-                    title: "Recommended Products",
+                    title: object.category[object.index].name,
                     subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 10),
                     onTap: null),

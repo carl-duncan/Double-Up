@@ -12,7 +12,6 @@ import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/row.dart';
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
 
 class Utils {
   static cardsCarousel(List<GiftCard> giftCards, {num height}) {
@@ -156,7 +155,7 @@ class Utils {
     }, childCount: cards.length));
   }
 
-  static categoryRow(List<Category> objects, BehaviorSubject subject) {
+  static categoryRow(List<Category> objects, Function event) {
     return SliverPadding(
       padding: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
       sliver: SliverList(
@@ -169,6 +168,7 @@ class Utils {
               return CategoryCard(
                 category: objects[index],
                 onTap: () {
+                  event(objects[index], index);
                   // Navigator.of(context, rootNavigator: false)
                   //     .push(createRoute(CategoryView(
                   //   category: objects[index],

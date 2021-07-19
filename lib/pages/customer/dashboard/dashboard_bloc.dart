@@ -7,29 +7,51 @@ import 'package:double_up/models/notification.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DashboardBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<Product>> products = BehaviorSubject();
   BehaviorSubject<List<Business>> businesses = BehaviorSubject();
+  BehaviorSubject<List<Category>> categories = BehaviorSubject();
+  BehaviorSubject<int> categoryIndex = BehaviorSubject();
 
   DashboardBloc(BuildContext context) {
-    combineLatestStream = CombineLatestStream.combine5(
+    combineLatestStream = CombineLatestStream.combine6(
         userSingleton.giftCards,
-        userSingleton.categories,
+        categories,
         products,
         userSingleton.notifications,
         businesses,
-        (a, b, c, d, e) => DashboardBlocObject(
+        categoryIndex,
+        (a, b, c, d, e, f) => DashboardBlocObject(
             giftCards: a,
             category: b,
             products: c,
             notifications: d,
-            business: e));
+            business: e,
+            index: f));
     updateGiftCards(context);
-    updateProducts(context, null);
+    updateProducts(context, null, null);
     updateBusinesses(context);
+    updateCategories();
+  }
+
+  updateCategories() async {
+    List<Category> categories = await userSingleton.categories.first;
+    List<Category> newList = categories.toList();
+    IconData iconData = FontAwesome5Solid.heart;
+    categoryIndex.add(0);
+    newList.insert(
+        0,
+        Category(
+            name: "Recommended Products",
+            image: null,
+            id: "",
+            family: iconData.fontFamily,
+            code: iconData.codePoint));
+    this.categories.add(newList);
   }
 
   updateGiftCards(BuildContext context) async {
@@ -43,11 +65,13 @@ class DashboardBloc extends Bloc {
   dispose() {
     products.close();
     businesses.close();
+    categories.close();
+    categoryIndex.close();
   }
 
-  updateProducts(BuildContext context, Category category) async {
+  updateProducts(BuildContext context, Category category, int index) async {
     List<Product> objects;
-    if (category == null)
+    if (category == null || index == 0)
       objects = await Repository.getProducts();
     else
       objects = await Repository.getProductByCategory(category.id);
@@ -55,6 +79,7 @@ class DashboardBloc extends Bloc {
       await precacheImage(
           CachedNetworkImageProvider(obj.images.first), context);
     }
+    if (index != null) this.categoryIndex.add(index);
     this.products.add(objects);
   }
 
@@ -72,11 +97,13 @@ class DashboardBlocObject {
   List<Category> category;
   List<Business> business;
   List<Product> products;
+  int index;
   List<AppNotifications> notifications;
   DashboardBlocObject(
       {this.giftCards,
       this.category,
       this.products,
+      this.index,
       this.notifications,
       this.business});
 }

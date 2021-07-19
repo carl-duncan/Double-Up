@@ -87,7 +87,8 @@ class _SearchPageState extends State<SearchPage> {
             subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding.copyWith(top: 0),
             onTap: null),
-        Utils.businessList(object.business)
+        Utils.businessList(object.business),
+        Utils.endOfSliver()
       ],
     );
   }
