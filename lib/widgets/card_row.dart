@@ -70,18 +70,7 @@ class CardRow extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 2, bottom: 2),
-                  child: Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: card.sendcolor,
-                            style: Theme.of(context).textTheme.caption),
-                      ],
-                    ),
-                  ),
-                ),
+
               ],
             )
           ],
