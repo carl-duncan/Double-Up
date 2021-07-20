@@ -54,6 +54,7 @@ class UserRepository {
           username: email,
           password: password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
+      toast("Please check your email for the confirmation code.");
 
       return res;
     } on AuthException catch (e) {
