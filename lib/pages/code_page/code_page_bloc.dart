@@ -13,8 +13,8 @@ class CodePageBloc {
   }
 
   updateSignUpResults(User user, BuildContext context) async {
-    signUpResult
-        .add(await UserRepository.signUp(user.email, user.password, (e) {
+    signUpResult.add(
+        await UserRepository.signUp(user.name, user.email, user.password, (e) {
       toast(e.message);
       Navigator.pop(context);
     }));

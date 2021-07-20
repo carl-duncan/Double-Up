@@ -29,7 +29,7 @@ class Customer {
     if (json['cards'] != null) cards = json['cards'].cast<int>();
     if (json['fav_cards'] != null) favCards = json['fav_cards'].cast<int>();
     if (json['fav_products'] != null) {
-      favProducts = new List<Product>();
+      favProducts = [];
       json['fav_products'].forEach((v) {
         favProducts.add(new Product.fromJson(v));
       });

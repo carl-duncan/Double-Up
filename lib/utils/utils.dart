@@ -168,6 +168,10 @@ class Utils {
     );
   }
 
+  static blankSliver() {
+    return SliverList(delegate: SliverChildListDelegate.fixed([]));
+  }
+
   static endOfSliver() {
     return SliverList(
         delegate: SliverChildListDelegate.fixed([

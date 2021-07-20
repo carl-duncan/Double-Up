@@ -70,32 +70,40 @@ class ProfilePage extends StatelessWidget {
             )
           ])),
         ),
-        TitleWidget(
-          title: "Shopping History",
-          subtitle: "[TO BE FILLED OUT]",
-          onTap: null,
-          padding: Constant.padding,
-        ),
+        // TitleWidget(
+        //   title: "Shopping History",
+        //   subtitle: "[TO BE FILLED OUT]",
+        //   onTap: null,
+        //   padding: Constant.padding,
+        // ),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
           Row(
             children: [],
           )
         ])),
-        TitleWidget(
-          title: "Favourite Products",
-          subtitle: "[TO BE FILLED OUT]",
-          onTap: null,
-          padding: Constant.padding.copyWith(bottom: 15),
-        ),
-        Utils.productsList(object.customer.favProducts),
-        TitleWidget(
-          title: "Favourite Gift Cards",
-          subtitle: "[TO BE FILLED OUT]",
-          onTap: null,
-          padding: Constant.padding.copyWith(bottom: 10),
-        ),
-        Utils.detailedCardsList(object.customer.favCardsResolved, context),
+        object.customer.favProducts != null
+            ? TitleWidget(
+                title: "Favourite Products",
+                subtitle: "[TO BE FILLED OUT]",
+                onTap: null,
+                padding: Constant.padding.copyWith(bottom: 15),
+              )
+            : Utils.blankSliver(),
+        object.customer.favProducts != null
+            ? Utils.productsList(object.customer.favProducts)
+            : Utils.blankSliver(),
+        object.customer.favCardsResolved.length > 0
+            ? TitleWidget(
+                title: "Favourite Gift Cards",
+                subtitle: "[TO BE FILLED OUT]",
+                onTap: null,
+                padding: Constant.padding.copyWith(bottom: 10),
+              )
+            : Utils.blankSliver(),
+        object.customer.favCardsResolved != null
+            ? Utils.detailedCardsList(object.customer.favCardsResolved, context)
+            : Utils.blankSliver(),
         Utils.endOfSliver()
       ],
     );

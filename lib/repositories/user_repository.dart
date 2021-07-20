@@ -1,5 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
+import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 
 import '../amplifyconfiguration.dart';
@@ -30,16 +31,19 @@ class UserRepository {
     return AuthUser(userId: null, username: null);
   }
 
-  static signUp(String email, String password, Function onError) async {
+  static signUp(
+      String name, String email, String password, Function onError) async {
+    ;
     try {
       Map<String, String> userAttributes = {
         'email': email,
-        "profile": "36fe4922-3792-4b92-8cfd-86f9eb20dfff"
+        "profile": await Repository.createUser(name)
       };
       SignUpResult res = await Amplify.Auth.signUp(
           username: email,
           password: password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
+
       return res;
     } on AuthException catch (e) {
       onError(e);
@@ -63,7 +67,7 @@ class UserRepository {
     AuthUser user = await Amplify.Auth.getCurrentUser();
     await getUserAttributes();
 
-    print("User $user");
+    print("User Test $user");
 
     return user;
   }

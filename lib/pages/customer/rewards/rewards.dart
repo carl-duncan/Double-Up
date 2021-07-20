@@ -81,12 +81,16 @@ class _RewardsState extends State<Rewards> {
           ])),
         ),
         // Utils.cardsCarousel(cards),
-        TitleWidget(
-            title: "Order History",
-            subtitle: "[TO BE FILLED OUT]",
-            padding: Constant.padding.copyWith(top: 15, bottom: 15),
-            onTap: null),
-        Utils.detailedCardsList(obj.customer.cardsResolved, context)
+        obj.customer.cardsResolved.length > 0
+            ? TitleWidget(
+                title: "Order History",
+                subtitle: "[TO BE FILLED OUT]",
+                padding: Constant.padding.copyWith(top: 15, bottom: 15),
+                onTap: null)
+            : Utils.blankSliver(),
+        obj.customer.cardsResolved.length > 0
+            ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
+            : Utils.blankSliver()
       ],
     );
   }
