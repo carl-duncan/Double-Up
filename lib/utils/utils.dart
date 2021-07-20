@@ -103,10 +103,11 @@ class Utils {
             product: objects[index],
             hero: hero,
             onTap: () {
-              Navigator.of(context, rootNavigator: true)
-                  .push(createRoute(ProductPage(
-                product: objects[index],
-              )));
+              if (hero == null)
+                Navigator.of(context, rootNavigator: true)
+                    .push(createRoute(ProductPage(
+                  product: objects[index],
+                )));
             });
       }, childCount: objects.length)),
     );
@@ -130,10 +131,13 @@ class Utils {
   }
 
   static detailedCardsList(List<GiftCard> cards, BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-      return CardRow(card: cards[index], onTap: () {});
-    }, childCount: cards.length));
+    return SliverPadding(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return CardRow(card: cards[index], onTap: () {});
+      }, childCount: cards.length)),
+    );
   }
 
   static categoryRow(List<Category> objects, Function event) {

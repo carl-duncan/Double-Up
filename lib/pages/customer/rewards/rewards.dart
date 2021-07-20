@@ -65,7 +65,8 @@ class _RewardsState extends State<Rewards> {
                       color: Theme.of(context).scaffoldBackgroundColor ==
                               Colors.black
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.black,
+                      fontWeight: FontWeight.bold),
                 )
               ],
             ),

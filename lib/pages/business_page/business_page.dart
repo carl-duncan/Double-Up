@@ -45,7 +45,10 @@ class _BusinessPageState extends State<BusinessPage> {
     return CustomScrollView(
       slivers: [
         navigationBarPushed(context, widget.business.name),
-        SliverList(delegate: SliverChildListDelegate.fixed([])),
+        SliverPadding(
+          padding: Constant.padding,
+          sliver: SliverList(delegate: SliverChildListDelegate.fixed([])),
+        ),
         Utils.productsList(object.products, hero: false)
       ],
     );

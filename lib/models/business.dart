@@ -24,7 +24,7 @@ class Business {
     description = json['description'];
     id = json['id'];
     x = json['x'];
-    x = json['x'];
+    y = json['y'];
     address = json['address'];
 
     image = json['image'];
