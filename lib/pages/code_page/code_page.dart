@@ -1,6 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:double_up/models/user.dart';
 import 'package:double_up/pages/code_page/code_page_bloc.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,12 +24,18 @@ class _CodePageState extends State<CodePage> {
   }
 
   @override
+  void dispose() {
+    codePageBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
           stream: codePageBloc.signUpResult,
           builder: (context, snapshot) {
-            Widget child = Container();
+            Widget child = LoadingPage();
             if (snapshot.hasData) {
               child = loadUI(context, snapshot.data);
             }

@@ -1,7 +1,7 @@
 {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "doublec1c9a048",
+    "resourceNameTruncated": "doubleb9f4ac16",
     "userPoolName": "DoubleUp",
     "autoVerifiedAttributes": [
         "email"
@@ -23,15 +23,16 @@
         "Requires Uppercase"
     ],
     "requiredAttributes": [
-        "email"
+        "email",
+        "profile"
     ],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "Doublec1c9a048_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "Doubleb9f4ac16_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c1c9a048",
+    "sharedId": "b9f4ac16",
     "resourceName": "DoubleUp",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {

@@ -13,7 +13,7 @@ class UserSingleton {
   BehaviorSubject<Customer> currentUser = BehaviorSubject();
   BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
 
-  static String userId = "36fe4922-3792-4b92-8cfd-86f9eb20dfff";
+  static String userId;
 
   updateCategories() async {
     List<Category> categories = await Repository.getCategories();
