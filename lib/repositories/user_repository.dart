@@ -16,7 +16,11 @@ class UserRepository {
   }
 
   static initApp() async {
-    await configureAmplify();
+    try {
+      await configureAmplify();
+    } catch (e) {
+      print("Already Configured");
+    }
     return await isSignedIn();
   }
 
