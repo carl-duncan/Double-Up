@@ -46,7 +46,8 @@ class IconButtonWidget extends StatelessWidget {
                       ? Text(
                           buttonText,
                           style: Theme.of(context).textTheme.bodyText2.copyWith(
-                              color: cond ? buttonColor : Colors.white),
+                              color: cond ? buttonColor : Colors.white,
+                              fontWeight: FontWeight.bold),
                         )
                       : Container(),
                 ],

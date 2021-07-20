@@ -52,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                       buttonText: "Edit Profile",
                       buttonColor: Constant.secondary,
                       onPressed: () {},
-                      icon: Icon(AntDesign.logout)),
+                      icon: Icon(FontAwesome5Solid.edit)),
                 ),
                 SizedBox(
                   width: 10,
