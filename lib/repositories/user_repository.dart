@@ -2,6 +2,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 import '../amplifyconfiguration.dart';
 
@@ -29,6 +30,16 @@ class UserRepository {
       print("Not Signed in");
     }
     return AuthUser(userId: null, username: null);
+  }
+
+  static confirmCode(String username, String code) async {
+    try {
+      SignUpResult res = await Amplify.Auth.confirmSignUp(
+          username: username, confirmationCode: code);
+      return res;
+    } on AuthException catch (e) {
+      toast(e.message);
+    }
   }
 
   static signUp(

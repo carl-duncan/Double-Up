@@ -7,8 +7,11 @@ import 'package:rxdart/rxdart.dart';
 
 class CodePageBloc {
   BehaviorSubject<SignUpResult> signUpResult = BehaviorSubject();
+  TextEditingController code = TextEditingController();
+  User user;
 
   CodePageBloc(User user, BuildContext context) {
+    this.user = user;
     updateSignUpResults(user, context);
   }
 
@@ -18,6 +21,16 @@ class CodePageBloc {
       toast(e.message);
       Navigator.pop(context);
     }));
+  }
+
+  confirmCode(BuildContext context) async {
+    SignUpResult signUpResult =
+        await UserRepository.confirmCode(user.email, code.text);
+    if (signUpResult != null) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      toast(("Your Account has been successfully created"));
+    }
   }
 
   dispose() {

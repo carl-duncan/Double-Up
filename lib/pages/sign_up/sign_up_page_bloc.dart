@@ -17,7 +17,10 @@ class SignUpPageBLoc {
 
   goToCodeConfirm(BuildContext context) {
     Navigator.of(context).push(createRoute(CodePage(
-      user: User(name: name.text, email: email.text, password: password.text),
+      user: User(
+          name: name.text.trim(),
+          email: email.text.trim(),
+          password: password.text.trim()),
     )));
   }
 

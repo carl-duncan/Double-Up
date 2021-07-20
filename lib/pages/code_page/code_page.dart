@@ -3,9 +3,13 @@ import 'package:double_up/models/user.dart';
 import 'package:double_up/pages/code_page/code_page_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
+import 'package:double_up/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class CodePage extends StatefulWidget {
   final User user;
@@ -51,6 +55,23 @@ class _CodePageState extends State<CodePage> {
     return CustomScrollView(
       slivers: [
         navigationBarPushed(context, "Confirm Code"),
+        SliverList(
+            delegate: SliverChildListDelegate.fixed([
+          Field(
+              hint: "Enter Code",
+              controller: codePageBloc.code,
+              obscure: false,
+              suffix: Icons.confirmation_num,
+              label: null,
+              enabled: true),
+          IconButtonWidget(
+              buttonText: "Confirm",
+              buttonColor: Constant.primary,
+              onPressed: () {
+                codePageBloc.confirmCode(context);
+              },
+              icon: Icon(AntDesign.check))
+        ]))
       ],
     );
   }

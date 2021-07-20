@@ -1,5 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:double_up/bloc/bloc.dart';
+import 'package:double_up/pages/code_page/code_page.dart';
 import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/repositories/user_repository.dart';
 import 'package:double_up/utils/transition.dart';
@@ -22,7 +23,11 @@ class NavigateBloc extends Bloc {
     signUpResult.add(await UserRepository.signIn(username, password, (e) {
       print(e.message);
       toast(e.message);
-      Navigator.pushReplacement(context, createRoute(LoginPage()));
+      if (e.message == "User is not confirmed.") {
+        Navigator.pushReplacement(context, createRoute(CodePage()));
+      } else {
+        Navigator.pushReplacement(context, createRoute(LoginPage()));
+      }
     }));
   }
 
