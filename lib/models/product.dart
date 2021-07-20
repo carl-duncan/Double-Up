@@ -8,7 +8,7 @@ class Product {
   String id;
   List<String> images;
   String name;
-  String price;
+  num price;
   num threshold;
 
   Product(

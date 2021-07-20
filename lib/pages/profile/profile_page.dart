@@ -28,6 +28,8 @@ class ProfilePage extends StatelessWidget {
   }
 
   loadUI(BuildContext context, ProfilePageBlocObject object) {
+    TextStyle style = TextStyle(
+        fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
     return CustomScrollView(
       slivers: [
         navigationBar(
@@ -74,6 +76,12 @@ class ProfilePage extends StatelessWidget {
           onTap: null,
           padding: Constant.padding,
         ),
+        SliverList(
+            delegate: SliverChildListDelegate.fixed([
+          Row(
+            children: [],
+          )
+        ])),
         TitleWidget(
           title: "Favourite Products",
           subtitle: "[TO BE FILLED OUT]",

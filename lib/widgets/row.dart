@@ -84,7 +84,7 @@ class ProductRow extends StatelessWidget {
                                 color: Colors.grey)),
                         TextSpan(
                             text:
-                                ' \$${(num.parse(product.price) * (1 - product.threshold)).toStringAsFixed(2)}',
+                                ' \$${(product.price * (1 - product.threshold)).toStringAsFixed(2)}',
                             style: Theme.of(context)
                                 .textTheme
                                 .subtitle2

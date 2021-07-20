@@ -70,7 +70,7 @@ class _ProductPageState extends State<ProductPage> {
                                     color: Colors.grey)),
                         TextSpan(
                             text:
-                                ' \$${(num.parse(widget.product.price) * (1 - widget.product.threshold)).toStringAsFixed(2)}',
+                                ' \$${(widget.product.price * (1 - widget.product.threshold)).toStringAsFixed(2)}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4
