@@ -89,12 +89,12 @@ class _ProfilePageState extends State<ProfilePage> {
         //   onTap: null,
         //   padding: Constant.padding,
         // ),
-        SliverList(
-            delegate: SliverChildListDelegate.fixed([
-          Row(
-            children: [],
-          )
-        ])),
+        object.customer.favProducts == null &&
+                object.customer.favProducts == null &&
+                object.customer.favCardsResolved.length == 0
+            ? Utils.emtpyStateSliver()
+            : Utils.blankSliver(),
+
         object.customer.favProducts != null
             ? TitleWidget(
                 title: "Favourite Products",

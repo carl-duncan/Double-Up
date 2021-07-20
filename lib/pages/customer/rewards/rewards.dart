@@ -81,6 +81,9 @@ class _RewardsState extends State<Rewards> {
           ])),
         ),
         // Utils.cardsCarousel(cards),
+        obj.customer.cardsResolved.length == 0
+            ? Utils.emtpyStateSliver()
+            : Utils.blankSliver(),
         obj.customer.cardsResolved.length > 0
             ? TitleWidget(
                 title: "Order History",

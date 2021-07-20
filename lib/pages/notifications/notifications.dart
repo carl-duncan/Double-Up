@@ -1,6 +1,7 @@
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/pages/notifications/notifications_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -29,6 +30,9 @@ class Notifications extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         navigationBarPushed(context, "My Notifications"),
+        notifications.length == 0
+            ? Utils.emtpyStateSliver()
+            : Utils.blankSliver(),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           String type = notifications[index].location.split(":").first;

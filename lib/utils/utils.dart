@@ -113,6 +113,16 @@ class Utils {
     );
   }
 
+  static emtpyStateSliver() {
+    return SliverFillRemaining(
+      child: new Container(
+        child: Center(
+          child: Text("Nothing here to see"),
+        ),
+      ),
+    );
+  }
+
   static businessList(List<Business> objects) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
