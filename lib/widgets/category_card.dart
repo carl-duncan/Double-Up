@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -11,7 +12,7 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // IconData iconData = MaterialIcons.restaurant_menu;
+    // IconData iconData = FontAwesome5Solid.fish;
     // print(iconData.fontFamily);
     // print(iconData.codePoint);
     return Padding(

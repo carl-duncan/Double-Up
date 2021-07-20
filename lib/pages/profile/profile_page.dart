@@ -48,7 +48,7 @@ class ProfilePage extends StatelessWidget {
                 Expanded(
                   child: IconButtonWidget(
                       buttonText: "Edit Profile",
-                      buttonColor: Constant.primary,
+                      buttonColor: Constant.secondary,
                       onPressed: () {},
                       icon: Icon(AntDesign.logout)),
                 ),
@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                 Expanded(
                   child: IconButtonWidget(
                       buttonText: "Sign Out",
-                      buttonColor: Constant.primary,
+                      buttonColor: Constant.secondary,
                       onPressed: () {
                         profilePageBloc.signOut(context);
                       },
@@ -68,12 +68,12 @@ class ProfilePage extends StatelessWidget {
             )
           ])),
         ),
-        // TitleWidget(
-        //   title: "Shopping History",
-        //   subtitle: "[TO BE FILLED OUT]",
-        //   onTap: null,
-        //   padding: Constant.padding,
-        // ),
+        TitleWidget(
+          title: "Shopping History",
+          subtitle: "[TO BE FILLED OUT]",
+          onTap: null,
+          padding: Constant.padding,
+        ),
         TitleWidget(
           title: "Favourite Products",
           subtitle: "[TO BE FILLED OUT]",
