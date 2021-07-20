@@ -23,12 +23,12 @@ class UserSingleton {
   updateCurrentUser() async {
     Customer customer = await Repository.getUser(userId);
     print(customer.cards);
-    customer.cardsResolved = await resolveCard(customer.cards);
-    customer.favCardsResolved = await resolveCard(customer.favCards);
+    customer.cardsResolved = await resolveCards(customer.cards);
+    customer.favCardsResolved = await resolveCards(customer.favCards);
     currentUser.add(customer);
   }
 
-  resolveCard(List<int> beforeCards) async {
+  resolveCards(List<int> beforeCards) async {
     await updateGiftCards();
     List<GiftCard> resolved = [];
     List<GiftCard> cards = await giftCards.first;

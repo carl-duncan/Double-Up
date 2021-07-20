@@ -32,7 +32,7 @@ class CardRow extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: card.logo,
                     fit: BoxFit.cover,
-                    height: 76,
+                    height: 56,
                   ),
                 ),
               ),
