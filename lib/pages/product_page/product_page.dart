@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
+import 'package:double_up/pages/product_page/product_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -16,6 +17,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  ProductPageBloc productPageBloc = ProductPageBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,9 +84,16 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   Spacer(),
-                  Icon(
-                    FontAwesome5Solid.heart,
-                    color: Constant.red,
+                  InkWell(
+                    child: Icon(
+                      FontAwesome5Solid.heart,
+                      color: Constant.red,
+                    ),
+                    onTap: () {
+                      productPageBloc.sendNotification(
+                          "${widget.product.name} has been added to your favorites.",
+                          context);
+                    },
                   )
                 ],
               ),
