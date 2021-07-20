@@ -1,4 +1,4 @@
-import 'package:double_up/pages/customer/navigator/navigate.dart';
+import 'package:double_up/pages/login/login_page_bloc.dart';
 import 'package:double_up/pages/sign_up/sign_up_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  final LoginPageBloc loginPageBloc = LoginPageBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +59,14 @@ class LoginPage extends StatelessWidget {
             ),
             Field(
                 hint: "Email Address",
-                controller: null,
+                controller: loginPageBloc.email,
                 obscure: false,
                 suffix: Icons.email_outlined,
                 label: null,
                 enabled: true),
             Field(
                 hint: "Password",
-                controller: null,
+                controller: loginPageBloc.password,
                 obscure: true,
                 suffix: Icons.password,
                 label: null,
@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
                 buttonText: "Sign in",
                 buttonColor: Constant.primary,
                 onPressed: () {
-                  Navigator.of(context).push(createRoute(CustomerNavigate()));
+                  loginPageBloc.signIn(context);
                 },
                 icon: Icon(
                   AntDesign.login,

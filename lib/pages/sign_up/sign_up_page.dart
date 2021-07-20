@@ -1,3 +1,4 @@
+import 'package:double_up/pages/sign_up/sign_up_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/text_field.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key key}) : super(key: key);
+  final SignUpPageBLoc signUpPageBLoc = SignUpPageBLoc();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,7 @@ class SignUpPage extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.,
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                  bottom: size.height * 0.05, top: size.height * 0.05),
+              padding: EdgeInsets.only(bottom: size.height * 0.05),
               child: CircleAvatar(
                 radius: size.height * 0.1,
                 backgroundColor: Constant.primary,
@@ -52,19 +52,23 @@ class SignUpPage extends StatelessWidget {
                   .copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 10,
-            ),
+            Field(
+                hint: "Name",
+                controller: signUpPageBLoc.name,
+                obscure: false,
+                suffix: Octicons.person,
+                label: null,
+                enabled: true),
             Field(
                 hint: "Email Address",
-                controller: null,
+                controller: signUpPageBLoc.email,
                 obscure: false,
                 suffix: Icons.email_outlined,
                 label: null,
                 enabled: true),
             Field(
                 hint: "Password",
-                controller: null,
+                controller: signUpPageBLoc.password,
                 obscure: true,
                 suffix: Icons.password,
                 label: null,
@@ -72,7 +76,9 @@ class SignUpPage extends StatelessWidget {
             IconButtonWidget(
                 buttonText: "Sign up",
                 buttonColor: Constant.primary,
-                onPressed: () {},
+                onPressed: () {
+                  signUpPageBLoc.goToCodeConfirm(context);
+                },
                 icon: Icon(
                   AntDesign.login,
                 )),

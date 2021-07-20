@@ -1,6 +1,7 @@
 import 'package:double_up/models/category.dart';
 import 'package:double_up/pages/customer/dashboard/dashboard_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
+import 'package:double_up/repositories/user_repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -32,6 +33,8 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    UserRepository.isSignedIn();
+
     return Scaffold(
       body: StreamBuilder(
           stream: dashboardBloc.combineLatestStream,

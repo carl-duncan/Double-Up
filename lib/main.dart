@@ -1,5 +1,4 @@
-import 'package:double_up/pages/login/login_page.dart';
-import 'package:double_up/repositories/repository.dart';
+import 'package:double_up/pages/wrapper/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Repository.initClient();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -50,7 +48,7 @@ class MyApp extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.w600))),
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: Wrapper(),
       ),
     );
   }

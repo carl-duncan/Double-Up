@@ -3,6 +3,7 @@ import 'package:double_up/pages/customer/dashboard/dashboard.dart';
 import 'package:double_up/pages/customer/navigator/navigate_bloc.dart';
 import 'package:double_up/pages/customer/rewards/rewards.dart';
 import 'package:double_up/pages/customer/search/search_page.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/profile/profile_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class CustomerNavigate extends StatefulWidget {
-  const CustomerNavigate({Key key}) : super(key: key);
+  final String username;
+  final String password;
+  const CustomerNavigate({Key key, this.username, this.password})
+      : super(key: key);
 
   @override
   _CustomerNavigateState createState() => _CustomerNavigateState();
@@ -18,11 +22,11 @@ class CustomerNavigate extends StatefulWidget {
 
 class _CustomerNavigateState extends State<CustomerNavigate> {
   List<Widget> pages = [];
-  NavigateBloc navigateBloc = NavigateBloc();
+  NavigateBloc navigateBloc;
 
   @override
   void initState() {
-    navigateBloc.userSingleton.initStreams();
+    navigateBloc = NavigateBloc(widget.username, widget.password, context);
     super.initState();
   }
 
@@ -34,7 +38,18 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
 
   @override
   Widget build(BuildContext context) {
-    return loadUI();
+    return StreamBuilder(
+        stream: navigateBloc.signUpResult,
+        builder: (context, snapshot) {
+          Widget child = LoadingPage();
+          if (snapshot.hasData) {
+            child = loadUI();
+          }
+          return AnimatedSwitcher(
+            duration: Duration(milliseconds: Constant.load),
+            child: child,
+          );
+        });
   }
 
   loadUI() {
@@ -43,6 +58,8 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
     pages.add(SearchPage());
     pages.add(Rewards());
     pages.add(ProfilePage());
+    navigateBloc.userSingleton.initStreams();
+
     return Stack(
       children: <Widget>[
         CupertinoTabScaffold(

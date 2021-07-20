@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-doubleup-staging-124740-authRole",
+      "UnauthRoleArn": "arn:aws:iam::233271173214:role/amplify-doubleup-staging-124740-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::233271173214:role/amplify-doubleup-staging-124740-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-doubleup-staging-124740-deployment",
+      "UnauthRoleName": "amplify-doubleup-staging-124740-unauthRole",
+      "StackName": "amplify-doubleup-staging-124740",
+      "StackId": "arn:aws:cloudformation:us-east-2:233271173214:stack/amplify-doubleup-staging-124740/ac0191f0-e958-11eb-b370-06ac943901d0",
+      "AmplifyAppId": "d2bdya1ywx2aan"
+    },
+    "categories": {
+      "auth": {
+        "DoubleUp": {}
+      }
+    }
+  }
+}
