@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
@@ -8,8 +9,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-class ProfilePage extends StatelessWidget {
-  final ProfilePageBloc profilePageBloc = ProfilePageBloc();
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  ProfilePageBloc profilePageBloc;
+
+  @override
+  void initState() {
+    profilePageBloc = ProfilePageBloc(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +54,8 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage(object.customer.picture),
+                backgroundImage:
+                    CachedNetworkImageProvider(object.customer.picture),
               ),
             ),
             Row(

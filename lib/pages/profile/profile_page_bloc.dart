@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/notification.dart';
@@ -9,18 +10,31 @@ import 'package:rxdart/rxdart.dart';
 
 class ProfilePageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
+  BehaviorSubject<Customer> customer = BehaviorSubject();
 
-  ProfilePageBloc() {
+  ProfilePageBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine2(
         userSingleton.notifications,
-        userSingleton.currentUser,
+        customer,
         (b, c) => ProfilePageBlocObject(notifications: b, customer: c));
+    updateCustomer(context);
   }
+
   signOut(BuildContext context) {
     Navigator.of(context, rootNavigator: true)
         .pushReplacement(createRoute(LoginPage()));
     UserRepository.signOut();
     userSingleton.dispose();
+  }
+
+  updateCustomer(BuildContext context) async {
+    Customer customer = await userSingleton.currentUser.first;
+    precacheImage(CachedNetworkImageProvider(customer.picture), context);
+    this.customer.add(customer);
+  }
+
+  dispose() {
+    customer.close();
   }
 }
 
