@@ -85,9 +85,10 @@ class ProfilePage extends StatelessWidget {
           title: "Favourite Gift Cards",
           subtitle: "[TO BE FILLED OUT]",
           onTap: null,
-          padding: Constant.padding.copyWith(bottom: 15),
+          padding: Constant.padding.copyWith(bottom: 10),
         ),
-        Utils.detailedCardsList(object.customer.favCardsResolved, context)
+        Utils.detailedCardsList(object.customer.favCardsResolved, context),
+        Utils.endOfSliver()
       ],
     );
   }

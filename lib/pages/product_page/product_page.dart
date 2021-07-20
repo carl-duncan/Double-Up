@@ -120,7 +120,9 @@ class _ProductPageState extends State<ProductPage> {
               child: IconButtonWidget(
                   buttonText: "Find Supermarket",
                   buttonColor: Constant.secondary,
-                  onPressed: () {},
+                  onPressed: () {
+                    productPageBloc.findLocation(widget.product);
+                  },
                   icon: Icon(Icons.fastfood)),
             )
             // BusinessRow(business: widget.product.business, onTap: () {})
