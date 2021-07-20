@@ -72,7 +72,7 @@ class DashboardBloc extends Bloc {
   updateProducts(BuildContext context, Category category, int index) async {
     List<Product> objects;
     if (category == null || index == 0)
-      objects = await Repository.getProducts();
+      objects = await Repository.getProducts(3);
     else
       objects = await Repository.getProductByCategory(category.id);
     for (Product obj in objects) {

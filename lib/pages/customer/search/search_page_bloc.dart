@@ -57,7 +57,7 @@ class SearchPageBloc extends Bloc {
   }
 
   updateProducts(BuildContext context, String search) async {
-    List<Product> objects = await Repository.searchProducts(search);
+    List<Product> objects = await Repository.searchProducts(search, 3);
     for (Product obj in objects) {
       await precacheImage(
           CachedNetworkImageProvider(obj.images.first), context);

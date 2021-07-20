@@ -53,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
             Field(
-                hint: "Search for Products, Gift Cards",
+                hint: "Search for Products",
                 controller: searchPageBloc.controller,
                 label: null,
                 onChanged: (String value) {
