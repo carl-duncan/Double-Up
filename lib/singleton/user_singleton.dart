@@ -28,6 +28,22 @@ class UserSingleton {
     currentUser.add(customer);
   }
 
+  initStreams() async {
+    if (currentUser.isClosed ||
+        notifications.isClosed ||
+        giftCards.isClosed ||
+        categories.isClosed) {
+      currentUser = BehaviorSubject();
+      notifications = BehaviorSubject();
+      giftCards = BehaviorSubject();
+      categories = BehaviorSubject();
+    }
+    updateCategories();
+    updateNotifications();
+    updateGiftCards();
+    updateCurrentUser();
+  }
+
   resolveCards(List<int> beforeCards) async {
     await updateGiftCards();
     List<GiftCard> resolved = [];
@@ -67,9 +83,6 @@ class UserSingleton {
   }
 
   UserSingleton._internal() {
-    updateCategories();
-    updateNotifications();
-    updateGiftCards();
-    updateCurrentUser();
+    initStreams();
   }
 }

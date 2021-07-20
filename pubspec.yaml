@@ -27,32 +27,19 @@ dependencies:
   overlay_support: ^1.2.1
   cached_network_image: ^2.5.1
   rxdart: ^0.25.0
-  intl: ^0.17.0
-  flutter_polyline_points: ^0.2.4
   url_launcher: ^6.0.9
   shared_preferences: ^2.0.6
-  google_maps_flutter: ^0.5.26+4
-  location: ^2.5.4
-  flutter_typeahead: ^3.2.0
   graphql: ^4.0.0-alpha.3
-  firebase_core: ^1.4.0
-  firebase_messaging: ^10.0.4
   badges: ^2.0.1
   sign_in_with_apple: ^3.0.0
-  google_sign_in: ^5.0.4
-
+#  google_sign_in: ^5.0.4
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  google_fonts: ^1.1.2
   dio: ^3.0.10
   flutter_staggered_animations: ^1.0.0
   carousel_slider: ^4.0.0
-  hover_effect: ^0.6.0
   qr_code_scanner: ^0.5.2
-  giffy_dialog: ^1.8.0
-#  firebase_auth: ^0.6.2+1
-#  amplify_flutter: ^0.2.0
 
 dev_dependencies:
   flutter_test:

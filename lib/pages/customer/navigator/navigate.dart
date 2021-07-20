@@ -22,6 +22,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
 
   @override
   void initState() {
+    navigateBloc.userSingleton.initStreams();
     super.initState();
   }
 

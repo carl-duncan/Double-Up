@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
-import 'package:double_up/utils/const.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CardViewBloc extends Bloc {
@@ -22,22 +20,33 @@ class CardViewBloc extends Bloc {
   sendGiftCard(BuildContext context) {
     showDialog(
         context: context,
-        builder: (_) => NetworkGiffyDialog(
-              image: CachedNetworkImage(
-                imageUrl: Constant.dialog,
-                fit: BoxFit.cover,
-              ),
-              title: Text('Scheduled Send?',
-                  textAlign: TextAlign.center,
-                  style:
-                      TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600)),
-              description: Text(
-                'Would you like to schedule this message to be sent later?',
-                textAlign: TextAlign.center,
-              ),
-              buttonCancelText: Text("No"),
-              buttonOkText: Text("Yes"),
-              onOkButtonPressed: () {},
+        builder: (BuildContext context) => CupertinoAlertDialog(
+              title: new Text("Scheduled Send?"),
+              content: new Text(
+                  "Would you like to schedule this message to be sent later?"),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text("Yes"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoDialogAction(
+                  isDefaultAction: false,
+                  child: Text("No"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoDialogAction(
+                  isDefaultAction: false,
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ));
   }
 
