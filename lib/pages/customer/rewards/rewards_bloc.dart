@@ -1,9 +1,12 @@
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
+import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RewardsBloc extends Bloc {
@@ -23,6 +26,17 @@ class RewardsBloc extends Bloc {
       await precacheImage(CachedNetworkImageProvider(obj.logo), context);
     }
     userSingleton.updateGiftCards();
+  }
+
+  redeemQrCode() async {
+    var result = await BarcodeScanner.scan();
+    String redeemed = await Repository.redeemGiftCard(result.rawContent);
+    if (redeemed == "true") {
+      await userSingleton.updateCurrentUser();
+      toast("Your balance has been updated");
+    } else {
+      toast(redeemed);
+    }
   }
 }
 

@@ -1,8 +1,6 @@
 import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
-import 'package:double_up/pages/qr_scan/qr_scan_page.dart';
 import 'package:double_up/utils/const.dart';
-import 'package:double_up/utils/transition.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -74,8 +72,7 @@ class _RewardsState extends State<Rewards> {
                 buttonText: "Scan QR Code",
                 buttonColor: Colors.black,
                 onPressed: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .push(createRoute(QRScanPage()));
+                  rewardsBloc.redeemQrCode();
                 },
                 icon: Icon(AntDesign.qrcode)),
           ])),
