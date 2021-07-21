@@ -1,6 +1,5 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
-import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -26,7 +25,9 @@ class UserRepository {
       print("Already Configured");
     }
     try {
-      return await isSignedIn();
+      return await isSignedIn((result){
+        UserSingleton().initStreams(result);
+      });
     } catch (e) {
       print("Not Signed in");
     }
@@ -63,26 +64,23 @@ class UserRepository {
     }
   }
 
-  static signIn(String username, String password, Function onError) async {
+  static signIn(String username, String password, Function onError,
+      Function onSuccess) async {
     try {
       SignInResult res = await Amplify.Auth.signIn(
         username: username,
         password: password,
       );
-      await getUserAttributes();
+      onSuccess(await getUserAttributes());
       return res;
     } on AuthException catch (e) {
       onError(e);
     }
   }
 
-  static Future<AuthUser> isSignedIn() async {
+  static Future<AuthUser> isSignedIn(Function onSuccess) async {
     AuthUser user = await Amplify.Auth.getCurrentUser();
-    await getUserAttributes();
-    Bloc().userSingleton = UserSingleton();
-
-    print("User Test $user");
-
+    onSuccess(await getUserAttributes());
     return user;
   }
 
@@ -92,6 +90,7 @@ class UserRepository {
     for (AuthUserAttribute attribute in userAttribute) {
       if (attribute.userAttributeKey == "profile") {
         UserSingleton.userId = attribute.value;
+        return attribute.value;
       }
     }
   }

@@ -5,6 +5,7 @@ import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/repositories/repository.dart';
+import 'package:double_up/singleton/user_singleton.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
@@ -33,7 +34,7 @@ class RewardsBloc extends Bloc {
     Map<String, dynamic> redeemed =
         await Repository.redeemGiftCard(result.rawContent);
     if (redeemed["redeemed"] == true) {
-      await userSingleton.updateCurrentUser();
+      await userSingleton.updateCurrentUser(UserSingleton.userId);
       userSingleton.incrementBalance(redeemed["price"]);
       toast("Your balance has been updated.");
     } else {

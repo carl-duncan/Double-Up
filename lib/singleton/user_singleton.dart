@@ -20,14 +20,14 @@ class UserSingleton {
     this.categories.add(categories);
   }
 
-  updateCurrentUser() async {
-    Customer customer = await Repository.getUser(userId);
+  updateCurrentUser(String id) async {
+    Customer customer = await Repository.getUser(id);
     customer.cardsResolved = await resolveCards(customer.cards);
     customer.favCardsResolved = await resolveCards(customer.favCards);
     currentUser.add(customer);
   }
 
-  initStreams() async {
+  initStreams(String id) async {
     print("UserSingleton.init");
     if (currentUser.isClosed ||
         notifications.isClosed ||
@@ -45,7 +45,7 @@ class UserSingleton {
     updateCategories();
     updateNotifications();
     updateGiftCards();
-    updateCurrentUser();
+    updateCurrentUser(id);
   }
 
   incrementBalance(num increment) async {

@@ -12,7 +12,6 @@ class NavigateBloc extends Bloc {
 
   NavigateBloc(String username, String password, BuildContext context) {
     updateResults(username, password, context);
-    userSingleton.initStreams();
   }
 
   updateResults(String username, String password, BuildContext context) async {
@@ -23,6 +22,8 @@ class NavigateBloc extends Bloc {
     signUpResult.add(await UserRepository.signIn(username, password, (e) {
       toast(e.message);
       Navigator.pushReplacement(context, createRoute(LoginPage()));
+    }, (result) {
+      userSingleton.initStreams(result);
     }));
   }
 
