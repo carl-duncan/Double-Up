@@ -3,7 +3,6 @@ import 'package:double_up/pages/customer/navigator/navigate.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/pages/wrapper/wrapper_bloc.dart';
-import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,6 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   void initState() {
-    Repository.initClient();
     super.initState();
   }
 

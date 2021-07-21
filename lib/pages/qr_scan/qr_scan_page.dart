@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:double_up/pages/qr_scan/qr_scan_page_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,18 +15,14 @@ class QRScanPage extends StatefulWidget {
 }
 
 class _QRScanPageState extends State<QRScanPage> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController controller;
-
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
+  QrScanPageBLoc qrScanPageBLoc = QrScanPageBLoc();
   @override
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
+      qrScanPageBLoc.controller.pauseCamera();
     } else if (Platform.isIOS) {
-      controller.resumeCamera();
+      qrScanPageBLoc.controller.resumeCamera();
     }
   }
 
@@ -42,8 +39,10 @@ class _QRScanPageState extends State<QRScanPage> {
           Expanded(
             flex: 5,
             child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
+              key: qrScanPageBLoc.qrKey,
+              onQRViewCreated: (controller) {
+                qrScanPageBLoc.onQRViewCreated(controller, context);
+              },
             ),
           ),
         ],
@@ -51,19 +50,9 @@ class _QRScanPageState extends State<QRScanPage> {
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      Navigator.pop(context);
-      // toast(scanData.code);
-      print(scanData.code);
-      controller.dispose();
-    });
-  }
-
   @override
   void dispose() {
-    controller?.dispose();
+    qrScanPageBLoc.dispose();
     super.dispose();
   }
 }
