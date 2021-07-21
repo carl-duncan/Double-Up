@@ -30,12 +30,14 @@ class RewardsBloc extends Bloc {
 
   redeemQrCode() async {
     var result = await BarcodeScanner.scan();
-    String redeemed = await Repository.redeemGiftCard(result.rawContent);
-    if (redeemed == "true") {
+    Map<String, dynamic> redeemed =
+        await Repository.redeemGiftCard(result.rawContent);
+    if (redeemed["redeemed"] == true) {
       await userSingleton.updateCurrentUser();
-      toast("Your balance has been updated");
+      userSingleton.incrementBalance(redeemed["price"]);
+      toast("Your balance has been updated.");
     } else {
-      toast(redeemed);
+      toast(redeemed["redeemed"]);
     }
   }
 }

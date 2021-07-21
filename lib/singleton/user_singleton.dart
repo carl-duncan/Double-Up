@@ -22,6 +22,7 @@ class UserSingleton {
 
   updateCurrentUser() async {
     Customer customer = await Repository.getUser(userId);
+    print(customer.toJson().toString());
     customer.cardsResolved = await resolveCards(customer.cards);
     customer.favCardsResolved = await resolveCards(customer.favCards);
     currentUser.add(customer);
@@ -41,6 +42,12 @@ class UserSingleton {
     updateNotifications();
     updateGiftCards();
     updateCurrentUser();
+  }
+
+  incrementBalance(num increment) async {
+    Customer customer = await currentUser.first;
+    customer.balance += increment;
+    currentUser.add(customer);
   }
 
   resolveCards(List<int> beforeCards) async {
