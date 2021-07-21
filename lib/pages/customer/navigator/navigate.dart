@@ -58,8 +58,6 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
     pages.add(SearchPage());
     pages.add(Rewards());
     pages.add(ProfilePage());
-    navigateBloc.userSingleton.initStreams();
-
     return Stack(
       children: <Widget>[
         CupertinoTabScaffold(

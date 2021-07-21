@@ -22,17 +22,21 @@ class UserSingleton {
 
   updateCurrentUser() async {
     Customer customer = await Repository.getUser(userId);
-    print(customer.toJson().toString());
     customer.cardsResolved = await resolveCards(customer.cards);
     customer.favCardsResolved = await resolveCards(customer.favCards);
     currentUser.add(customer);
   }
 
   initStreams() async {
+    print("UserSingleton.init");
     if (currentUser.isClosed ||
         notifications.isClosed ||
         giftCards.isClosed ||
-        categories.isClosed) {
+        categories.isClosed ||
+        currentUser == null ||
+        notifications == null ||
+        giftCards == null ||
+        categories == null) {
       currentUser = BehaviorSubject();
       notifications = BehaviorSubject();
       giftCards = BehaviorSubject();
@@ -89,6 +93,6 @@ class UserSingleton {
   }
 
   UserSingleton._internal() {
-    initStreams();
+    // initStreams();
   }
 }

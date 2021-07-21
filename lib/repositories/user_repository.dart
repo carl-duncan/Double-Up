@@ -1,5 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
+import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -78,6 +79,7 @@ class UserRepository {
   static Future<AuthUser> isSignedIn() async {
     AuthUser user = await Amplify.Auth.getCurrentUser();
     await getUserAttributes();
+    Bloc().userSingleton = UserSingleton();
 
     print("User Test $user");
 
