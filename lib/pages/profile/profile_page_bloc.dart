@@ -1,6 +1,5 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/notification.dart';
@@ -13,17 +12,16 @@ import 'package:rxdart/rxdart.dart';
 
 class ProfilePageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
-  BehaviorSubject<Customer> customer = BehaviorSubject();
+  // BehaviorSubject<Customer> customer = BehaviorSubject();
   BehaviorSubject<String> email = BehaviorSubject();
 
   ProfilePageBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine3(
         userSingleton.notifications,
-        customer,
+        userSingleton.currentUser,
         email,
         (b, c, d) =>
             ProfilePageBlocObject(notifications: b, customer: c, username: d));
-    updateCustomer(context);
     getCurrentUserEmail();
   }
 
@@ -44,12 +42,6 @@ class ProfilePageBloc extends Bloc {
     }
   }
 
-  updateCustomer(BuildContext context) async {
-    Customer customer = await userSingleton.currentUser.first;
-    precacheImage(CachedNetworkImageProvider(customer.picture), context);
-    this.customer.add(customer);
-  }
-
   changePage() async {
     Utils.changeNavigationBarPage(userSingleton.globalKey, 1);
   }
@@ -59,7 +51,6 @@ class ProfilePageBloc extends Bloc {
   }
 
   dispose() {
-    customer.close();
     email.close();
   }
 }

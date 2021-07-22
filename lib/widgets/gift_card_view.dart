@@ -21,7 +21,7 @@ class GiftCardView extends StatelessWidget {
               tag: "Card:${card.code}",
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.width * 0.03),
+                      MediaQuery.of(context).size.height * 0.015),
                   child: CachedNetworkImage(
                     imageUrl: "${card.logo}",
                   )),

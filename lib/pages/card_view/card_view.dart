@@ -65,9 +65,27 @@ class _CardViewState extends State<CardView> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 15),
-              child: Text(
-                "Description",
-                style: Theme.of(context).textTheme.headline5,
+              child: Row(
+                children: [
+                  Text(
+                    "Description",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  Spacer(),
+                  InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(
+                        FontAwesome5Solid.heart,
+                        color: Constant.red,
+                      ),
+                    ),
+                    onTap: () {
+                      cardViewBloc.addToFav(
+                          widget.card.caption, widget.card.code, context);
+                    },
+                  )
+                ],
               ),
             ),
             Padding(

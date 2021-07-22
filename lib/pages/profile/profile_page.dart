@@ -72,6 +72,25 @@ class _ProfilePageState extends State<ProfilePage> {
           ])),
         ),
         TitleWidget(
+          title: "Favourite Gift Cards",
+          // subtitle: "[TO BE FILLED OUT]",
+          onTap: null,
+          padding: Constant.padding.copyWith(
+              bottom: object.customer.favCardsResolved == null ||
+                      object.customer.favCardsResolved.length == 0
+                  ? 15
+                  : 0),
+        ),
+        object.customer.favCardsResolved == null ||
+                object.customer.favCardsResolved.length == 0
+            ? EmptyState(
+                title: "Find Gift Cards",
+                onTap: () {
+                  profilePageBloc.changeToDashboard();
+                },
+              )
+            : Utils.cardsList(object.customer.favCardsResolved),
+        TitleWidget(
           title: "Favourite Products",
           // subtitle: "[TO BE FILLED OUT]",
           onTap: null,
@@ -85,22 +104,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               )
             : Utils.productsList(object.customer.favProducts, null),
-        TitleWidget(
-          title: "Favourite Gift Cards",
-          // subtitle: "[TO BE FILLED OUT]",
-          onTap: null,
-          padding: Constant.padding.copyWith(bottom: 15),
-        ),
-        object.customer.favCardsResolved == null ||
-                object.customer.favCardsResolved.length == 0
-            ? EmptyState(
-                title: "Find Gift Cards",
-                onTap: () {
-                  profilePageBloc.changeToDashboard();
-                },
-              )
-            : Utils.detailedCardsList(
-                object.customer.favCardsResolved, context),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(

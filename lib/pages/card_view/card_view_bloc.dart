@@ -1,6 +1,10 @@
 import 'package:double_up/bloc/bloc.dart';
+import 'package:double_up/models/customer.dart';
+import 'package:double_up/repositories/repository.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CardViewBloc extends Bloc {
@@ -15,6 +19,30 @@ class CardViewBloc extends Bloc {
 
   updateValue(String value) {
     this.value.add(value);
+  }
+
+  addToFav(String name, String code, BuildContext context) async {
+    Customer user = await userSingleton.currentUser.first;
+    if (!user.favCards.contains(num.parse(code))) {
+      user.favCards.add(num.parse(code));
+      sendNotification(
+          message: "Added $name Card",
+          context: context,
+          icon: FontAwesome5Solid.heart,
+          color: Constant.green);
+    } else {
+      sendNotification(
+          message: "Removed $name Card",
+          context: context,
+          icon: FontAwesome5Solid.heart,
+          color: Constant.secondary);
+      user.favCards.removeWhere((val) {
+        if (val == num.parse(code)) return true;
+        return false;
+      });
+    }
+    await Repository.updateFavCards(user.favCards, user.id);
+    await userSingleton.updateCurrentUser(user.id);
   }
 
   sendGiftCard(BuildContext context) {

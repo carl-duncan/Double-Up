@@ -6,6 +6,7 @@ import 'package:double_up/models/product.dart';
 import 'package:double_up/pages/business_page/business_page.dart';
 import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/business_row.dart';
 import 'package:double_up/widgets/card_row.dart';
@@ -49,27 +50,30 @@ class Utils {
   }
 
   static cardsList(List<GiftCard> giftCards, {num height}) {
-    return SliverList(
-        delegate: SliverChildListDelegate.fixed([
-      Container(
-        height: height == null ? 100 : height,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return GiftCardView(
-              card: giftCards[index],
-              onTap: () {
-                Navigator.of(context, rootNavigator: true)
-                    .push(createRoute(CardView(
-                  card: giftCards[index],
-                )));
-              },
-            );
-          },
-          itemCount: giftCards.length,
-        ),
-      )
-    ]));
+    return SliverPadding(
+      padding: Constant.padding.copyWith(bottom: 0,top: 0),
+      sliver: SliverList(
+          delegate: SliverChildListDelegate.fixed([
+        Container(
+          height: height == null ? 100 : height,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GiftCardView(
+                card: giftCards[index],
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .push(createRoute(CardView(
+                    card: giftCards[index],
+                  )));
+                },
+              );
+            },
+            itemCount: giftCards.length,
+          ),
+        )
+      ])),
+    );
   }
 
   static singleCard(GiftCard card, BuildContext context) {
