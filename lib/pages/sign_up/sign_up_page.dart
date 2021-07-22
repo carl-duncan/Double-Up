@@ -41,7 +41,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "[Tag Line here]",
+                    "Exclusive Shoppers Club",
                     style: Theme.of(context).textTheme.headline6,
                     textAlign: TextAlign.center,
                   ),
@@ -49,7 +49,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus,",
+                    "Get rewards for shopping at participating supermarkets.",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2

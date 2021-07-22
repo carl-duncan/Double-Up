@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "[Tag Line here]",
+                    "Exclusive Shoppers Club",
                     style: Theme.of(context).textTheme.headline6,
                     textAlign: TextAlign.center,
                   ),
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus. ",
+                    "The Rewards App that rewards you something meaningful.",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
