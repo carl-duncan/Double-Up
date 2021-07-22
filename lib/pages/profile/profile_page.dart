@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
-import 'package:double_up/widgets/icon_button.dart';
+import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -44,8 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
         fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
     return CustomScrollView(
       slivers: [
-        navigationBar(
-            context, object.customer.name, object.notifications.length),
+        navigationBar(context, "My Profile", object.notifications.length),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(
@@ -53,70 +52,61 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: CircleAvatar(
-                radius: 100,
+                radius: 70,
                 backgroundImage:
                     CachedNetworkImageProvider(object.customer.picture),
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: IconButtonWidget(
-                      buttonText: "Edit Profile",
-                      buttonColor: Constant.secondary,
-                      onPressed: () {},
-                      icon: Icon(FontAwesome5Solid.edit)),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: IconButtonWidget(
-                      buttonText: "Sign Out",
-                      buttonColor: Constant.secondary,
-                      onPressed: () {
-                        profilePageBloc.signOut(context);
-                      },
-                      icon: Icon(AntDesign.logout)),
-                ),
-              ],
-            )
+            Text(
+              object.customer.name,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5,
+            ),
           ])),
         ),
-        // TitleWidget(
-        //   title: "Shopping History",
-        //   subtitle: "[TO BE FILLED OUT]",
-        //   onTap: null,
-        //   padding: Constant.padding,
-        // ),
-        object.customer.favProducts == null &&
-                object.customer.favProducts == null &&
-                object.customer.favCardsResolved.length == 0
-            ? Utils.emtpyStateSliver()
-            : Utils.blankSliver(),
-
-        object.customer.favProducts != null
-            ? TitleWidget(
-                title: "Favourite Products",
-                subtitle: "[TO BE FILLED OUT]",
-                onTap: null,
-                padding: Constant.padding.copyWith(bottom: 15),
-              )
-            : Utils.blankSliver(),
+        TitleWidget(
+          title: "Favourite Products",
+          subtitle: "[TO BE FILLED OUT]",
+          onTap: null,
+          padding: Constant.padding.copyWith(bottom: 15),
+        ),
+        EmptyState(
+          title: "Explore Products",
+          onTap: () {},
+        ),
         object.customer.favProducts != null
             ? Utils.productsList(object.customer.favProducts, null)
             : Utils.blankSliver(),
-        object.customer.favCardsResolved.length > 0
-            ? TitleWidget(
-                title: "Favourite Gift Cards",
-                subtitle: "[TO BE FILLED OUT]",
-                onTap: null,
-                padding: Constant.padding.copyWith(bottom: 10),
-              )
-            : Utils.blankSliver(),
+        TitleWidget(
+          title: "Favourite Gift Cards",
+          subtitle: "[TO BE FILLED OUT]",
+          onTap: null,
+          padding: Constant.padding.copyWith(bottom: 15),
+        ),
+        EmptyState(
+          title: "Find Gift Card",
+          onTap: () {},
+        ),
         object.customer.favCardsResolved != null
             ? Utils.detailedCardsList(object.customer.favCardsResolved, context)
             : Utils.blankSliver(),
+        SliverPadding(
+          padding: Constant.padding,
+          sliver: SliverList(
+              delegate: SliverChildListDelegate.fixed([
+            TextButton(
+                onPressed: () {
+                  profilePageBloc.signOut(context);
+                },
+                child: Text(
+                  "Sign out",
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      .copyWith(color: Colors.red),
+                )),
+          ])),
+        ),
         Utils.endOfSliver()
       ],
     );

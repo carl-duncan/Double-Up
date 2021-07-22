@@ -1,6 +1,8 @@
 import 'package:double_up/pages/sign_up/sign_up_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/icon_button.dart';
+import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,6 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: loadUI(context),
     );
   }
@@ -23,12 +24,9 @@ class SignUpPage extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
+        navigationBarPushed(context, "Sign up"),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
-              CupertinoNavigationBar(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                border: null,
-              ),
           Center(
             child: Padding(
               padding: Constant.padding,
@@ -51,7 +49,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus. Integer finibus dui diam, molestie varius enim elementum posuere.",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus,",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
@@ -88,6 +86,27 @@ class SignUpPage extends StatelessWidget {
                       icon: Icon(
                         AntDesign.login,
                       )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Already have account? "),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Sign in here!",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                .copyWith(color: Constant.primary),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

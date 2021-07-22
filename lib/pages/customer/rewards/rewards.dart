@@ -2,6 +2,7 @@ import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
+import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -60,7 +61,7 @@ class _RewardsState extends State<Rewards> {
               ],
             ),
             Center(
-                child: Utils.numberString(obj.customer.balance, context, 60.0)),
+                child: Utils.numberString(obj.customer.balance, context, 50.0)),
             IconButtonWidget(
                 buttonText: "Scan QR Code",
                 buttonColor: Colors.black,
@@ -71,16 +72,13 @@ class _RewardsState extends State<Rewards> {
           ])),
         ),
         // Utils.cardsCarousel(cards),
-        obj.customer.cardsResolved.length == 0
-            ? Utils.emtpyStateSliver()
-            : Utils.blankSliver(),
-        obj.customer.cardsResolved.length > 0
-            ? TitleWidget(
-                title: "Order History",
-                subtitle: "[TO BE FILLED OUT]",
-                padding: Constant.padding.copyWith(top: 15, bottom: 15),
-                onTap: null)
-            : Utils.blankSliver(),
+
+        TitleWidget(
+            title: "Redeem History",
+            subtitle: "[TO BE FILLED OUT]",
+            padding: Constant.padding.copyWith(top: 15, bottom: 15),
+            onTap: null),
+        EmptyState(title: "Find Gift Cards", onTap: () {}),
         obj.customer.cardsResolved.length > 0
             ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
             : Utils.blankSliver()

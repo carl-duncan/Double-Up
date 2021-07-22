@@ -3,6 +3,7 @@ import 'package:double_up/pages/sign_up/sign_up_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/icon_button.dart';
+import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class LoginPage extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
+        navigationBarPushed(context, "Log in"),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
           Center(
@@ -31,10 +33,6 @@ class LoginPage extends StatelessWidget {
               padding: Constant.padding,
               child: Column(
                 children: [
-                  CupertinoNavigationBar(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    border: null,
-                  ),
                   Padding(
                     padding: EdgeInsets.only(
                         bottom: size.height * 0.05, top: size.height * 0.05),
@@ -52,7 +50,7 @@ class LoginPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus. Integer finibus dui diam, molestie varius enim elementum posuere.",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et sodales risus. ",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
