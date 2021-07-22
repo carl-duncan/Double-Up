@@ -41,6 +41,7 @@ dependencies:
   barcode_scan2:
   amplify_auth_cognito:
   amplify_flutter:
+  fluttertoast: ^8.0.7
 
 dev_dependencies:
   flutter_test:

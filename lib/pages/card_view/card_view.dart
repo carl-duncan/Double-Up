@@ -124,7 +124,7 @@ class _CardViewState extends State<CardView> {
                 hint: "Email Address",
                 controller: null,
                 obscure: false,
-                type: TextInputType.number,
+                type: TextInputType.emailAddress,
                 suffix: Entypo.email,
                 label: null,
                 enabled: true),
