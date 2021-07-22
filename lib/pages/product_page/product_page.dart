@@ -105,11 +105,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   onTap: () {
-                    productPageBloc.sendNotification(
-                        message: "Added ${widget.product.name}",
-                        context: context,
-                        icon: FontAwesome5Solid.heart,
-                        color: Constant.green);
+                    productPageBloc.addToFav(widget.product, context);
                   },
                 )
               ],

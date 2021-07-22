@@ -25,7 +25,7 @@ class UserRepository {
       print("Already Configured");
     }
     try {
-      return await isSignedIn((result){
+      return await isSignedIn((result) {
         UserSingleton().initStreams(result);
       });
     } catch (e) {
@@ -46,7 +46,6 @@ class UserRepository {
 
   static signUp(
       String name, String email, String password, Function onError) async {
-    ;
     try {
       Map<String, String> userAttributes = {
         'email': email,

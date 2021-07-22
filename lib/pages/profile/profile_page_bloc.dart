@@ -12,7 +12,6 @@ import 'package:rxdart/rxdart.dart';
 
 class ProfilePageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
-  // BehaviorSubject<Customer> customer = BehaviorSubject();
   BehaviorSubject<String> email = BehaviorSubject();
 
   ProfilePageBloc(BuildContext context) {

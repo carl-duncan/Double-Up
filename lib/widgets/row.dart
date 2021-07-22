@@ -22,7 +22,7 @@ class ProductRow extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 0),
+      padding: const EdgeInsets.only(top: 0, bottom: 0),
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: this.onTap,
