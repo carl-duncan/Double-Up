@@ -78,14 +78,16 @@ class _SearchPageState extends State<SearchPage> {
             ? TitleWidget(
                 title: "Products",
                 padding: Constant.padding.copyWith(bottom: 15),
-                onTap: () {})
+                onTap: () {
+                  searchPageBloc.openProductList(context);
+                })
             : Utils.blankSliver(),
         Utils.productsList(object.products, null),
         object.business.length > 0
             ? TitleWidget(
                 title: "Supermarkets",
                 padding: Constant.padding.copyWith(top: 15, bottom: 15),
-                onTap: () {})
+                onTap: null)
             : Utils.blankSliver(),
         Utils.businessList(object.business),
         Utils.endOfSliver()
