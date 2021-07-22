@@ -1,4 +1,3 @@
-import 'package:double_up/models/category.dart';
 import 'package:double_up/pages/customer/search/search_page_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
@@ -65,14 +64,6 @@ class _SearchPageState extends State<SearchPage> {
                 enabled: true),
           ])),
         ),
-        TitleWidget(
-            title: "Categories",
-            subtitle: "[TO BE FILLED OUT]",
-            padding: Constant.padding.copyWith(top: 15, bottom: 10),
-            onTap: null),
-        Utils.categoryRow(object.category, (Category object, index) {
-          print(object.toJson().toString());
-        }),
         TitleWidget(
             title: "Products",
             subtitle: "[TO BE FILLED OUT]",
