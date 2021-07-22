@@ -6,9 +6,10 @@ import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:overlay_support/overlay_support.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RewardsBloc extends Bloc {
@@ -30,16 +31,24 @@ class RewardsBloc extends Bloc {
     userSingleton.updateGiftCards();
   }
 
-  redeemQrCode() async {
+  redeemQrCode(BuildContext context) async {
     var result = await BarcodeScanner.scan();
     Map<String, dynamic> redeemed =
         await Repository.redeemGiftCard(result.rawContent);
     if (redeemed["redeemed"] == true) {
       await userSingleton.updateCurrentUser(UserSingleton.userId);
       userSingleton.incrementBalance(redeemed["price"]);
-      toast("Your balance has been updated.");
+      sendNotification(
+          message: "Your balance has been updated.",
+          context: context,
+          icon: FontAwesome5Solid.dollar_sign,
+          color: Colors.green);
     } else {
-      toast(redeemed["redeemed"]);
+      sendNotification(
+          message: redeemed["redeemed"],
+          context: context,
+          icon: Icons.error,
+          color: Constant.red);
     }
   }
 

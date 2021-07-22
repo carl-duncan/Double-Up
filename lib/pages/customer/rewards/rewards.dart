@@ -67,7 +67,7 @@ class _RewardsState extends State<Rewards> {
                 buttonText: "Scan QR Code",
                 buttonColor: Colors.black,
                 onPressed: () {
-                  rewardsBloc.redeemQrCode();
+                  rewardsBloc.redeemQrCode(context);
                 },
                 icon: Icon(AntDesign.qrcode)),
           ])),
