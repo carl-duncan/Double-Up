@@ -28,7 +28,7 @@ class ProductRow extends StatelessWidget {
         onTap: this.onTap,
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(15.0),
           ),
           elevation: 0,
           shadowColor: Colors.grey,
