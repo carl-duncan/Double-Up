@@ -136,8 +136,7 @@ class Utils {
               child: Text(
                 '\$',
                 style: Theme.of(context).textTheme.headline4.copyWith(
-                    color: Theme.of(context).scaffoldBackgroundColor ==
-                            Colors.black
+                    color: Theme.of(context).brightness == Brightness.dark
                         ? Colors.white
                         : Colors.black,
                     fontWeight: FontWeight.bold,
@@ -149,7 +148,7 @@ class Utils {
             text:
                 "${Utils.getNumber(balance, precision: 0).toStringAsFixed(0)}",
             style: Theme.of(context).textTheme.headline2.copyWith(
-                color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+                color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
                     : Colors.black,
                 fontWeight: FontWeight.bold,
@@ -161,8 +160,7 @@ class Utils {
               child: Text(
                 "${((balance - Utils.getNumber(balance, precision: 0)).toStringAsFixed(2)).substring(1, 4)}",
                 style: Theme.of(context).textTheme.headline3.copyWith(
-                    color: Theme.of(context).scaffoldBackgroundColor ==
-                            Colors.black
+                    color: Theme.of(context).brightness == Brightness.dark
                         ? Colors.white
                         : Colors.black,
                     fontWeight: FontWeight.bold,

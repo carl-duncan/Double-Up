@@ -1,3 +1,4 @@
+import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class TitleWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ class TitleWidget extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   subtitle != null
                       ? Text(
@@ -33,7 +34,7 @@ class TitleWidget extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .overline
-                              .copyWith(color: Colors.grey[500]),
+                              .copyWith(color: Colors.grey[600]),
                         )
                       : Container()
                 ],
@@ -42,8 +43,8 @@ class TitleWidget extends StatelessWidget {
               onTap != null
                   ? InkWell(
                       child: Text(
-                        "See All",
-                        style: Theme.of(context).textTheme.bodyText1,
+                        "See More",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Constant.primary),
                       ),
                       onTap: onTap,
                     )

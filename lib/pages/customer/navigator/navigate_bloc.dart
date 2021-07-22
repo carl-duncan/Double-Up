@@ -2,8 +2,10 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/repositories/user_repository.dart';
+import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -20,7 +22,11 @@ class NavigateBloc extends Bloc {
       return;
     }
     signUpResult.add(await UserRepository.signIn(username, password, (e) {
-      toast(e.message);
+      sendNotification(
+          message: e.message,
+          context: context,
+          icon: Icons.error,
+          color: Constant.red);
       Navigator.pushReplacement(context, createRoute(LoginPage()));
     }, (result) {
       userSingleton.initStreams(result);

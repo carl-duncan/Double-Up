@@ -22,75 +22,92 @@ class ProductRow extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return InkWell(
+      splashColor: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Hero(
-                  tag: hero == null ? product.id : hero,
-                  child: CachedNetworkImage(
-                    imageUrl: product.images.first,
-                    height: 76,
-                    width: 76,
-                  ),
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.only(top: 10, bottom: 0),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 0,
+          shadowColor: Colors.grey,
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+            child: Row(
               children: [
-                Text(
-                  product.name,
-                  style: theme.textTheme.headline6,
-                ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5, top: 5),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        child: Container(
-                          height: 20,
-                          width: 100,
-                          color: Constant.primary,
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                product.category.name,
-                                style: theme.textTheme.overline
-                                    .copyWith(color: Colors.white),
-                              )
-                            ],
-                          )),
-                        ),
+                  padding: const EdgeInsets.only(right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Hero(
+                      tag: hero == null ? product.id : hero,
+                      child: CachedNetworkImage(
+                        imageUrl: product.images.first,
+                        height: 76,
+                        width: 76,
                       ),
-                    ],
+                    ),
                   ),
                 ),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('\$${product.price}',
-                        style: Theme.of(context).textTheme.caption.copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey)),
-                    SizedBox(
-                      width: 5,
+                    Text(
+                      product.name,
+                      style: theme.textTheme.headline6,
                     ),
-                    Utils.numberString(
-                        (product.price * (1 - product.threshold)),
-                        context,
-                        20.0),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, top: 5),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            child: Container(
+                              height: 20,
+                              color: Constant.primary.withOpacity(0.2),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Center(
+                                    child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      product.category.name,
+                                      style: theme.textTheme.overline.copyWith(
+                                          color: Constant.primary,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    )
+                                  ],
+                                )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text('\$${product.price}',
+                            style: Theme.of(context).textTheme.caption.copyWith(
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.grey)),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Utils.numberString(
+                            (product.price * (1 - product.threshold)),
+                            context,
+                            20.0),
+                      ],
+                    ),
                   ],
-                ),
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
       onTap: this.onTap,

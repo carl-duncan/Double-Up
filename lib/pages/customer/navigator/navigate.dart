@@ -70,7 +70,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
             inactiveColor: Colors.grey,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(FontAwesome5Solid.tag),
+                icon: Icon(Icons.dashboard),
                 label: "Dashboard",
               ),
               BottomNavigationBarItem(

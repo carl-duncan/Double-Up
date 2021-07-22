@@ -20,16 +20,18 @@ navigationBar(BuildContext context, String title, int num) {
         children: [
           Badge(
             position: BadgePosition.bottomEnd(),
-            badgeContent: Text(
-              "$num",
-              style: TextStyle(color: Colors.white),
-            ),
+            badgeContent: num != 0
+                ? Text(
+                    "$num",
+                    style: TextStyle(color: Colors.white),
+                  )
+                : null,
             child: Material(
               color: Theme.of(context).scaffoldBackgroundColor,
               child: InkWell(
                 child: Icon(
                   FontAwesome5Solid.bell,
-                  size: 25,
+                  size: 20,
                 ),
                 onTap: () {
                   Navigator.of(context, rootNavigator: true)

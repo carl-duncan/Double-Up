@@ -74,7 +74,7 @@ class _ProductPageState extends State<ProductPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
-                      color: Constant.green,
+                      color: Constant.primary.withOpacity(0.2),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -82,7 +82,9 @@ class _ProductPageState extends State<ProductPage> {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6
-                                .copyWith(color: Colors.white)),
+                                .copyWith(
+                                    color: Constant.primary,
+                                    fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ),
@@ -129,7 +131,7 @@ class _ProductPageState extends State<ProductPage> {
 
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.3),
+                  top: MediaQuery.of(context).size.height * 0.25),
               child: IconButtonWidget(
                   buttonText: "Find Supermarket",
                   buttonColor: Constant.secondary,
@@ -140,7 +142,8 @@ class _ProductPageState extends State<ProductPage> {
             )
             // BusinessRow(business: widget.product.business, onTap: () {})
           ])),
-        )
+        ),
+        Utils.endOfSliver()
       ],
     );
   }

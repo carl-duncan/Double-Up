@@ -72,15 +72,15 @@ class _SearchPageState extends State<SearchPage> {
                 title: "Products",
                 subtitle: "[TO BE FILLED OUT]",
                 padding: Constant.padding,
-                onTap: null)
+                onTap: () {})
             : Utils.blankSliver(),
         Utils.productsList(object.products, null),
         object.business.length > 0
             ? TitleWidget(
                 title: "Supermarkets",
                 subtitle: "[TO BE FILLED OUT]",
-                padding: Constant.padding.copyWith(top: 0),
-                onTap: null)
+                padding: Constant.padding.copyWith(top: 15),
+                onTap: () {})
             : Utils.blankSliver(),
         Utils.businessList(object.business),
         Utils.endOfSliver()

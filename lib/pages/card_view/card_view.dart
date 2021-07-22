@@ -97,7 +97,7 @@ class _CardViewState extends State<CardView> {
                             height: 50,
                             width: 70,
                             color: amounts[index] == object.value
-                                ? Constant.primary
+                                ? Constant.primary.withOpacity(0.2)
                                 : Colors.black,
                             child: Center(
                               child: Text(
@@ -105,7 +105,10 @@ class _CardViewState extends State<CardView> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline6
-                                    .copyWith(color: Colors.white),
+                                    .copyWith(
+                                        color: amounts[index] == object.value
+                                            ? Constant.primary
+                                            : Colors.white),
                               ),
                             ),
                           ),

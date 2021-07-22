@@ -80,7 +80,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                     title: object.category[object.index].name,
                     subtitle: "[TO BE FILLED OUT]",
                     padding: Constant.padding.copyWith(top: 15, bottom: 10),
-                    onTap: null),
+                    onTap: () {}),
                 Utils.productsList(object.products, null),
                 TitleWidget(
                     title: "Recommended Supermarkets",

@@ -19,8 +19,10 @@ class BusinessRow extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return InkWell(
+      splashColor: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        padding:
+            const EdgeInsets.only(top: 15, bottom: 15, left: 10, right: 10),
         child: Row(
           children: [
             Padding(
@@ -32,8 +34,8 @@ class BusinessRow extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: business.image,
                     fit: BoxFit.cover,
-                    height: 76,
-                    width: 76,
+                    height: 66,
+                    width: 66,
                   ),
                 ),
               ),
@@ -61,8 +63,9 @@ class BusinessRow extends StatelessWidget {
                             children: [
                               Text(
                                 business.category.name,
-                                style: theme.textTheme.overline
-                                    .copyWith(color: Colors.white),
+                                style: theme.textTheme.overline.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               )
                             ],
                           )),

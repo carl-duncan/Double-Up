@@ -2,6 +2,7 @@ import 'package:double_up/pages/wrapper/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 void main() {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(
             brightness: Brightness.dark,
             cardColor: Colors.grey[900].withOpacity(0.3),
-            scaffoldBackgroundColor: Colors.black,
+            scaffoldBackgroundColor: HexColor("#121212"),
             appBarTheme: AppBarTheme(backgroundColor: Colors.black),
             textTheme: TextTheme(
                 headline6: TextStyle(
