@@ -18,25 +18,25 @@ navigationBar(BuildContext context, String title, int num) {
       leading: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Badge(
-            position: BadgePosition.bottomEnd(),
-            badgeContent: num != 0
-                ? Text(
-                    "$num",
-                    style: TextStyle(color: Colors.white),
-                  )
-                : null,
-            child: Material(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              child: InkWell(
+          InkWell(
+            onTap: () {
+              Navigator.of(context, rootNavigator: true)
+                  .push(createRoute(Notifications()));
+            },
+            child: Badge(
+              position: BadgePosition.bottomEnd(),
+              badgeContent: num != 0
+                  ? Text(
+                      "$num",
+                      style: TextStyle(color: Colors.white),
+                    )
+                  : null,
+              child: Material(
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: Icon(
                   FontAwesome5Solid.bell,
                   size: 20,
                 ),
-                onTap: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .push(createRoute(Notifications()));
-                },
               ),
             ),
           ),
