@@ -11,8 +11,9 @@ class CardViewBloc extends Bloc {
   BehaviorSubject<String> value = BehaviorSubject();
   CombineLatestStream combineLatestStream;
   CardViewBloc(String initialValue) {
-    combineLatestStream = CombineLatestStream([value], (a) {
-      return CardViewBlocObject(value: a[0]);
+    combineLatestStream =
+        CombineLatestStream([value, userSingleton.currentUser], (a) {
+      return CardViewBlocObject(value: a[0], user: a[1]);
     });
     value.add(initialValue);
   }
@@ -85,5 +86,6 @@ class CardViewBloc extends Bloc {
 
 class CardViewBlocObject {
   String value;
-  CardViewBlocObject({this.value});
+  Customer user;
+  CardViewBlocObject({this.value, this.user});
 }
