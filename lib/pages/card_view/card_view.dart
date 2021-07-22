@@ -58,7 +58,7 @@ class _CardViewState extends State<CardView> {
       slivers: [
         navigationBarPushed(context, "Purchase ${widget.card.caption} Card"),
         SliverPadding(
-          padding: Constant.padding,
+          padding: Constant.padding.copyWith(top: 0),
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
             GiftCardView(
@@ -95,7 +95,8 @@ class _CardViewState extends State<CardView> {
               child: Text(
                 widget.card.desc,
                 textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.caption,
+                style:
+                    Theme.of(context).textTheme.caption.copyWith(fontSize: 11),
               ),
             ),
             Padding(
