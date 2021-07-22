@@ -65,7 +65,7 @@ class _RewardsState extends State<Rewards> {
                 child: Utils.numberString(obj.customer.balance, context, 50.0)),
             IconButtonWidget(
                 buttonText: "Scan QR Code",
-                buttonColor: Colors.black,
+                buttonColor: Constant.secondary,
                 onPressed: () {
                   rewardsBloc.redeemQrCode(context);
                 },
