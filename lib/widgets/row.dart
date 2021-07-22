@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ProductRow extends StatelessWidget {
@@ -72,26 +73,20 @@ class ProductRow extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 2, bottom: 2),
-                  child: Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: '\$${product.price}',
-                            style: Theme.of(context).textTheme.caption.copyWith(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.grey)),
-                        TextSpan(
-                            text:
-                                ' \$${(product.price * (1 - product.threshold)).toStringAsFixed(2)}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2
-                                .copyWith(fontWeight: FontWeight.bold)),
-                      ],
+                Row(
+                  children: [
+                    Text('\$${product.price}',
+                        style: Theme.of(context).textTheme.caption.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey)),
+                    SizedBox(
+                      width: 5,
                     ),
-                  ),
+                    Utils.numberString(
+                        (product.price * (1 - product.threshold)),
+                        context,
+                        20.0),
+                  ],
                 ),
               ],
             )

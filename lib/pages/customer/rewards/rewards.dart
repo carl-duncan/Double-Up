@@ -57,61 +57,10 @@ class _RewardsState extends State<Rewards> {
                       .overline
                       .copyWith(fontSize: 12, color: Colors.grey),
                 ),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                    children: [
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, -7.0),
-                          child: Text(
-                            '\$',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4
-                                .copyWith(
-                                    color: Theme.of(context)
-                                                .scaffoldBackgroundColor ==
-                                            Colors.black
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            "${Utils.getNumber(obj.customer.balance, precision: 0).toStringAsFixed(0)}",
-                        style: Theme.of(context).textTheme.headline2.copyWith(
-                            color: Theme.of(context).scaffoldBackgroundColor ==
-                                    Colors.black
-                                ? Colors.white
-                                : Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, -7.0),
-                          child: Text(
-                            "${((obj.customer.balance - Utils.getNumber(obj.customer.balance, precision: 0)).toStringAsFixed(2)).substring(1, 4)}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4
-                                .copyWith(
-                                    color: Theme.of(context)
-                                                .scaffoldBackgroundColor ==
-                                            Colors.black
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
               ],
             ),
+            Center(
+                child: Utils.numberString(obj.customer.balance, context, 60.0)),
             IconButtonWidget(
                 buttonText: "Scan QR Code",
                 buttonColor: Colors.black,

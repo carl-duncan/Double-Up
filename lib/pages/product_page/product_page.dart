@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/product.dart';
 import 'package:double_up/pages/product_page/product_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,50 +56,55 @@ class _ProductPageState extends State<ProductPage> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 20),
-              child: Row(
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: '\$${widget.product.price}',
+            Row(
+              children: [
+                Text('\$${widget.product.price}',
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey)),
+                SizedBox(
+                  width: 10,
+                ),
+                Utils.numberString(
+                    (widget.product.price * (1 - widget.product.threshold)),
+                    context,
+                    60.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      color: Constant.green,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            '${(widget.product.price * (widget.product.threshold))} points',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6
-                                .copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                    color: Colors.grey)),
-                        TextSpan(
-                            text:
-                                ' \$${(widget.product.price * (1 - widget.product.threshold)).toStringAsFixed(2)}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4
-                                .copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .headline6
-                                        .color,
-                                    fontWeight: FontWeight.bold)),
-                      ],
+                                .copyWith(color: Colors.white)),
+                      ),
                     ),
                   ),
-                  Spacer(),
-                  InkWell(
-                    child: Icon(
-                      FontAwesome5Solid.heart,
-                      color: Constant.red,
-                    ),
-                    onTap: () {
-                      productPageBloc.sendNotification(
-                          "${widget.product.name} has been added to your favorites.",
-                          context);
-                    },
-                  )
-                ],
-              ),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                Spacer(),
+                InkWell(
+                  child: Icon(
+                    FontAwesome5Solid.heart,
+                    color: Constant.red,
+                  ),
+                  onTap: () {
+                    productPageBloc.sendNotification(
+                        "${widget.product.name} has been added to your favorites.",
+                        context);
+                  },
+                )
+              ],
             ),
 
             Padding(

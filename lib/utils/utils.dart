@@ -123,8 +123,57 @@ class Utils {
     );
   }
 
-  static double getNumber(double input, {int precision = 2}) => double.parse(
-      '$input'.substring(0, '$input'.indexOf('.') + precision + 1));
+  static num getNumber(double input, {int precision = 2}) =>
+      num.parse('$input'.substring(0, '$input'.indexOf('.') + precision + 1));
+
+  static Widget numberString(num balance, BuildContext context, num size) {
+    return RichText(
+      text: TextSpan(
+        children: [
+          WidgetSpan(
+            child: Transform.translate(
+              offset: const Offset(0.0, -7.0),
+              child: Text(
+                '\$',
+                style: Theme.of(context).textTheme.headline4.copyWith(
+                    color: Theme.of(context).scaffoldBackgroundColor ==
+                            Colors.black
+                        ? Colors.white
+                        : Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: size * 0.6),
+              ),
+            ),
+          ),
+          TextSpan(
+            text:
+                "${Utils.getNumber(balance, precision: 0).toStringAsFixed(0)}",
+            style: Theme.of(context).textTheme.headline2.copyWith(
+                color: Theme.of(context).scaffoldBackgroundColor == Colors.black
+                    ? Colors.white
+                    : Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: size),
+          ),
+          WidgetSpan(
+            child: Transform.translate(
+              offset: const Offset(0.0, -9.0),
+              child: Text(
+                "${((balance - Utils.getNumber(balance, precision: 0)).toStringAsFixed(2)).substring(1, 4)}",
+                style: Theme.of(context).textTheme.headline3.copyWith(
+                    color: Theme.of(context).scaffoldBackgroundColor ==
+                            Colors.black
+                        ? Colors.white
+                        : Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: size * 0.5),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   static businessList(List<Business> objects) {
     return SliverPadding(
