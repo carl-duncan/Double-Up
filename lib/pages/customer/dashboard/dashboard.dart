@@ -79,12 +79,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 }),
                 TitleWidget(
                     title: object.category[object.index].name,
-                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
+                    padding: Constant.padding.copyWith(top: 15, bottom: 15),
                     onTap: () {}),
                 Utils.productsList(object.products, null),
                 TitleWidget(
                     title: "Recommended Supermarkets",
-                    padding: Constant.padding.copyWith(top: 15, bottom: 0),
+                    padding: Constant.padding.copyWith(top: 15, bottom: 15),
                     onTap: null),
                 Utils.businessList(object.business),
                 Utils.endOfSliver()
