@@ -57,24 +57,31 @@ class _SearchPageState extends State<SearchPage> {
                 label: null,
                 onChanged: (String value) {
                   searchPageBloc.updateProducts(context, value);
-                  searchPageBloc.updateGiftCards(context, value);
+                  searchPageBloc.updateBusinesses(context, value);
                 },
                 obscure: false,
                 suffix: FontAwesome5Solid.search,
                 enabled: true),
           ])),
         ),
-        TitleWidget(
-            title: "Products",
-            subtitle: "[TO BE FILLED OUT]",
-            padding: Constant.padding,
-            onTap: null),
+        object.products.length > 0 || object.business.length > 0
+            ? Utils.blankSliver()
+            : Utils.emtpyStateSliver(),
+        object.products.length > 0
+            ? TitleWidget(
+                title: "Products",
+                subtitle: "[TO BE FILLED OUT]",
+                padding: Constant.padding,
+                onTap: null)
+            : Utils.blankSliver(),
         Utils.productsList(object.products, null),
-        TitleWidget(
-            title: "Supermarkets",
-            subtitle: "[TO BE FILLED OUT]",
-            padding: Constant.padding.copyWith(top: 0),
-            onTap: null),
+        object.business.length > 0
+            ? TitleWidget(
+                title: "Supermarkets",
+                subtitle: "[TO BE FILLED OUT]",
+                padding: Constant.padding.copyWith(top: 0),
+                onTap: null)
+            : Utils.blankSliver(),
         Utils.businessList(object.business),
         Utils.endOfSliver()
       ],

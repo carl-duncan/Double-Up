@@ -28,22 +28,12 @@ class SearchPageBloc extends Bloc {
             products: c,
             notification: d,
             business: e));
-    updateGiftCards(context, "");
     updateProducts(context, "");
-    updateBusinesses(context);
+    updateBusinesses(context, "");
   }
 
-  updateGiftCards(BuildContext context, String search) async {
-    List<GiftCard> cards = await userSingleton.giftCards.first;
-    for (GiftCard obj in cards) {
-      await precacheImage(CachedNetworkImageProvider(obj.logo), context);
-    }
-    cards.removeWhere((element) => !element.caption.contains(search));
-    userSingleton.updateGiftCards();
-  }
-
-  updateBusinesses(BuildContext context) async {
-    List<Business> objects = await Repository.getBusinesses();
+  updateBusinesses(BuildContext context, String search) async {
+    List<Business> objects = await Repository.searchBusinesses(search, 3);
     for (Business obj in objects) {
       await precacheImage(CachedNetworkImageProvider(obj.image), context);
     }
