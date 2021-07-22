@@ -123,6 +123,9 @@ class Utils {
     );
   }
 
+  static double getNumber(double input, {int precision = 2}) => double.parse(
+      '$input'.substring(0, '$input'.indexOf('.') + precision + 1));
+
   static businessList(List<Business> objects) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
