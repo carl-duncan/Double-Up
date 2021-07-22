@@ -78,14 +78,14 @@ class _RewardsState extends State<Rewards> {
             subtitle: "Gift Cards you have redeemed.",
             padding: Constant.padding.copyWith(top: 15, bottom: 15),
             onTap: null),
-        EmptyState(
-            title: "Find Gift Cards",
-            onTap: () {
-              rewardsBloc.changePage();
-            }),
+
         obj.customer.cardsResolved.length > 0
             ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
-            : Utils.blankSliver()
+            : EmptyState(
+                title: "Find Gift Cards",
+                onTap: () {
+                  rewardsBloc.changePage();
+                }),
       ],
     );
   }
