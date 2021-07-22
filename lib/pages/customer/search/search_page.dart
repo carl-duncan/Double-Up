@@ -73,18 +73,12 @@ class _SearchPageState extends State<SearchPage> {
         Utils.categoryRow(object.category, (Category object, index) {
           print(object.toJson().toString());
         }),
-        // TitleWidget(
-        //     title: "Gift Cards",
-        //     subtitle: "[TO BE FILLED OUT]",
-        //     padding: Constant.padding.copyWith(bottom: 0),
-        //     onTap: null),
-        // Utils.cardsList(object.giftCards),
         TitleWidget(
             title: "Products",
             subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding,
             onTap: null),
-        Utils.productsList(object.products),
+        Utils.productsList(object.products, null),
         TitleWidget(
             title: "Supermarkets",
             subtitle: "[TO BE FILLED OUT]",

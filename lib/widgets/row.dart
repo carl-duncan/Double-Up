@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class ProductRow extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
-  final bool hero;
+  final String hero;
   ProductRow({
     @required this.product,
     @required this.onTap,
@@ -30,7 +30,7 @@ class ProductRow extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Hero(
-                  tag: hero == null ? product.id : Random.secure(),
+                  tag: hero == null ? product.id : hero,
                   child: CachedNetworkImage(
                     imageUrl: product.images.first,
                     height: 76,

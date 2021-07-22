@@ -10,7 +10,9 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
-  const ProductPage({Key key, @required this.product}) : super(key: key);
+  final String hero;
+  const ProductPage({Key key, @required this.product, this.hero})
+      : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -43,7 +45,7 @@ class _ProductPageState extends State<ProductPage> {
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
             Hero(
-              tag: widget.product.id,
+              tag: widget.hero == null ? widget.product.id : widget.hero,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(

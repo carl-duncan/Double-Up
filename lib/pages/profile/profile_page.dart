@@ -104,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
               )
             : Utils.blankSliver(),
         object.customer.favProducts != null
-            ? Utils.productsList(object.customer.favProducts)
+            ? Utils.productsList(object.customer.favProducts, null)
             : Utils.blankSliver(),
         object.customer.favCardsResolved.length > 0
             ? TitleWidget(

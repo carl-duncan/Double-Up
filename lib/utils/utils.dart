@@ -94,20 +94,20 @@ class Utils {
     ]));
   }
 
-  static productsList(List<Product> objects, {bool hero}) {
+  static productsList(List<Product> objects, String hero) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
         return ProductRow(
             product: objects[index],
-            hero: hero,
+            hero: hero != null ? hero + objects[index].id : null,
             onTap: () {
-              if (hero == null)
-                Navigator.of(context, rootNavigator: true)
-                    .push(createRoute(ProductPage(
-                  product: objects[index],
-                )));
+              Navigator.of(context, rootNavigator: true)
+                  .push(createRoute(ProductPage(
+                product: objects[index],
+                hero: hero != null ? hero + objects[index].id : null,
+              )));
             });
       }, childCount: objects.length)),
     );

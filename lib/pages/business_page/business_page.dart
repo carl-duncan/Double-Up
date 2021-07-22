@@ -49,7 +49,7 @@ class _BusinessPageState extends State<BusinessPage> {
           padding: Constant.padding,
           sliver: SliverList(delegate: SliverChildListDelegate.fixed([])),
         ),
-        Utils.productsList(object.products, hero: false)
+        Utils.productsList(object.products, widget.business.id)
       ],
     );
   }
