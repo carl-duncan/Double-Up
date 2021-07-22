@@ -5,6 +5,7 @@ import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
+import 'package:double_up/widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -78,6 +79,11 @@ class _BusinessPageState extends State<BusinessPage> {
                   .copyWith(color: Colors.grey),
             ),
           ])),
+        ),
+        TitleWidget(
+          title: "Products",
+          onTap: () {},
+          padding: Constant.padding.copyWith(bottom: 15),
         ),
         Utils.productsList(object.products, widget.business.id)
       ],

@@ -80,7 +80,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 TitleWidget(
                     title: object.category[object.index].name,
                     padding: Constant.padding.copyWith(top: 15, bottom: 15),
-                    onTap: () {}),
+                    onTap: object.index != 0
+                        ? () {
+                            dashboardBloc.openProductList(
+                                context, object.category[object.index]);
+                          }
+                        : null),
                 Utils.productsList(object.products, null),
                 TitleWidget(
                     title: "Recommended Supermarkets",

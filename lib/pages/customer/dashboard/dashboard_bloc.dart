@@ -5,7 +5,9 @@ import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/models/product.dart';
+import 'package:double_up/pages/product_list_page/product_list_page.dart';
 import 'package:double_up/repositories/repository.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rxdart/rxdart.dart';
@@ -60,6 +62,13 @@ class DashboardBloc extends Bloc {
       await precacheImage(CachedNetworkImageProvider(obj.logo), context);
     }
     userSingleton.updateGiftCards();
+  }
+
+  openProductList(BuildContext context, Category category) {
+    Navigator.of(context, rootNavigator: true).push(createRoute(ProductListPage(
+      function: Repository.getProductByCategory(category.id),
+      title: category.name,
+    )));
   }
 
   dispose() {
