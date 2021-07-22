@@ -1,5 +1,6 @@
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
+import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,33 +23,35 @@ class CardViewBloc extends Bloc {
     this.value.add(value);
   }
 
-  addToFav(String name, String code, BuildContext context) async {
+  addToFav(GiftCard card, BuildContext context) async {
     Customer user = await userSingleton.currentUser.first;
-    bool condition = !(user.favCards.contains(num.parse(code)));
+    bool condition = !(user.favCards.contains(num.parse(card.code)));
     if (condition) {
-      user.favCards.add(num.parse(code));
-    } else {
-      user.favCards.removeWhere((val) {
-        if (val == num.parse(code)) return true;
-        return false;
-      });
-    }
-    await Repository.updateFavCards(user.favCards, user.id);
-    await userSingleton.updateCurrentUser(user.id);
-
-    if (condition) {
+      user.favCards.add(num.parse(card.code));
       sendNotification(
-          message: "Added $name Card",
+          message: "Added ${card.caption} Card",
           context: context,
           icon: FontAwesome5Solid.heart,
           color: Constant.green);
+      user.favCardsResolved.add(card);
     } else {
       sendNotification(
-          message: "Removed $name Card",
+          message: "Removed ${card.caption} Card",
           context: context,
           icon: FontAwesome5Solid.heart,
           color: Constant.secondary);
+      user.favCards.removeWhere((val) {
+        if (val == num.parse(card.code)) return true;
+        return false;
+      });
+      user.favCardsResolved.removeWhere((GiftCard val) {
+        if (val.code == card.code) return true;
+        return false;
+      });
     }
+    userSingleton.currentUser.add(user);
+    await Repository.updateFavCards(user.favCards, user.id);
+    // await userSingleton.updateCurrentUser(user.id);
   }
 
   sendGiftCard(BuildContext context) {

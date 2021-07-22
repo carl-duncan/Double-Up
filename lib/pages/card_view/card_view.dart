@@ -84,8 +84,7 @@ class _CardViewState extends State<CardView> {
                       ),
                     ),
                     onTap: () {
-                      cardViewBloc.addToFav(
-                          widget.card.caption, widget.card.code, context);
+                      cardViewBloc.addToFav(widget.card, context);
                     },
                   )
                 ],

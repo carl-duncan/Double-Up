@@ -96,7 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        object.customer.favProducts == null
+        object.customer.favProducts == null ||
+                object.customer.favProducts.length == 0
             ? EmptyState(
                 title: "Explore Products",
                 onTap: () {
