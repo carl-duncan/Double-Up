@@ -12,6 +12,7 @@ import 'package:double_up/widgets/business_row.dart';
 import 'package:double_up/widgets/card_row.dart';
 import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
+import 'package:double_up/widgets/mini_gift_card.dart';
 import 'package:double_up/widgets/row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class Utils {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return GiftCardView(
+              return MiniGiftCardView(
                 card: giftCards[index],
                 onTap: () {
                   Navigator.of(context, rootNavigator: true)
