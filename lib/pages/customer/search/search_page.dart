@@ -2,6 +2,7 @@ import 'package:double_up/pages/customer/search/search_page_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
+import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
 import 'package:double_up/widgets/title.dart';
@@ -66,7 +67,10 @@ class _SearchPageState extends State<SearchPage> {
         ),
         object.products.length > 0 || object.business.length > 0
             ? Utils.blankSliver()
-            : Utils.emtpyStateSliver(),
+            : EmptyState(
+                title: "Clear Search",
+                onTap: () {},
+              ),
         object.products.length > 0
             ? TitleWidget(
                 title: "Products",

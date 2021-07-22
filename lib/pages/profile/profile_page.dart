@@ -62,6 +62,14 @@ class _ProfilePageState extends State<ProfilePage> {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline5,
             ),
+            Text(
+              "carlduncan64@gmail.com",
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .caption
+                  .copyWith(color: Colors.grey),
+            ),
           ])),
         ),
         TitleWidget(
