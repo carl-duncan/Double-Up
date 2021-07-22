@@ -85,9 +85,7 @@ class CardViewBloc extends Bloc {
   }
 
   getHeartColor(List<int> cards, String code) {
-    bool condition = (cards.contains(num.parse(code)));
-
-    return condition ? Constant.red : Constant.secondary;
+    return cards.contains(num.parse(code)) ? Constant.red : Constant.secondary;
   }
 
   dispose() {

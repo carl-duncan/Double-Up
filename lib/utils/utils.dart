@@ -51,7 +51,7 @@ class Utils {
 
   static cardsList(List<GiftCard> giftCards, {num height}) {
     return SliverPadding(
-      padding: Constant.padding.copyWith(bottom: 0,top: 0),
+      padding: Constant.padding.copyWith(bottom: 0, top: 0),
       sliver: SliverList(
           delegate: SliverChildListDelegate.fixed([
         Container(

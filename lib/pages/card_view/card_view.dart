@@ -1,3 +1,4 @@
+import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/pages/card_view/card_view_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
@@ -31,7 +32,8 @@ class _CardViewState extends State<CardView> {
     return Scaffold(
       body: StreamBuilder(
           stream: cardViewBloc.combineLatestStream,
-          initialData: CardViewBlocObject(value: amounts.first),
+          initialData: CardViewBlocObject(
+              value: amounts.first, user: Customer(favCards: [])),
           builder: (context, snapshot) {
             Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(snapshot.data);
