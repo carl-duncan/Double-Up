@@ -78,34 +78,13 @@ class LoginPage extends StatelessWidget {
                       enabled: true),
                   IconButtonWidget(
                       buttonText: "Sign in",
-                      buttonColor: Constant.primary,
+                      buttonColor: Constant.secondary,
                       onPressed: () {
                         loginPageBloc.signIn(context);
                       },
                       icon: Icon(
                         AntDesign.login,
                       )),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: IconButtonWidget(
-                            buttonText: "Sign in Apple",
-                            buttonColor: Colors.black,
-                            onPressed: () {},
-                            icon: Icon(FontAwesome5Brands.apple)),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: IconButtonWidget(
-                            buttonText: "Sign in Google",
-                            buttonColor: Colors.black,
-                            onPressed: () {},
-                            icon: Icon(FontAwesome5Brands.google)),
-                      )
-                    ],
-                  ),
                   SizedBox(
                     height: 10,
                   ),
