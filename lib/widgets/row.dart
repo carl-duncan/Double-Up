@@ -21,10 +21,11 @@ class ProductRow extends StatelessWidget {
     var rng = new Random();
     ThemeData theme = Theme.of(context);
 
-    return InkWell(
-      splashColor: Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 0),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 0),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        onTap: this.onTap,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -110,7 +111,6 @@ class ProductRow extends StatelessWidget {
           ),
         ),
       ),
-      onTap: this.onTap,
     );
   }
 }
