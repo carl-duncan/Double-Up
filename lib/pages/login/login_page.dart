@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "Log in"),
         SliverList(

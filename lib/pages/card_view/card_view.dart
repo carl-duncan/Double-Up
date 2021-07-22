@@ -52,6 +52,7 @@ class _CardViewState extends State<CardView> {
 
   loadUI(CardViewBlocObject object) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "Purchase ${widget.card.caption} Card"),
         SliverPadding(

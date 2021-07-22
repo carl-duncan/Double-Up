@@ -58,6 +58,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
           verticalOffset: 50.0,
           child: FadeInAnimation(
             child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
               slivers: [
                 navigationBar(
                     context, "Dashboard", object.notifications.length),

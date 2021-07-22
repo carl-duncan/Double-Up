@@ -29,14 +29,15 @@ class Notifications extends StatelessWidget {
 
   loadUI(BuildContext context, List<AppNotifications> notifications) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "My Notifications"),
         notifications.length == 0
             ? EmptyState(
                 title: "Close",
-          onTap: (){
+                onTap: () {
                   Navigator.pop(context);
-          },
+                },
               )
             : Utils.blankSliver(),
         SliverList(

@@ -41,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   loadUI(BuildContext context, ProfilePageBlocObject object) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBar(context, "My Profile", object.notifications.length),
         SliverPadding(

@@ -46,6 +46,7 @@ class _SearchPageState extends State<SearchPage> {
 
   loadUI(BuildContext context, SearchPageBlocObject object) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBar(context, "Search", object.notification.length),
         SliverPadding(

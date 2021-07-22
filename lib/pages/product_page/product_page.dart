@@ -39,6 +39,7 @@ class _ProductPageState extends State<ProductPage> {
 
   loadUI(BuildContext context) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, widget.product.name),
         SliverPadding(

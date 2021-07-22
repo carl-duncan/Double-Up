@@ -53,6 +53,7 @@ class _CodePageState extends State<CodePage> {
 
   loadUI(BuildContext context, SignUpResult result) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "Confirm Code"),
         SliverList(

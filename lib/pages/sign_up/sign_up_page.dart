@@ -1,6 +1,5 @@
 import 'package:double_up/pages/sign_up/sign_up_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
-import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
@@ -23,6 +22,7 @@ class SignUpPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "Sign up"),
         SliverList(

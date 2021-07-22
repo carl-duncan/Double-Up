@@ -43,6 +43,7 @@ class _BusinessPageState extends State<BusinessPage> {
 
   loadUI(BuildContext context, BusinessPageBlocObject object) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, ""),
         SliverPadding(

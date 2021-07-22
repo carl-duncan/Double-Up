@@ -43,6 +43,7 @@ class _RewardsState extends State<Rewards> {
 
   loadUI(BuildContext context, RewardsBlocObject obj) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBar(context, "My Rewards", obj.notifications.length),
         SliverPadding(

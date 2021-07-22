@@ -25,6 +25,7 @@ class TestPage extends StatelessWidget {
 
   loadUI(BuildContext context) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         navigationBar(context, "Search", 99),
       ],
