@@ -94,14 +94,19 @@ class _ProductPageState extends State<ProductPage> {
               children: [
                 Spacer(),
                 InkWell(
-                  child: Icon(
-                    FontAwesome5Solid.heart,
-                    color: Constant.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(
+                      FontAwesome5Solid.heart,
+                      color: Constant.red,
+                    ),
                   ),
                   onTap: () {
                     productPageBloc.sendNotification(
-                        "${widget.product.name} has been added to your favorites.",
-                        context);
+                        message: "Added ${widget.product.name}",
+                        context: context,
+                        icon: FontAwesome5Solid.heart,
+                        color: Constant.green);
                   },
                 )
               ],
