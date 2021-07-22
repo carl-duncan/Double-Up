@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/product.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/product_page/product_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
@@ -25,10 +27,11 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: null,
+          initialData: Customer(),
+          stream: productPageBloc.userSingleton.currentUser,
           builder: (context, snapshot) {
-            Widget child = Container();
-            if (!snapshot.hasData) child = loadUI(context);
+            Widget child = LoadingPage();
+            if (snapshot.hasData) child = loadUI(snapshot.data, context);
             return AnimatedSwitcher(
               duration: Duration(milliseconds: Constant.load),
               child: child,
@@ -37,7 +40,7 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  loadUI(BuildContext context) {
+  loadUI(Customer user, BuildContext context) {
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
@@ -101,7 +104,8 @@ class _ProductPageState extends State<ProductPage> {
                     padding: const EdgeInsets.all(10.0),
                     child: Icon(
                       FontAwesome5Solid.heart,
-                      color: Constant.red,
+                      color: productPageBloc.getHeartColor(
+                          user.favProducts, widget.product),
                     ),
                   ),
                   onTap: () {

@@ -46,5 +46,12 @@ class ProductPageBloc extends Bloc {
     String id = await Repository.updateFavProducts(user.favProducts, user.id);
   }
 
-  getHeartColor(List<int> cards, String code) {}
+  getHeartColor(List<Product> products, Product newProduct) {
+    bool condition = false;
+    if (products != null)
+      for (Product product in products) {
+        if (product.id == newProduct.id) condition = true;
+      }
+    return condition ? Constant.red : Constant.secondary;
+  }
 }
