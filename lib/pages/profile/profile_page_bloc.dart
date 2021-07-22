@@ -5,6 +5,7 @@ import 'package:double_up/models/notification.dart';
 import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/repositories/user_repository.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -31,6 +32,14 @@ class ProfilePageBloc extends Bloc {
     Customer customer = await userSingleton.currentUser.first;
     precacheImage(CachedNetworkImageProvider(customer.picture), context);
     this.customer.add(customer);
+  }
+
+  changePage() async {
+    Utils.changeNavigationBarPage(userSingleton.globalKey, 1);
+  }
+
+  changeToDashboard() async {
+    Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
   }
 
   dispose() {

@@ -33,6 +33,7 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
   @override
   void dispose() {
     super.dispose();
+
     navigateBloc.userSingleton.dispose();
   }
 
@@ -53,17 +54,20 @@ class _CustomerNavigateState extends State<CustomerNavigate> {
   }
 
   loadUI() {
-    pages = [];
-    pages.add(CustomerDashboard());
-    pages.add(SearchPage());
-    pages.add(Rewards());
-    pages.add(ProfilePage());
+    if (pages.length == 0) {
+      pages.add(CustomerDashboard());
+      pages.add(SearchPage());
+      pages.add(Rewards());
+      pages.add(ProfilePage());
+    }
+
     return Stack(
       children: <Widget>[
         CupertinoTabScaffold(
           resizeToAvoidBottomInset: false,
           tabBar: CupertinoTabBar(
             iconSize: 25,
+            key: navigateBloc.userSingleton.globalKey,
             border: null,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             activeColor: Constant.primary,

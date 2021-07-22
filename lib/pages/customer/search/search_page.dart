@@ -69,7 +69,9 @@ class _SearchPageState extends State<SearchPage> {
             ? Utils.blankSliver()
             : EmptyState(
                 title: "Clear Search",
-                onTap: () {},
+                onTap: () {
+                  searchPageBloc.clearSearch(context);
+                },
               ),
         object.products.length > 0
             ? TitleWidget(

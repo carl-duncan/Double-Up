@@ -6,6 +6,7 @@ import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
@@ -40,6 +41,10 @@ class RewardsBloc extends Bloc {
     } else {
       toast(redeemed["redeemed"]);
     }
+  }
+
+  changePage() async {
+    Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
   }
 }
 

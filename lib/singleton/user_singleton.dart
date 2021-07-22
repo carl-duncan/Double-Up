@@ -4,6 +4,7 @@ import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/repositories/blinksky_repository.dart';
 import 'package:double_up/repositories/repository.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class UserSingleton {
@@ -12,6 +13,7 @@ class UserSingleton {
   BehaviorSubject<List<AppNotifications>> notifications = BehaviorSubject();
   BehaviorSubject<Customer> currentUser = BehaviorSubject();
   BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
+  GlobalKey globalKey = new GlobalKey(debugLabel: 'app_bar');
 
   static String userId;
 

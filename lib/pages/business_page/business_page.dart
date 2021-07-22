@@ -21,7 +21,6 @@ class _BusinessPageState extends State<BusinessPage> {
   @override
   void initState() {
     businessPageBloc = BusinessPageBloc(widget.business.id);
-    //print(widget.business.id);
     super.initState();
   }
 

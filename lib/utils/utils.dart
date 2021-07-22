@@ -12,6 +12,7 @@ import 'package:double_up/widgets/card_row.dart';
 import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/row.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
@@ -188,6 +189,12 @@ class Utils {
             });
       }, childCount: objects.length)),
     );
+  }
+
+  static changeNavigationBarPage(GlobalKey key, int index) {
+    final CupertinoTabBar navigationBar = key.currentWidget;
+
+    navigationBar.onTap(index);
   }
 
   static detailedCardsList(List<GiftCard> cards, BuildContext context) {

@@ -13,6 +13,7 @@ class SearchPageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<Product>> products = BehaviorSubject();
   TextEditingController controller = TextEditingController();
+
   BehaviorSubject<List<Business>> businesses = BehaviorSubject();
 
   SearchPageBloc(BuildContext context) {
@@ -44,6 +45,12 @@ class SearchPageBloc extends Bloc {
     products.close();
     controller.dispose();
     businesses.close();
+  }
+
+  clearSearch(BuildContext context){
+    controller.text="";
+    updateBusinesses(context, "");
+    updateProducts(context, "");
   }
 
   updateProducts(BuildContext context, String search) async {

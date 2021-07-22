@@ -78,7 +78,11 @@ class _RewardsState extends State<Rewards> {
             subtitle: "[TO BE FILLED OUT]",
             padding: Constant.padding.copyWith(top: 15, bottom: 15),
             onTap: null),
-        EmptyState(title: "Find Gift Cards", onTap: () {}),
+        EmptyState(
+            title: "Find Gift Cards",
+            onTap: () {
+              rewardsBloc.changePage();
+            }),
         obj.customer.cardsResolved.length > 0
             ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
             : Utils.blankSliver()

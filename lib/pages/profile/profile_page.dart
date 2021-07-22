@@ -80,7 +80,9 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         EmptyState(
           title: "Explore Products",
-          onTap: () {},
+          onTap: () {
+            profilePageBloc.changePage();
+          },
         ),
         object.customer.favProducts != null
             ? Utils.productsList(object.customer.favProducts, null)
@@ -92,8 +94,10 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: Constant.padding.copyWith(bottom: 15),
         ),
         EmptyState(
-          title: "Find Gift Card",
-          onTap: () {},
+          title: "Find Gift Cards",
+          onTap: () {
+            profilePageBloc.changeToDashboard();
+          },
         ),
         object.customer.favCardsResolved != null
             ? Utils.detailedCardsList(object.customer.favCardsResolved, context)
