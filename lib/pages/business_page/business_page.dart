@@ -64,7 +64,7 @@ class _BusinessPageState extends State<BusinessPage> {
               ),
             ),
             Text(
-              widget.business.,
+              widget.business.name,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline5,
             ),

@@ -74,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         TitleWidget(
           title: "Favourite Products",
-          subtitle: "[TO BE FILLED OUT]",
+          // subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
@@ -89,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
             : Utils.blankSliver(),
         TitleWidget(
           title: "Favourite Gift Cards",
-          subtitle: "[TO BE FILLED OUT]",
+          // subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
