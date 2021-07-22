@@ -24,8 +24,19 @@ class CardViewBloc extends Bloc {
 
   addToFav(String name, String code, BuildContext context) async {
     Customer user = await userSingleton.currentUser.first;
-    if (!user.favCards.contains(num.parse(code))) {
+    bool condition = !(user.favCards.contains(num.parse(code)));
+    if (condition) {
       user.favCards.add(num.parse(code));
+    } else {
+      user.favCards.removeWhere((val) {
+        if (val == num.parse(code)) return true;
+        return false;
+      });
+    }
+    await Repository.updateFavCards(user.favCards, user.id);
+    await userSingleton.updateCurrentUser(user.id);
+
+    if (condition) {
       sendNotification(
           message: "Added $name Card",
           context: context,
@@ -37,13 +48,7 @@ class CardViewBloc extends Bloc {
           context: context,
           icon: FontAwesome5Solid.heart,
           color: Constant.secondary);
-      user.favCards.removeWhere((val) {
-        if (val == num.parse(code)) return true;
-        return false;
-      });
     }
-    await Repository.updateFavCards(user.favCards, user.id);
-    await userSingleton.updateCurrentUser(user.id);
   }
 
   sendGiftCard(BuildContext context) {
@@ -77,6 +82,12 @@ class CardViewBloc extends Bloc {
                 ),
               ],
             ));
+  }
+
+  getHeartColor(List<int> cards, String code) {
+    bool condition = (cards.contains(num.parse(code)));
+
+    return condition ? Constant.red : Constant.secondary;
   }
 
   dispose() {

@@ -77,7 +77,8 @@ class _CardViewState extends State<CardView> {
                       padding: const EdgeInsets.all(10.0),
                       child: Icon(
                         FontAwesome5Solid.heart,
-                        color: object.user.favCards.contains(num.parse(widget.card.code))?Constant.red:Constant.secondary,
+                        color: cardViewBloc.getHeartColor(
+                            object.user.favCards, widget.card.code),
                       ),
                     ),
                     onTap: () {
