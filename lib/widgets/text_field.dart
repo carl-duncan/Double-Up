@@ -27,47 +27,49 @@ class Field extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          label != null
-              ? Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Text(
-                    "$label:",
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(
-                        color: Colors.grey, fontWeight: FontWeight.w400),
-                  ),
-                )
-              : Container(),
-          TextField(
-            controller: controller,
-            keyboardType: type,
-            maxLines: lines,
-            onChanged: onChanged,
-            textInputAction: TextInputAction.done,
-            enabled: enabled,
-            obscureText: obscure,
-            decoration: InputDecoration(
-              isDense: true,
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            label != null
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Text(
+                      "$label:",
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          color: Colors.grey, fontWeight: FontWeight.w400),
+                    ),
+                  )
+                : Container(),
+            TextField(
+              controller: controller,
+              keyboardType: type,
+              maxLines: lines,
+              onChanged: onChanged,
+              textInputAction: TextInputAction.done,
+              enabled: enabled,
+              obscureText: obscure,
+              decoration: InputDecoration(
+                isDense: true,
 
-              filled: true,
-              // fillColor: Colors.grey.shade200,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
+                filled: true,
+                // fillColor: Colors.grey.shade200,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                labelText: hint,
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+
+                // helperText: 'help',
+                // counterText: 'counter',
+                // icon: Icon(Icons.star),
+                prefixIcon: Icon(suffix),
+                // suffixIcon: Icon(AntDesign.car),
               ),
-              labelText: hint,
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-
-              // helperText: 'help',
-              // counterText: 'counter',
-              // icon: Icon(Icons.star),
-              prefixIcon: Icon(suffix),
-              // suffixIcon: Icon(AntDesign.car),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
