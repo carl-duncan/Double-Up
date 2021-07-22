@@ -40,8 +40,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   loadUI(BuildContext context, ProfilePageBlocObject object) {
-    TextStyle style = TextStyle(
-        fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
     return CustomScrollView(
       slivers: [
         navigationBar(context, "My Profile", object.notifications.length),
@@ -63,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: Theme.of(context).textTheme.headline5,
             ),
             Text(
-              "carlduncan64@gmail.com",
+              object.username,
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme

@@ -1,3 +1,5 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
@@ -12,13 +14,17 @@ import 'package:rxdart/rxdart.dart';
 class ProfilePageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<Customer> customer = BehaviorSubject();
+  BehaviorSubject<String> email = BehaviorSubject();
 
   ProfilePageBloc(BuildContext context) {
-    combineLatestStream = CombineLatestStream.combine2(
+    combineLatestStream = CombineLatestStream.combine3(
         userSingleton.notifications,
         customer,
-        (b, c) => ProfilePageBlocObject(notifications: b, customer: c));
+        email,
+        (b, c, d) =>
+            ProfilePageBlocObject(notifications: b, customer: c, username: d));
     updateCustomer(context);
+    getCurrentUserEmail();
   }
 
   signOut(BuildContext context) {
@@ -26,6 +32,16 @@ class ProfilePageBloc extends Bloc {
         .pushReplacement(createRoute(LoginPage()));
     UserRepository.signOut();
     userSingleton.dispose();
+  }
+
+  getCurrentUserEmail() async {
+    List<AuthUserAttribute> userAttribute =
+        await Amplify.Auth.fetchUserAttributes();
+    for (AuthUserAttribute attribute in userAttribute) {
+      if (attribute.userAttributeKey == "email") {
+        email.add(attribute.value);
+      }
+    }
   }
 
   updateCustomer(BuildContext context) async {
@@ -44,11 +60,13 @@ class ProfilePageBloc extends Bloc {
 
   dispose() {
     customer.close();
+    email.close();
   }
 }
 
 class ProfilePageBlocObject {
   List<AppNotifications> notifications;
   Customer customer;
-  ProfilePageBlocObject({this.customer, this.notifications});
+  String username;
+  ProfilePageBlocObject({this.customer, this.notifications, this.username});
 }
