@@ -42,7 +42,7 @@ class Bloc {
 
     fToast.showToast(
       child: toast,
-      gravity: ToastGravity.CENTER,
+      gravity: ToastGravity.BOTTOM,
       toastDuration: Duration(seconds: 1),
     );
   }
