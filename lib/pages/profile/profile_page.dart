@@ -76,30 +76,30 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        EmptyState(
-          title: "Explore Products",
-          onTap: () {
-            profilePageBloc.changePage();
-          },
-        ),
-        object.customer.favProducts != null
-            ? Utils.productsList(object.customer.favProducts, null)
-            : Utils.blankSliver(),
+        object.customer.favProducts == null
+            ? EmptyState(
+                title: "Explore Products",
+                onTap: () {
+                  profilePageBloc.changePage();
+                },
+              )
+            : Utils.productsList(object.customer.favProducts, null),
         TitleWidget(
           title: "Favourite Gift Cards",
           // subtitle: "[TO BE FILLED OUT]",
           onTap: null,
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        EmptyState(
-          title: "Find Gift Cards",
-          onTap: () {
-            profilePageBloc.changeToDashboard();
-          },
-        ),
-        object.customer.favCardsResolved != null
-            ? Utils.detailedCardsList(object.customer.favCardsResolved, context)
-            : Utils.blankSliver(),
+        object.customer.favCardsResolved == null ||
+                object.customer.favCardsResolved.length == 0
+            ? EmptyState(
+                title: "Find Gift Cards",
+                onTap: () {
+                  profilePageBloc.changeToDashboard();
+                },
+              )
+            : Utils.detailedCardsList(
+                object.customer.favCardsResolved, context),
         SliverPadding(
           padding: Constant.padding,
           sliver: SliverList(

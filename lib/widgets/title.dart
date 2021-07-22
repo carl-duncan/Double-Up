@@ -8,7 +8,7 @@ class TitleWidget extends StatelessWidget {
   const TitleWidget(
       {Key key,
       @required this.title,
-      @required this.subtitle,
+      this.subtitle,
       @required this.onTap,
       this.padding})
       : super(key: key);
@@ -44,7 +44,10 @@ class TitleWidget extends StatelessWidget {
                   ? InkWell(
                       child: Text(
                         "See More",
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Constant.primary),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .copyWith(color: Constant.primary),
                       ),
                       onTap: onTap,
                     )
