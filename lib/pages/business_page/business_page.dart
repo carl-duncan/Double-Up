@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/business.dart';
 import 'package:double_up/pages/business_page/business_page_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
@@ -43,10 +44,39 @@ class _BusinessPageState extends State<BusinessPage> {
   loadUI(BuildContext context, BusinessPageBlocObject object) {
     return CustomScrollView(
       slivers: [
-        navigationBarPushed(context, widget.business.name),
+        navigationBarPushed(context, ""),
         SliverPadding(
           padding: Constant.padding,
-          sliver: SliverList(delegate: SliverChildListDelegate.fixed([])),
+          sliver: SliverList(
+              delegate: SliverChildListDelegate.fixed([
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Container(
+                height: 150.0,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: new DecorationImage(
+                    fit: BoxFit.contain,
+                    image:
+                        new CachedNetworkImageProvider(widget.business.image),
+                  ),
+                ),
+              ),
+            ),
+            Text(
+              widget.business.,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              widget.business.address,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .caption
+                  .copyWith(color: Colors.grey),
+            ),
+          ])),
         ),
         Utils.productsList(object.products, widget.business.id)
       ],
