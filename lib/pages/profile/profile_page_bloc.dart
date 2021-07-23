@@ -46,7 +46,7 @@ class ProfilePageBloc extends Bloc {
   }
 
   changeToDashboard() async {
-    Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
+    Utils.changeNavigationBarPage(userSingleton.globalKey, 2);
   }
 
   dispose() {

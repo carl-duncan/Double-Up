@@ -2,7 +2,6 @@ import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
-import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -46,8 +45,16 @@ class _RewardsState extends State<Rewards> {
       physics: BouncingScrollPhysics(),
       slivers: [
         navigationBar(context, "My Rewards", obj.notifications.length),
+        TitleWidget(
+            title: "Recommended Gift Cards",
+            // subtitle: "[TO BE FILLED OUT]",
+            padding: Constant.padding.copyWith(top: 20, bottom: 0),
+            onTap: null),
+        Utils.cardsCarousel(
+          obj.giftCards,
+        ),
         SliverPadding(
-          padding: Constant.padding,
+          padding: Constant.padding.copyWith(top: 15),
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
             Column(
@@ -80,13 +87,13 @@ class _RewardsState extends State<Rewards> {
             padding: Constant.padding.copyWith(top: 15, bottom: 15),
             onTap: null),
 
-        obj.customer.cardsResolved.length > 0
-            ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
-            : EmptyState(
-                title: "Find Gift Cards",
-                onTap: () {
-                  rewardsBloc.changePage();
-                }),
+        // obj.customer.cardsResolved.length > 0
+        //     ? Utils.detailedCardsList(obj.customer.cardsResolved, context)
+        //     : EmptyState(
+        //         title: "Find Gift Cards",
+        //         onTap: () {
+        //           rewardsBloc.changePage();
+        //         }),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
@@ -29,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: StreamBuilder(
           stream: profilePageBloc.combineLatestStream,
           builder: (context, snapshot) {
-            Widget child = Container();
+            Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(context, snapshot.data);
             return AnimatedSwitcher(
               duration: Duration(milliseconds: Constant.load),

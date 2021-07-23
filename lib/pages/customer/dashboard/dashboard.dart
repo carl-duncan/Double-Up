@@ -62,12 +62,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               slivers: [
                 navigationBar(
                     context, "Dashboard", object.notifications.length),
-                TitleWidget(
-                    title: "Recommended Gift Cards",
-                    // subtitle: "[TO BE FILLED OUT]",
-                    padding: Constant.padding.copyWith(top: 20, bottom: 0),
-                    onTap: null),
-                Utils.cardsCarousel(object.giftCards),
+                // TitleWidget(
+                //     title: "Recommended Gift Cards",
+                //     // subtitle: "[TO BE FILLED OUT]",
+                //     padding: Constant.padding.copyWith(top: 20, bottom: 0),
+                //     onTap: null),
+                // Utils.cardsCarousel(object.giftCards),
                 TitleWidget(
                     title: "Categories",
                     // subtitle: "[TO BE FILLED OUT]",

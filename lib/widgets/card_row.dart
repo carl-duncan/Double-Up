@@ -28,7 +28,7 @@ class CardRow extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: Hero(
-                  tag: "",
+                  tag: card.code,
                   child: CachedNetworkImage(
                     imageUrl: card.logo,
                     fit: BoxFit.cover,
