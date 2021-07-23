@@ -1,6 +1,7 @@
 import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
+import 'package:double_up/models/send_card_data.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,12 +12,17 @@ import 'package:rxdart/rxdart.dart';
 class CardViewBloc extends Bloc {
   BehaviorSubject<String> value = BehaviorSubject();
   CombineLatestStream combineLatestStream;
+  List<String> amounts;
+  TextEditingController email = TextEditingController();
+  TextEditingController message = TextEditingController();
+
   CardViewBloc(String initialValue) {
     combineLatestStream =
         CombineLatestStream([value, userSingleton.currentUser], (a) {
       return CardViewBlocObject(value: a[0], user: a[1]);
     });
     value.add(initialValue);
+    message.text = "Thank you for Using Double Up!";
   }
 
   updateValue(String value) {
@@ -54,7 +60,7 @@ class CardViewBloc extends Bloc {
     // await userSingleton.updateCurrentUser(user.id);
   }
 
-  sendGiftCard(BuildContext context) {
+  sendGiftCard(BuildContext context, GiftCard card, String value) {
     showDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
@@ -72,7 +78,13 @@ class CardViewBloc extends Bloc {
                 CupertinoDialogAction(
                   isDefaultAction: false,
                   child: Text("No"),
-                  onPressed: () {
+                  onPressed: () async {
+                    Repository.sendGiftCard(SendCardData(
+                      email: email.text,
+                      message: message.text,
+                      amount: num.parse(value),
+                      card: card.code,
+                    ));
                     Navigator.pop(context);
                   },
                 ),

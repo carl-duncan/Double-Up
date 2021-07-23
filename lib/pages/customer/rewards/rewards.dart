@@ -85,21 +85,21 @@ class _RewardsState extends State<Rewards> {
         ),
         // Utils.cardsCarousel(cards),
 
-        TitleWidget(
-            title: "Redeem History",
-            subtitle: "Gift Cards you have redeemed.",
-            padding: Constant.padding.copyWith(top: 15, bottom: 5),
-            onTap: null),
-
-        obj.customer.cardsResolved.length > 0
-            ? Utils.cardsList(
-                obj.customer.cardsResolved,
-              )
-            : EmptyState(
-                title: "Find Gift Cards",
-                onTap: () {
-                  rewardsBloc.changePage();
-                }),
+        // TitleWidget(
+        //     title: "Redeem History",
+        //     subtitle: "Gift Cards you have redeemed.",
+        //     padding: Constant.padding.copyWith(top: 15, bottom: 5),
+        //     onTap: null),
+        //
+        // obj.customer.cardsResolved.length > 0
+        //     ? Utils.cardsList(
+        //         obj.customer.cardsResolved,
+        //       )
+        //     : EmptyState(
+        //         title: "Find Gift Cards",
+        //         onTap: () {
+        //           rewardsBloc.changePage();
+        //         }),
         Utils.endOfSliver()
       ],
     );

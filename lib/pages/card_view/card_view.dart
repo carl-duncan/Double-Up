@@ -25,7 +25,6 @@ class CardView extends StatefulWidget {
 
 class _CardViewState extends State<CardView> {
   CardViewBloc cardViewBloc;
-  List<String> amounts;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class _CardViewState extends State<CardView> {
       body: StreamBuilder(
           stream: cardViewBloc.combineLatestStream,
           initialData: CardViewBlocObject(
-              value: amounts.first, user: Customer(favCards: [])),
+              value: cardViewBloc.amounts.first, user: Customer(favCards: [])),
           builder: (context, snapshot) {
             Widget child = LoadingPage();
             if (snapshot.hasData) child = loadUI(snapshot.data);
@@ -47,8 +46,10 @@ class _CardViewState extends State<CardView> {
 
   @override
   void initState() {
-    amounts = widget.card.value.split(",");
+    List<String> amounts = widget.card.value.split(",");
     cardViewBloc = CardViewBloc(amounts.first);
+    cardViewBloc.amounts = amounts;
+
     super.initState();
   }
 
@@ -119,17 +120,18 @@ class _CardViewState extends State<CardView> {
                           child: Container(
                             height: 50,
                             width: 70,
-                            color: amounts[index] == object.value
+                            color: cardViewBloc.amounts[index] == object.value
                                 ? Constant.primary.withOpacity(0.2)
                                 : Colors.black,
                             child: Center(
                               child: Text(
-                                "\$${amounts[index]}",
+                                "\$${cardViewBloc.amounts[index]}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline6
                                     .copyWith(
-                                        color: amounts[index] == object.value
+                                        color: cardViewBloc.amounts[index] ==
+                                                object.value
                                             ? Constant.primary
                                             : Colors.white),
                               ),
@@ -138,17 +140,17 @@ class _CardViewState extends State<CardView> {
                         ),
                       ),
                       onTap: () {
-                        cardViewBloc.updateValue(amounts[index]);
+                        cardViewBloc.updateValue(cardViewBloc.amounts[index]);
                       },
                     );
                   },
-                  itemCount: amounts.length,
+                  itemCount: cardViewBloc.amounts.length,
                 ),
               ),
             ),
             Field(
                 hint: "Email Address",
-                controller: null,
+                controller: cardViewBloc.email,
                 obscure: false,
                 type: TextInputType.emailAddress,
                 suffix: Entypo.email,
@@ -156,7 +158,7 @@ class _CardViewState extends State<CardView> {
                 enabled: true),
             Field(
                 hint: "Message",
-                controller: null,
+                controller: cardViewBloc.message,
                 obscure: false,
                 lines: 3,
                 type: TextInputType.multiline,
@@ -167,7 +169,7 @@ class _CardViewState extends State<CardView> {
                 buttonText: "Send Gift Card",
                 buttonColor: HexColor(widget.card.color),
                 onPressed: () {
-                  cardViewBloc.sendGiftCard(context);
+                  cardViewBloc.sendGiftCard(context, widget.card, object.value);
                 },
                 icon: Icon(FontAwesome5Solid.gift)),
           ])),
