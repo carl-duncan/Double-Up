@@ -13,7 +13,7 @@ void main() {
 
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    cardColor: HexColor("#1E1E1E").withOpacity(0.3),
+    cardColor: HexColor("#1E1E1E").withOpacity(0.2),
     scaffoldBackgroundColor: HexColor("#121212"),
     appBarTheme: AppBarTheme(backgroundColor: Colors.black),
     textTheme: TextTheme(
@@ -27,7 +27,6 @@ ThemeData dark = ThemeData(
 
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors.grey[20],
     appBarTheme: AppBarTheme(backgroundColor: Colors.grey[20]),
     iconTheme: IconThemeData(color: Colors.blueGrey[900]),
     textTheme: TextTheme(
