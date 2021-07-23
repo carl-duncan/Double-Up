@@ -24,7 +24,6 @@ class UserSingleton {
 
   updateCurrentUser(String id) async {
     Customer customer = await Repository.getUser(id);
-    print(customer.id);
     customer.cardsResolved = await resolveCards(customer.cards);
     customer.favCardsResolved = await resolveCards(customer.favCards);
     currentUser.add(customer);
@@ -74,7 +73,6 @@ class UserSingleton {
 
   updateGiftCards() async {
     List<GiftCard> cards = await BlinkSkyRepository.getCatalog();
-    print(cards);
     giftCards.add(cards);
   }
 

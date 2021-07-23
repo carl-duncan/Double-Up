@@ -259,7 +259,7 @@ class Utils {
     return SliverList(
         delegate: SliverChildListDelegate.fixed([
       SizedBox(
-        height: 50,
+        height: 200,
       )
     ]));
   }

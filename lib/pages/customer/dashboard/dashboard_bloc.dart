@@ -34,6 +34,10 @@ class DashboardBloc extends Bloc {
             notifications: d,
             business: e,
             index: f));
+    refreshStreams(context);
+  }
+
+  refreshStreams(BuildContext context) {
     updateGiftCards(context);
     updateProducts(context, null, null);
     updateBusinesses(context);

@@ -100,6 +100,7 @@ class _RewardsState extends State<Rewards> {
                 onTap: () {
                   rewardsBloc.changePage();
                 }),
+        Utils.endOfSliver()
       ],
     );
   }
