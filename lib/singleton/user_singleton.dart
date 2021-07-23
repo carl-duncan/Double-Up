@@ -74,6 +74,7 @@ class UserSingleton {
 
   updateGiftCards() async {
     List<GiftCard> cards = await BlinkSkyRepository.getCatalog();
+    print(cards);
     giftCards.add(cards);
   }
 

@@ -131,8 +131,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
 
             Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.25),
+              padding: EdgeInsets.only(top: 15),
               child: IconButtonWidget(
                   buttonText: "Find Supermarket",
                   buttonColor: Constant.secondary,

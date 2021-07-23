@@ -157,7 +157,7 @@ class _CardViewState extends State<CardView> {
                 hint: "Message",
                 controller: null,
                 obscure: false,
-                lines: 4,
+                lines: 3,
                 type: TextInputType.multiline,
                 suffix: Icons.message,
                 label: null,
