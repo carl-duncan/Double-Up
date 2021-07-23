@@ -15,7 +15,7 @@ navigationBar(BuildContext context, String title, int num) {
         title,
         style: Theme.of(context).textTheme.headline6,
       ),
-      leading: Row(
+      trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           InkWell(
@@ -24,7 +24,7 @@ navigationBar(BuildContext context, String title, int num) {
                   .push(createRoute(Notifications()));
             },
             child: Badge(
-              position: BadgePosition.bottomEnd(),
+              position: BadgePosition.topStart(),
               badgeContent: num != 0
                   ? Text(
                       "$num",
