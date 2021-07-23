@@ -2,6 +2,7 @@ import 'package:double_up/pages/login/login_page_bloc.dart';
 import 'package:double_up/pages/sign_up/sign_up_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
@@ -35,12 +36,8 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                        bottom: size.height * 0.05, top: size.height * 0.05),
-                    child: CircleAvatar(
-                      radius: size.height * 0.1,
-                      backgroundColor: Constant.primary,
-                    ),
+                    padding: EdgeInsets.only(bottom: 0, top: size.height * 0.1),
+                    child: Utils.logo(context),
                   ),
                   Text(
                     "Exclusive Shoppers Club",
@@ -59,7 +56,7 @@ class LoginPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 50,
                   ),
                   Field(
                       hint: "Email Address",

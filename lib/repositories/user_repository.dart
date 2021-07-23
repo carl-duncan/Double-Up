@@ -2,6 +2,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import '../amplifyconfiguration.dart';
@@ -18,7 +19,7 @@ class UserRepository {
     }
   }
 
-  static initApp() async {
+  static initApp(BuildContext context) async {
     try {
       await configureAmplify();
     } catch (e) {
@@ -31,6 +32,10 @@ class UserRepository {
     } catch (e) {
       print("Not Signed in");
     }
+    await Future.delayed(Duration(seconds: 10), () {});
+    await precacheImage(AssetImage("asset/3-01.png"), context);
+    await precacheImage(AssetImage("asset/4-01.png"), context);
+
     return AuthUser(userId: null, username: null);
   }
 

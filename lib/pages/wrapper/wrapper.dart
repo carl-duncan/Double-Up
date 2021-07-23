@@ -14,10 +14,11 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-  WrapperBloc wrapperBloc = WrapperBloc();
+  WrapperBloc wrapperBloc;
 
   @override
   void initState() {
+    wrapperBloc = WrapperBloc(context);
     super.initState();
   }
 
@@ -32,7 +33,9 @@ class _WrapperState extends State<Wrapper> {
     return StreamBuilder<AuthUser>(
         stream: wrapperBloc.user,
         builder: (context, snapshot) {
-          Widget child = LoadingPage();
+          Widget child = LoadingPage(
+            logo: true,
+          );
           if (snapshot.hasData) {
             child = CustomerNavigate(
               username: null,

@@ -1,5 +1,6 @@
 import 'package:double_up/pages/sign_up/sign_up_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/text_field.dart';
@@ -31,14 +32,10 @@ class SignUpPage extends StatelessWidget {
             child: Padding(
               padding: Constant.padding,
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: size.height * 0.05),
-                    child: CircleAvatar(
-                      radius: size.height * 0.1,
-                      backgroundColor: Constant.primary,
-                    ),
+                    padding: EdgeInsets.only(bottom: 0, top: size.height * 0.1),
+                    child: Utils.logo(context),
                   ),
                   Text(
                     "Exclusive Shoppers Club",
@@ -55,6 +52,9 @@ class SignUpPage extends StatelessWidget {
                         .bodyText2
                         .copyWith(color: Colors.grey),
                     textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 50,
                   ),
                   Field(
                       hint: "Name",

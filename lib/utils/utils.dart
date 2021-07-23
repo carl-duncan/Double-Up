@@ -135,6 +135,15 @@ class Utils {
     );
   }
 
+  static logo(BuildContext context, {num width}) {
+    return Image.asset(
+      Theme.of(context).brightness == Brightness.light
+          ? "asset/3-01.png"
+          : "asset/4-01.png",
+      width: width,
+    );
+  }
+
   static num getNumber(double input, {int precision = 2}) =>
       num.parse('$input'.substring(0, '$input'.indexOf('.') + precision + 1));
 

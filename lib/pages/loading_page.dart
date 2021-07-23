@@ -1,9 +1,11 @@
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingPage extends StatelessWidget {
-  const LoadingPage({Key key}) : super(key: key);
+  final logo;
+  const LoadingPage({Key key, this.logo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,12 @@ class LoadingPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            logo != null ? Utils.logo(context, width: 250.0) : Container(),
+            logo != null
+                ? SizedBox(
+                    height: 10,
+                  )
+                : Container(),
             Container(
               height: 20,
               width: 20,
