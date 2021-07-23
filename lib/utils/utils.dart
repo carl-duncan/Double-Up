@@ -38,9 +38,11 @@ class Utils {
           itemBuilder: (context, index, index2) {
             return GiftCardView(
               card: giftCards[index],
+              hero: "Large",
               onTap: () {
                 Navigator.of(context, rootNavigator: true)
                     .push(createRoute(CardView(
+                  hero: "Large",
                   card: giftCards[index],
                 )));
               },
@@ -64,9 +66,11 @@ class Utils {
             itemBuilder: (context, index) {
               return MiniGiftCardView(
                 card: giftCards[index],
+                hero: "Mini",
                 onTap: () {
                   Navigator.of(context, rootNavigator: true)
                       .push(createRoute(CardView(
+                    hero: "Mini",
                     card: giftCards[index],
                   )));
                 },

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 class GiftCardView extends StatelessWidget {
   final GiftCard card;
   final VoidCallback onTap;
-  const GiftCardView({Key key, @required this.card, @required this.onTap})
+  final String hero;
+  const GiftCardView(
+      {Key key, @required this.card, @required this.onTap, this.hero})
       : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class GiftCardView extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Hero(
-              tag: "Card:${card.code}",
+              tag: "$hero:${card.code}",
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(
                       MediaQuery.of(context).size.height * 0.015),

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class MiniGiftCardView extends StatelessWidget {
   final GiftCard card;
+  final String hero;
   final VoidCallback onTap;
-  const MiniGiftCardView({Key key, @required this.card, @required this.onTap})
+  const MiniGiftCardView(
+      {Key key, @required this.card, @required this.onTap, this.hero})
       : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class MiniGiftCardView extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Hero(
-              tag: "Card:${card.code}",
+              tag: "$hero:${card.code}",
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: CachedNetworkImage(

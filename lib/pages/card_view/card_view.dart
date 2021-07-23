@@ -16,8 +16,8 @@ import 'package:hexcolor/hexcolor.dart';
 
 class CardView extends StatefulWidget {
   final GiftCard card;
-
-  const CardView({Key key, this.card}) : super(key: key);
+  final String hero;
+  const CardView({Key key, this.card, this.hero}) : super(key: key);
 
   @override
   _CardViewState createState() => _CardViewState();
@@ -63,6 +63,7 @@ class _CardViewState extends State<CardView> {
               delegate: SliverChildListDelegate.fixed([
             GiftCardView(
               card: widget.card,
+              hero: widget.hero,
               onTap: () {},
             ),
             Padding(
