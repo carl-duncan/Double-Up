@@ -7,6 +7,7 @@ import 'package:double_up/pages/business_page/business_page.dart';
 import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/refresh.dart' as refresh;
 import 'package:double_up/utils/transition.dart';
 import 'package:double_up/widgets/business_row.dart';
 import 'package:double_up/widgets/card_row.dart';
@@ -16,6 +17,7 @@ import 'package:double_up/widgets/mini_gift_card.dart';
 import 'package:double_up/widgets/row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Utils {
   static cardsCarousel(List<GiftCard> giftCards, {num height}) {
@@ -209,6 +211,15 @@ class Utils {
           delegate: SliverChildBuilderDelegate((context, index) {
         return CardRow(card: cards[index], onTap: () {});
       }, childCount: cards.length)),
+    );
+  }
+
+  static refreshControl(VoidCallback callback) {
+    return refresh.CupertinoSliverRefreshControl(
+      onRefresh: () async {
+        HapticFeedback.lightImpact();
+        return callback();
+      },
     );
   }
 

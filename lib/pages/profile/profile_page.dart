@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/pages/profile/profile_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
-import 'package:double_up/utils/refresh.dart' as refresh;
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -45,7 +44,10 @@ class _ProfilePageState extends State<ProfilePage> {
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
-        refresh.CupertinoSliverRefreshControl(),
+        Utils.refreshControl(() async {
+          await profilePageBloc.userSingleton
+              .updateCurrentUser(object.customer.id);
+        }),
         navigationBar(context, "My Profile", object.notifications.length),
         SliverPadding(
           padding: Constant.padding,
