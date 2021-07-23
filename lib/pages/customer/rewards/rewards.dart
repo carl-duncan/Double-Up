@@ -88,7 +88,7 @@ class _RewardsState extends State<Rewards> {
         TitleWidget(
             title: "Redeem History",
             subtitle: "Gift Cards you have redeemed.",
-            padding: Constant.padding.copyWith(top: 15, bottom: 15),
+            padding: Constant.padding.copyWith(top: 15, bottom: 5),
             onTap: null),
 
         obj.customer.cardsResolved.length > 0
