@@ -63,16 +63,17 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 Utils.refreshControl(() async {
                   await dashboardBloc.refreshStreams(context);
                 }),
-
                 navigationBar(
                     context, "Dashboard", object.notifications.length),
-                // TitleWidget(
-                //     title: "Recommended Gift Cards",
-                //     // subtitle: "[TO BE FILLED OUT]",
-                //     padding: Constant.padding.copyWith(top: 20, bottom: 0),
-                //     onTap: null),
-                // Utils.cardsCarousel(object.giftCards),
-
+                TitleWidget(
+                    title: "Categories",
+                    // subtitle: "[TO BE FILLED OUT]",
+                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
+                    onTap: null),
+                Utils.categoryRow(object.category,
+                    (Category object, int index) {
+                  dashboardBloc.updateProducts(context, object, index);
+                }),
                 TitleWidget(
                     title: object.category[object.index].name,
                     padding: Constant.padding.copyWith(top: 15, bottom: 15),
@@ -83,15 +84,6 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                           }
                         : null),
                 Utils.productsList(object.products, null),
-                TitleWidget(
-                    title: "Categories",
-                    // subtitle: "[TO BE FILLED OUT]",
-                    padding: Constant.padding.copyWith(top: 15, bottom: 10),
-                    onTap: null),
-                Utils.categoryRow(object.category,
-                    (Category object, int index) {
-                  dashboardBloc.updateProducts(context, object, index);
-                }),
                 TitleWidget(
                     title: "Recommended Supermarkets",
                     padding: Constant.padding.copyWith(top: 15, bottom: 15),
