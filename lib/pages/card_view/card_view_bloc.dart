@@ -11,6 +11,7 @@ import 'package:rxdart/rxdart.dart';
 
 class CardViewBloc extends Bloc {
   BehaviorSubject<String> value = BehaviorSubject();
+  BehaviorSubject<bool> loading = BehaviorSubject();
   CombineLatestStream combineLatestStream;
   List<String> amounts;
   TextEditingController email = TextEditingController();
@@ -18,15 +19,20 @@ class CardViewBloc extends Bloc {
 
   CardViewBloc(String initialValue) {
     combineLatestStream =
-        CombineLatestStream([value, userSingleton.currentUser], (a) {
-      return CardViewBlocObject(value: a[0], user: a[1]);
+        CombineLatestStream([value, userSingleton.currentUser, loading], (a) {
+      return CardViewBlocObject(value: a[0], user: a[1], loading: a[2]);
     });
     value.add(initialValue);
+    updateLoading(false);
     message.text = "Thank you for Using Double Up!";
   }
 
   updateValue(String value) {
     this.value.add(value);
+  }
+
+  updateLoading(bool value) {
+    loading.add(value);
   }
 
   addToFav(GiftCard card, BuildContext context) async {
@@ -60,43 +66,38 @@ class CardViewBloc extends Bloc {
     // await userSingleton.updateCurrentUser(user.id);
   }
 
-  sendGiftCard(BuildContext context, GiftCard card, String value) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              title: new Text("Scheduled Send?"),
-              content: new Text(
-                  "Would you like to schedule this message to be sent later?"),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text("Yes"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                CupertinoDialogAction(
-                  isDefaultAction: false,
-                  child: Text("No"),
-                  onPressed: () async {
-                    Repository.sendGiftCard(SendCardData(
-                      email: email.text,
-                      message: message.text,
-                      amount: num.parse(value),
-                      card: card.code,
-                    ));
-                    Navigator.pop(context);
-                  },
-                ),
-                CupertinoDialogAction(
-                  isDefaultAction: false,
-                  child: Text("Cancel"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ));
+  sendGiftCard(BuildContext context, GiftCard card, String value) async {
+    Customer user = await userSingleton.currentUser.first;
+    bool isValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email.text);
+    if (isValid) {
+      updateLoading(true);
+      SendCardData cardData = SendCardData(
+        email: email.text,
+        message: message.text,
+        amount: num.parse(value),
+        profile: user.id,
+        card: card.code,
+      );
+
+      await Repository.sendGiftCard(cardData);
+      sendNotification(
+          message: "Your Gift Card has been sent",
+          context: context,
+          icon: FontAwesome5Solid.gift,
+          color: Constant.secondary);
+      user.balance -= num.parse(value);
+      userSingleton.currentUser.add(user);
+
+      updateLoading(false);
+    } else {
+      sendNotification(
+          message: "Please correct your email.",
+          context: context,
+          icon: Icons.error,
+          color: Constant.primary);
+    }
   }
 
   getHeartColor(List<int> cards, String code) {
@@ -105,11 +106,13 @@ class CardViewBloc extends Bloc {
 
   dispose() {
     value.close();
+    loading.close();
   }
 }
 
 class CardViewBlocObject {
   String value;
+  bool loading;
   Customer user;
-  CardViewBlocObject({this.value, this.user});
+  CardViewBlocObject({this.value, this.user, this.loading});
 }

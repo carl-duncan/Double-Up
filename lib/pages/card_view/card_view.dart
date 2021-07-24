@@ -32,10 +32,15 @@ class _CardViewState extends State<CardView> {
       body: StreamBuilder(
           stream: cardViewBloc.combineLatestStream,
           initialData: CardViewBlocObject(
-              value: cardViewBloc.amounts.first, user: Customer(favCards: [])),
+              value: cardViewBloc.amounts.first,
+              user: Customer(favCards: []),
+              loading: false),
           builder: (context, snapshot) {
             Widget child = LoadingPage();
-            if (snapshot.hasData) child = loadUI(snapshot.data);
+            if (snapshot.hasData) {
+              CardViewBlocObject object = snapshot.data;
+              if (!object.loading) child = loadUI(snapshot.data);
+            }
             return AnimatedSwitcher(
               duration: Duration(milliseconds: Constant.load),
               child: child,

@@ -2,7 +2,6 @@ import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
-import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -85,21 +84,6 @@ class _RewardsState extends State<Rewards> {
         ),
         // Utils.cardsCarousel(cards),
 
-        // TitleWidget(
-        //     title: "Redeem History",
-        //     subtitle: "Gift Cards you have redeemed.",
-        //     padding: Constant.padding.copyWith(top: 15, bottom: 5),
-        //     onTap: null),
-        //
-        // obj.customer.cardsResolved.length > 0
-        //     ? Utils.cardsList(
-        //         obj.customer.cardsResolved,
-        //       )
-        //     : EmptyState(
-        //         title: "Find Gift Cards",
-        //         onTap: () {
-        //           rewardsBloc.changePage();
-        //         }),
         Utils.endOfSliver()
       ],
     );
