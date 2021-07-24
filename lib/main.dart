@@ -15,6 +15,7 @@ ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     cardColor: HexColor("#1E1E1E").withOpacity(0.2),
     scaffoldBackgroundColor: HexColor("#121212"),
+    splashColor: Colors.transparent,
     appBarTheme: AppBarTheme(backgroundColor: Colors.black),
     textTheme: TextTheme(
         headline6: TextStyle(
@@ -27,6 +28,7 @@ ThemeData dark = ThemeData(
 
 ThemeData light = ThemeData(
     brightness: Brightness.light,
+    splashColor: Colors.transparent,
     appBarTheme: AppBarTheme(backgroundColor: Colors.grey[20]),
     iconTheme: IconThemeData(color: Colors.blueGrey[900]),
     textTheme: TextTheme(

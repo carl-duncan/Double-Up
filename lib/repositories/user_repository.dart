@@ -32,7 +32,6 @@ class UserRepository {
     } catch (e) {
       print("Not Signed in");
     }
-    await Future.delayed(Duration(seconds: 10), () {});
     await precacheImage(AssetImage("asset/3-01.png"), context);
     await precacheImage(AssetImage("asset/4-01.png"), context);
 
