@@ -35,20 +35,22 @@ class RewardsBloc extends Bloc {
     var result = await BarcodeScanner.scan();
     Map<String, dynamic> redeemed =
         await Repository.redeemGiftCard(result.rawContent);
-    if (redeemed["redeemed"] == true) {
-      await userSingleton.updateCurrentUser(UserSingleton.userId);
-      userSingleton.incrementBalance(redeemed["price"]);
-      sendNotification(
-          message: "Your balance has been updated.",
-          context: context,
-          icon: FontAwesome5Solid.dollar_sign,
-          color: Colors.green);
-    } else {
-      sendNotification(
-          message: redeemed["redeemed"],
-          context: context,
-          icon: Icons.error,
-          color: Constant.red);
+    if (redeemed != null) {
+      if (redeemed["redeemed"] == true) {
+        await userSingleton.updateCurrentUser(UserSingleton.userId);
+        userSingleton.incrementBalance(redeemed["price"]);
+        sendNotification(
+            message: "Your balance has been updated.",
+            context: context,
+            icon: FontAwesome5Solid.dollar_sign,
+            color: Colors.green);
+      } else {
+        sendNotification(
+            message: redeemed["redeemed"],
+            context: context,
+            icon: Icons.error,
+            color: Constant.red);
+      }
     }
   }
 

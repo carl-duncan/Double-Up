@@ -81,6 +81,7 @@ navigationBarNormal(BuildContext context, String title) {
   return SliverList(
       delegate: SliverChildListDelegate.fixed([
     CupertinoNavigationBar(
+      transitionBetweenRoutes: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       middle: Text(
         title,

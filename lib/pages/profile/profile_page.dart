@@ -114,8 +114,8 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: Constant.padding,
           sliver: SliverList(
               delegate: SliverChildListDelegate.fixed([
-            TextButton(
-                onPressed: () {
+            InkWell(
+                onTap: () {
                   profilePageBloc.signOut(context);
                 },
                 child: Text(
@@ -124,6 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       .textTheme
                       .button
                       .copyWith(color: Colors.red),
+                  textAlign: TextAlign.center,
                 )),
           ])),
         ),
