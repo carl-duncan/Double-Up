@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_up/models/business.dart';
 import 'package:double_up/models/category.dart';
@@ -136,12 +137,23 @@ class Utils {
   }
 
   static logo(BuildContext context, {num width}) {
-    return Image.asset(
-      Theme.of(context).brightness == Brightness.light
-          ? "asset/3-01.png"
-          : "asset/4-01.png",
+    return CachedNetworkImage(
+      imageUrl: Theme.of(context).brightness == Brightness.light
+          ? "https://doubleup.s3.amazonaws.com/images/3-01.png"
+          : "https://doubleup.s3.amazonaws.com/images/4-01.png",
       width: width,
     );
+  }
+
+  static cacheLogo(BuildContext context) async {
+    await precacheImage(
+        CachedNetworkImageProvider(
+            "https://doubleup.s3.amazonaws.com/images/4-01.png"),
+        context);
+    await precacheImage(
+        CachedNetworkImageProvider(
+            "https://doubleup.s3.amazonaws.com/images/3-01.png"),
+        context);
   }
 
   static num getNumber(double input, {int precision = 2}) =>

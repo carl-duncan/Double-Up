@@ -2,6 +2,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -32,8 +33,8 @@ class UserRepository {
     } catch (e) {
       print("Not Signed in");
     }
-    await precacheImage(AssetImage("asset/3-01.png"), context);
-    await precacheImage(AssetImage("asset/4-01.png"), context);
+
+    await Utils.cacheLogo(context);
 
     return AuthUser(userId: null, username: null);
   }

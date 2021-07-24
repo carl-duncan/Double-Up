@@ -24,9 +24,10 @@ class ProfilePageBloc extends Bloc {
     getCurrentUserEmail();
   }
 
-  signOut(BuildContext context) {
+  signOut(BuildContext context) async {
     Navigator.of(context, rootNavigator: true)
         .pushReplacement(createRoute(LoginPage()));
+
     UserRepository.signOut();
     userSingleton.dispose();
   }
