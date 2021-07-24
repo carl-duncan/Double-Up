@@ -82,7 +82,9 @@ class _BusinessPageState extends State<BusinessPage> {
         ),
         TitleWidget(
           title: "Products",
-          onTap: () {},
+          onTap: () {
+            businessPageBloc.openProductList(context, widget.business);
+          },
           padding: Constant.padding.copyWith(bottom: 15),
         ),
         Utils.productsList(object.products, widget.business.id)
