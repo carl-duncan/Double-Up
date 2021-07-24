@@ -76,3 +76,17 @@ navigationBarPushed(BuildContext context, String title) {
     )
   ]));
 }
+
+navigationBarNormal(BuildContext context, String title) {
+  return SliverList(
+      delegate: SliverChildListDelegate.fixed([
+    CupertinoNavigationBar(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      middle: Text(
+        title,
+        style: Theme.of(context).textTheme.headline6,
+      ),
+      border: null,
+    )
+  ]));
+}

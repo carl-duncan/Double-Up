@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
-        navigationBarPushed(context, "Log in"),
+        navigationBarNormal(context, "Log in"),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
           Center(
@@ -90,7 +90,8 @@ class LoginPage extends StatelessWidget {
                       Text("Dont have an account? "),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context).push(createRoute(SignUpPage()));
+                          Navigator.of(context)
+                              .pushReplacement(createRoute(SignUpPage()));
                         },
                         child: Text(
                           "Click here!",

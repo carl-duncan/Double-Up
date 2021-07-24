@@ -1,5 +1,7 @@
+import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/pages/sign_up/sign_up_page_bloc.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
@@ -25,7 +27,7 @@ class SignUpPage extends StatelessWidget {
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
-        navigationBarPushed(context, "Sign up"),
+        navigationBarNormal(context, "Sign up"),
         SliverList(
             delegate: SliverChildListDelegate.fixed([
           Center(
@@ -94,7 +96,8 @@ class SignUpPage extends StatelessWidget {
                         Text("Already have account? "),
                         InkWell(
                           onTap: () {
-                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                                context, createRoute(LoginPage()));
                           },
                           child: Text(
                             "Sign in here!",
