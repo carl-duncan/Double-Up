@@ -55,9 +55,15 @@ navigationBarPushed(BuildContext context, String title) {
   return SliverList(
       delegate: SliverChildListDelegate.fixed([
     CupertinoNavigationBar(
-      leading: InkWell(child: Icon(CupertinoIcons.back),onTap: (){
-        Navigator.pop(context);
-      },),
+      leading: InkWell(
+        child: Icon(
+          CupertinoIcons.back,
+          size: 25,
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       middle: Text(
         title,
