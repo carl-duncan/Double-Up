@@ -95,8 +95,10 @@ class _RewardsState extends State<Rewards> {
 
         obj.transaction == null || obj.transaction.length == 0
             ? EmptyState(
-                title: "Find Products",
-                onTap: () {},
+                title: "Explore Products",
+                onTap: () {
+                  rewardsBloc.changePage();
+                },
               )
             : Utils.transactionRow(obj.transaction),
 

@@ -69,7 +69,7 @@ class RewardsBloc extends Bloc {
   }
 
   changePage() async {
-    Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
+    Utils.changeNavigationBarPage(userSingleton.globalKey, 1);
   }
 
   openRedeemList(BuildContext context) async {
