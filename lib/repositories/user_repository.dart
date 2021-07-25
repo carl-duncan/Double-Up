@@ -52,10 +52,8 @@ class UserRepository {
   static signUp(
       String name, String email, String password, Function onError) async {
     try {
-      Map<String, String> userAttributes = {
-        'email': email,
-        "profile": await Repository.createUser(name)
-      };
+      String id = await Repository.createUser(name);
+      Map<String, String> userAttributes = {'email': email, "profile": id};
       SignUpResult res = await Amplify.Auth.signUp(
           username: email,
           password: password,

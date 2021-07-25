@@ -10,9 +10,9 @@ class SignUpPageBLoc {
   TextEditingController password = TextEditingController();
 
   SignUpPageBLoc() {
-    name.text = "Carl Duncan";
-    email.text = "carlduncan64@gmail.com";
-    password.text = "Carlduncan123@";
+    // name.text = "Carl Duncan";
+    // email.text = "carlduncan64@gmail.com";
+    // password.text = "Carlduncan123@";
   }
 
   goToCodeConfirm(BuildContext context) {

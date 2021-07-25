@@ -56,23 +56,26 @@ class _CodePageState extends State<CodePage> {
       physics: BouncingScrollPhysics(),
       slivers: [
         navigationBarPushed(context, "Confirm Code"),
-        SliverList(
-            delegate: SliverChildListDelegate.fixed([
-          Field(
-              hint: "Enter Code",
-              controller: codePageBloc.code,
-              obscure: false,
-              suffix: Icons.confirmation_num,
-              label: null,
-              enabled: true),
-          IconButtonWidget(
-              buttonText: "Confirm",
-              buttonColor: Constant.primary,
-              onPressed: () {
-                codePageBloc.confirmCode(context);
-              },
-              icon: Icon(AntDesign.check))
-        ]))
+        SliverPadding(
+          padding: Constant.padding,
+          sliver: SliverList(
+              delegate: SliverChildListDelegate.fixed([
+            Field(
+                hint: "Enter Code",
+                controller: codePageBloc.code,
+                obscure: false,
+                suffix: Icons.confirmation_num,
+                label: null,
+                enabled: true),
+            IconButtonWidget(
+                buttonText: "Confirm",
+                buttonColor: Constant.primary,
+                onPressed: () {
+                  codePageBloc.confirmCode(context);
+                },
+                icon: Icon(AntDesign.check))
+          ])),
+        )
       ],
     );
   }
