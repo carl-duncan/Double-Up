@@ -52,7 +52,7 @@ class RewardsBloc extends Bloc {
       if (redeemed["redeemed"] == true) {
         await userSingleton.updateCurrentUser(UserSingleton.userId);
         await updateTransaction();
-        userSingleton.incrementBalance(redeemed["price"]);
+        // userSingleton.incrementBalance(redeemed["price"]);
         sendNotification(
             message: "Your balance has been updated.",
             context: context,
