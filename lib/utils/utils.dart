@@ -4,6 +4,7 @@ import 'package:double_up/models/business.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/product.dart';
+import 'package:double_up/models/transaction.dart';
 import 'package:double_up/pages/business_page/business_page.dart';
 import 'package:double_up/pages/card_view/card_view.dart';
 import 'package:double_up/pages/product_page/product_page.dart';
@@ -16,9 +17,11 @@ import 'package:double_up/widgets/category_card.dart';
 import 'package:double_up/widgets/gift_card_view.dart';
 import 'package:double_up/widgets/mini_gift_card.dart';
 import 'package:double_up/widgets/row.dart';
+import 'package:double_up/widgets/transaction_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class Utils {
   static cardsCarousel(List<GiftCard> giftCards, {num height}) {
@@ -223,10 +226,29 @@ class Utils {
     );
   }
 
+  static transactionRow(List<Transaction> objects) {
+    return SliverPadding(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return TransactionRow(transaction: objects[index], onTap: () {});
+      }, childCount: objects.length)),
+    );
+  }
+
   static changeNavigationBarPage(GlobalKey key, int index) {
     final CupertinoTabBar navigationBar = key.currentWidget;
 
     navigationBar.onTap(index);
+  }
+
+  static String readTimestamp(int timestamp) {
+    var now = new DateTime.now();
+    var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+    var formattedDate =
+        DateFormat('MM/dd/yyyy hh:mm a').format(date); // 12/31, 11:59 pm
+
+    return formattedDate.toString();
   }
 
   static detailedCardsList(List<GiftCard> cards, BuildContext context) {
@@ -284,7 +306,7 @@ class Utils {
     return SliverList(
         delegate: SliverChildListDelegate.fixed([
       SizedBox(
-        height: 200,
+        height: 100,
       )
     ]));
   }

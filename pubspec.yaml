@@ -41,6 +41,7 @@ dependencies:
   amplify_auth_cognito:
   amplify_flutter:
   fluttertoast: ^8.0.7
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

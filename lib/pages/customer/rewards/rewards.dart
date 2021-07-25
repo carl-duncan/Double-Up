@@ -2,6 +2,7 @@ import 'package:double_up/pages/customer/rewards/rewards_bloc.dart';
 import 'package:double_up/pages/loading_page.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/utils.dart';
+import 'package:double_up/widgets/empty_state.dart';
 import 'package:double_up/widgets/icon_button.dart';
 import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:double_up/widgets/title.dart';
@@ -46,6 +47,7 @@ class _RewardsState extends State<Rewards> {
       slivers: [
         Utils.refreshControl(() async {
           await rewardsBloc.userSingleton.updateCurrentUser(obj.customer.id);
+          await rewardsBloc.updateTransaction();
         }),
         navigationBar(context, "My Rewards", obj.notifications.length),
         TitleWidget(
@@ -83,6 +85,18 @@ class _RewardsState extends State<Rewards> {
           ])),
         ),
         // Utils.cardsCarousel(cards),
+        TitleWidget(
+          title: "Redeem History",
+          onTap: () {},
+          padding: Constant.padding.copyWith(bottom: 15),
+        ),
+
+        obj.transaction == null || obj.transaction.length == 0
+            ? EmptyState(
+                title: "Find Products",
+                onTap: () {},
+              )
+            : Utils.transactionRow(obj.transaction),
 
         Utils.endOfSliver()
       ],

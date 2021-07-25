@@ -4,6 +4,7 @@ import 'package:double_up/bloc/bloc.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
+import 'package:double_up/models/transaction.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 import 'package:double_up/utils/const.dart';
@@ -14,14 +15,17 @@ import 'package:rxdart/rxdart.dart';
 
 class RewardsBloc extends Bloc {
   CombineLatestStream combineLatestStream;
+  BehaviorSubject<List<Transaction>> transactions = BehaviorSubject();
   RewardsBloc(BuildContext context) {
-    combineLatestStream = CombineLatestStream.combine3(
+    combineLatestStream = CombineLatestStream.combine4(
         userSingleton.giftCards,
         userSingleton.notifications,
         userSingleton.currentUser,
-        (a, b, c) =>
-            RewardsBlocObject(giftCards: a, notifications: b, customer: c));
+        transactions,
+        (a, b, c, d) => RewardsBlocObject(
+            giftCards: a, notifications: b, customer: c, transaction: d));
     updateGiftCards(context);
+    updateTransaction();
   }
   updateGiftCards(BuildContext context) async {
     List<GiftCard> cards = await userSingleton.giftCards.first;
@@ -31,13 +35,21 @@ class RewardsBloc extends Bloc {
     userSingleton.updateGiftCards();
   }
 
+  updateTransaction() async {
+    Customer currentUser = await userSingleton.currentUser.first;
+    List<Transaction> transaction =
+        await Repository.getTransactionHistory(currentUser.id);
+    this.transactions.add(transaction);
+  }
+
   redeemQrCode(BuildContext context) async {
     var result = await BarcodeScanner.scan();
     Map<String, dynamic> redeemed =
-        await Repository.redeemGiftCard(result.rawContent);
+        await Repository.redeemPoints(result.rawContent);
     if (redeemed != null) {
       if (redeemed["redeemed"] == true) {
         await userSingleton.updateCurrentUser(UserSingleton.userId);
+        await updateTransaction();
         userSingleton.incrementBalance(redeemed["price"]);
         sendNotification(
             message: "Your balance has been updated.",
@@ -57,11 +69,17 @@ class RewardsBloc extends Bloc {
   changePage() async {
     Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
   }
+
+  dispose() {
+    transactions.close();
+  }
 }
 
 class RewardsBlocObject {
   List<GiftCard> giftCards;
   List<AppNotifications> notifications;
+  List<Transaction> transaction;
   Customer customer;
-  RewardsBlocObject({this.giftCards, this.customer, this.notifications});
+  RewardsBlocObject(
+      {this.giftCards, this.customer, this.notifications, this.transaction});
 }

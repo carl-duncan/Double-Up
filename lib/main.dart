@@ -1,14 +1,12 @@
-import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/pages/wrapper/wrapper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 void main() {
-  runApp(!kIsWeb ? MyApp() : MyAppWeb());
+  runApp(MyApp());
 }
 
 ThemeData dark = ThemeData(
@@ -54,25 +52,6 @@ class MyApp extends StatelessWidget {
         darkTheme: dark,
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
-      ),
-    );
-  }
-}
-
-class MyAppWeb extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    return OverlaySupport.global(
-      child: MaterialApp(
-        title: 'Double Up',
-        themeMode: ThemeMode.light,
-        theme: light,
-        darkTheme: dark,
-        debugShowCheckedModeBanner: false,
-        home: LoginPage(),
       ),
     );
   }
