@@ -30,4 +30,4 @@ def updateThresholds():
     return True
 
 def discount(UnsoldCount, SalesCount, MinDiscount, MaxDiscount):
-    return max(min(UnsoldCount/SalesCount, MaxDiscount), MinDiscount)
+    return max(min(UnsoldCount/SalesCount, MaxDiscount), MinDiscount) * Decimal(0.9)
