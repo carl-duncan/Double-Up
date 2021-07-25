@@ -87,7 +87,9 @@ class _RewardsState extends State<Rewards> {
         // Utils.cardsCarousel(cards),
         TitleWidget(
           title: "Redeem History",
-          onTap: () {},
+          onTap: () {
+            rewardsBloc.openRedeemList(context);
+          },
           padding: Constant.padding.copyWith(bottom: 15),
         ),
 

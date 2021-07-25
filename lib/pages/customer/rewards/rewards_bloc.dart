@@ -5,9 +5,11 @@ import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/notification.dart';
 import 'package:double_up/models/transaction.dart';
+import 'package:double_up/pages/transaction_list_page/transaction_list_page.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 import 'package:double_up/utils/const.dart';
+import 'package:double_up/utils/transition.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -68,6 +70,16 @@ class RewardsBloc extends Bloc {
 
   changePage() async {
     Utils.changeNavigationBarPage(userSingleton.globalKey, 0);
+  }
+
+  openRedeemList(BuildContext context) async {
+    Customer currentUser = await userSingleton.currentUser.first;
+
+    Navigator.of(context, rootNavigator: true)
+        .push(createRoute(TransactionListPage(
+      function: Repository.getTransactionHistory(currentUser.id),
+      title: "Redeem History",
+    )));
   }
 
   dispose() {
