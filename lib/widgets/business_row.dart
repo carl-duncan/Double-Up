@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/business.dart';
-import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class BusinessRow extends StatelessWidget {
   final Business business;
@@ -56,13 +56,13 @@ class BusinessRow extends StatelessWidget {
                         child: Container(
                           height: 20,
                           width: 100,
-                          color: Constant.secondary,
+                          color: HexColor("${business.category.color}"),
                           child: Center(
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                business.category.name,
+                                business.category.title,
                                 style: theme.textTheme.overline.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),

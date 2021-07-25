@@ -1,4 +1,4 @@
-import 'package:double_up/models/category.dart';
+import 'package:double_up/models/business_type.dart';
 
 class Business {
   String description;
@@ -7,7 +7,7 @@ class Business {
   num x;
   num y;
   String address;
-  Category category;
+  BusinessType category;
   String name;
 
   Business(
@@ -29,7 +29,7 @@ class Business {
 
     image = json['image'];
     if (json["category"] != null)
-      category = Category.fromJson(json["category"]);
+      category = BusinessType.fromJson(json["category"]);
     name = json['name'];
   }
 

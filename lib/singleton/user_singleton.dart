@@ -1,3 +1,4 @@
+import 'package:double_up/models/business_type.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
@@ -12,6 +13,7 @@ class UserSingleton {
   BehaviorSubject<List<Category>> categories = BehaviorSubject();
   BehaviorSubject<List<AppNotifications>> notifications = BehaviorSubject();
   BehaviorSubject<Customer> currentUser = BehaviorSubject();
+  BehaviorSubject<List<BusinessType>> businessType = BehaviorSubject();
   BehaviorSubject<List<GiftCard>> giftCards = BehaviorSubject();
   GlobalKey globalKey = new GlobalKey(debugLabel: 'app_bar');
 
@@ -29,6 +31,11 @@ class UserSingleton {
     currentUser.add(customer);
   }
 
+  updateBusinessType() async {
+    List<BusinessType> types = await Repository.getBusinessType();
+    this.businessType.add(types);
+  }
+
   initStreams(String id) async {
     print("UserSingleton.init");
     if (currentUser.isClosed ||
@@ -43,10 +50,12 @@ class UserSingleton {
       notifications = BehaviorSubject();
       giftCards = BehaviorSubject();
       categories = BehaviorSubject();
+      businessType = BehaviorSubject();
     }
     updateCategories();
     updateNotifications();
     updateGiftCards();
+    updateBusinessType();
     updateCurrentUser(id);
   }
 
@@ -88,6 +97,7 @@ class UserSingleton {
     currentUser.close();
     notifications.close();
     giftCards.close();
+    businessType.close();
   }
 
   factory UserSingleton() {
