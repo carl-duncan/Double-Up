@@ -73,9 +73,14 @@ class _ProductPageState extends State<ProductPage> {
                     (widget.product.price * (1 - widget.product.threshold)),
                     context,
                     60.0),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
+              ],
+            ),
+
+            Padding(
+              padding: EdgeInsets.only(bottom: 15),
+              child: Row(
+                children: [
+                  ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       color: Constant.primary.withOpacity(0.2),
@@ -92,27 +97,22 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-
-            Row(
-              children: [
-                Spacer(),
-                InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Icon(
-                      FontAwesome5Solid.heart,
-                      color: productPageBloc.getHeartColor(
-                          user.favProducts, widget.product),
+                  Spacer(),
+                  InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(
+                        FontAwesome5Solid.heart,
+                        color: productPageBloc.getHeartColor(
+                            user.favProducts, widget.product),
+                      ),
                     ),
-                  ),
-                  onTap: () {
-                    productPageBloc.addToFav(widget.product, context);
-                  },
-                )
-              ],
+                    onTap: () {
+                      productPageBloc.addToFav(widget.product, context);
+                    },
+                  )
+                ],
+              ),
             ),
 
             Padding(
