@@ -45,7 +45,7 @@ class SearchPageBloc extends Bloc {
 
   openProductList(BuildContext context) {
     Navigator.of(context, rootNavigator: true).push(createRoute(ProductListPage(
-      function: Repository.searchProducts(controller.text, 3),
+      function: Repository.searchProducts(controller.text, null),
       title: "Search Results",
     )));
   }

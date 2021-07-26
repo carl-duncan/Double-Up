@@ -45,13 +45,16 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
     return OverlaySupport.global(
-      child: MaterialApp(
-        title: 'Double Up',
-        themeMode: ThemeMode.system,
-        theme: light,
-        darkTheme: dark,
-        debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: MaterialApp(
+          title: 'Double Up',
+          themeMode: ThemeMode.system,
+          theme: light,
+          darkTheme: dark,
+          debugShowCheckedModeBanner: false,
+          home: Wrapper(),
+        ),
       ),
     );
   }

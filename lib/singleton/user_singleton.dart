@@ -52,11 +52,11 @@ class UserSingleton {
       categories = BehaviorSubject();
       businessType = BehaviorSubject();
     }
+    updateCurrentUser(id);
     updateCategories();
     updateNotifications();
     updateGiftCards();
     updateBusinessType();
-    updateCurrentUser(id);
   }
 
   incrementBalance(num increment) async {

@@ -70,7 +70,7 @@ class DashboardBloc extends Bloc {
 
   openProductList(BuildContext context, Category category) {
     Navigator.of(context, rootNavigator: true).push(createRoute(ProductListPage(
-      function: Repository.getProductByCategory(category.id),
+      function: Repository.getProductByCategory(category.id, 3),
       title: category.name,
     )));
   }
@@ -87,7 +87,7 @@ class DashboardBloc extends Bloc {
     if (category == null || index == 0)
       objects = await Repository.getProducts(3);
     else
-      objects = await Repository.getProductByCategory(category.id);
+      objects = await Repository.getProductByCategory(category.id, 3);
     for (Product obj in objects) {
       await precacheImage(
           CachedNetworkImageProvider(obj.images.first), context);

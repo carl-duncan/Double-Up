@@ -87,7 +87,7 @@ class _ProductPageState extends State<ProductPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                            '${(widget.product.price * (widget.product.threshold))} points',
+                            '${(widget.product.price * (widget.product.threshold)).toStringAsFixed(2)} points',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6
