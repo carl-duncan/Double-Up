@@ -110,7 +110,7 @@ class Utils {
     ]));
   }
 
-  static productsList(List<Product> objects, String hero) {
+  static productsList(List<Product> objects, String hero, {int limit}) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
@@ -125,7 +125,12 @@ class Utils {
                 hero: hero != null ? hero + objects[index].id : null,
               )));
             });
-      }, childCount: objects.length)),
+      },
+              childCount: limit != null
+                  ? limit < objects.length
+                      ? limit
+                      : objects.length
+                  : objects.length)),
     );
   }
 
@@ -209,7 +214,7 @@ class Utils {
     );
   }
 
-  static businessList(List<Business> objects) {
+  static businessList(List<Business> objects, {int limit}) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
@@ -222,7 +227,12 @@ class Utils {
                 business: objects[index],
               )));
             });
-      }, childCount: objects.length)),
+      },
+              childCount: limit != null
+                  ? limit < objects.length
+                      ? limit
+                      : objects.length
+                  : objects.length)),
     );
   }
 

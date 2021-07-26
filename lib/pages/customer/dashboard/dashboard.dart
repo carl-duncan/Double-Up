@@ -83,12 +83,12 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                                 context, object.category[object.index]);
                           }
                         : null),
-                Utils.productsList(object.products, null),
+                Utils.productsList(object.products, null, limit: 3),
                 TitleWidget(
                     title: "Recommended Supermarkets",
                     padding: Constant.padding.copyWith(top: 15, bottom: 15),
                     onTap: null),
-                Utils.businessList(object.business),
+                Utils.businessList(object.business, limit: 3),
                 Utils.endOfSliver()
               ],
             ),
