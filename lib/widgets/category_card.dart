@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_up/models/category.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -28,7 +27,7 @@ class CategoryCard extends StatelessWidget {
                   image: category.image != null
                       ? DecorationImage(
                           colorFilter: new ColorFilter.mode(
-                              Colors.black.withOpacity(0.4),
+                              Colors.black.withOpacity(0.5),
                               BlendMode.colorBurn),
                           image: CachedNetworkImageProvider(
                             category.image,

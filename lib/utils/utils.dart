@@ -112,6 +112,7 @@ class Utils {
 
   static productsList(List<Product> objects, String hero, {int limit}) {
     return SliverPadding(
+      key: UniqueKey(),
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {

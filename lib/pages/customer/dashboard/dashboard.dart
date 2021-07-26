@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class CustomerDashboard extends StatefulWidget {
   @override
@@ -58,6 +59,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
           verticalOffset: 50.0,
           child: FadeInAnimation(
             child: CustomScrollView(
+              controller: dashboardBloc.controller,
               physics: BouncingScrollPhysics(),
               slivers: [
                 Utils.refreshControl(() async {
@@ -83,7 +85,10 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                                 context, object.category[object.index]);
                           }
                         : null),
-                Utils.productsList(object.products, null, limit: 3),
+                SliverAnimatedSwitcher(
+                  duration: Duration(milliseconds: Constant.load),
+                  child: Utils.productsList(object.products, null, limit: 3),
+                ),
                 TitleWidget(
                     title: "Recommended Supermarkets",
                     padding: Constant.padding.copyWith(top: 15, bottom: 15),

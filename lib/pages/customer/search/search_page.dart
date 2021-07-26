@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key key}) : super(key: key);
@@ -82,7 +83,10 @@ class _SearchPageState extends State<SearchPage> {
                   searchPageBloc.openProductList(context);
                 })
             : Utils.blankSliver(),
-        Utils.productsList(object.products, null),
+        SliverAnimatedSwitcher(
+          child: Utils.productsList(object.products, null),
+          duration: Duration(milliseconds: Constant.load),
+        ),
         object.business.length > 0
             ? TitleWidget(
                 title: "Supermarkets",

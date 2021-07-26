@@ -14,6 +14,7 @@ import 'package:rxdart/rxdart.dart';
 
 class DashboardBloc extends Bloc {
   CombineLatestStream combineLatestStream;
+  ScrollController controller = ScrollController();
   BehaviorSubject<List<Product>> products = BehaviorSubject();
   BehaviorSubject<List<Business>> businesses = BehaviorSubject();
   BehaviorSubject<List<Category>> categories = BehaviorSubject();
@@ -78,6 +79,7 @@ class DashboardBloc extends Bloc {
   dispose() {
     products.close();
     businesses.close();
+    controller.dispose();
     categories.close();
     categoryIndex.close();
   }
