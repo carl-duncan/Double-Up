@@ -10,6 +10,7 @@ import 'package:double_up/widgets/navigation_bar_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -133,12 +134,14 @@ class _ProductPageState extends State<ProductPage> {
             Padding(
               padding: EdgeInsets.only(top: 15),
               child: IconButtonWidget(
-                  buttonText: "Find Supermarket",
-                  buttonColor: Constant.secondary,
+                  buttonText: "Where to Find?",
+                  buttonColor: HexColor(widget.product.category.color),
                   onPressed: () {
                     productPageBloc.findLocation(widget.product);
                   },
-                  icon: Icon(Icons.fastfood)),
+                  icon: Icon(IconData(widget.product.category.code,
+                      fontFamily: widget.product.category.family,
+                      fontPackage: "flutter_icons"))),
             )
             // BusinessRow(business: widget.product.business, onTap: () {})
           ])),
