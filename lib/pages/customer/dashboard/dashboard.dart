@@ -87,7 +87,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                         : null),
                 SliverAnimatedSwitcher(
                   duration: Duration(milliseconds: Constant.load),
-                  child: Utils.productsList(object.products, null, limit: 3),
+                  child: Utils.productsList(
+                      object.products, object.category[object.index].name,
+                      limit: 3),
                 ),
                 TitleWidget(
                     title: "Recommended Supermarkets",
