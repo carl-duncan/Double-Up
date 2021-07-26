@@ -15,12 +15,13 @@ class SearchPageBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<Product>> products = BehaviorSubject();
   TextEditingController controller = TextEditingController();
+  BehaviorSubject<List<GiftCard>> cards = BehaviorSubject();
 
   BehaviorSubject<List<Business>> businesses = BehaviorSubject();
 
   SearchPageBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine5(
-        userSingleton.giftCards,
+        cards,
         userSingleton.categories,
         products,
         userSingleton.notifications,
@@ -33,6 +34,17 @@ class SearchPageBloc extends Bloc {
             business: e));
     updateProducts(context, "");
     updateBusinesses(context, "");
+    updateGiftCards(context, "");
+  }
+
+  updateGiftCards(BuildContext context, String search) async {
+    List<GiftCard> results = [];
+    List<GiftCard> allCards = await userSingleton.giftCards.first;
+
+    for (GiftCard card in allCards) {
+      if (card.caption.contains(search)) results.add(card);
+    }
+    this.cards.add(results);
   }
 
   updateBusinesses(BuildContext context, String search) async {
@@ -53,6 +65,7 @@ class SearchPageBloc extends Bloc {
   dispose() {
     products.close();
     controller.dispose();
+    cards.close();
     businesses.close();
   }
 

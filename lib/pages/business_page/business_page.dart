@@ -87,7 +87,7 @@ class _BusinessPageState extends State<BusinessPage> {
           },
           padding: Constant.padding.copyWith(bottom: 15),
         ),
-        Utils.productsList(object.products, widget.business.id)
+        Utils.productsList(object.products, widget.business.id, limit: 3)
       ],
     );
   }

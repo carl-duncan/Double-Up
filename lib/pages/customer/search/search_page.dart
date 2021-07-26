@@ -61,13 +61,16 @@ class _SearchPageState extends State<SearchPage> {
                 onChanged: (String value) {
                   searchPageBloc.updateProducts(context, value);
                   searchPageBloc.updateBusinesses(context, value);
+                  searchPageBloc.updateGiftCards(context, value);
                 },
                 obscure: false,
                 suffix: FontAwesome5Solid.search,
                 enabled: true),
           ])),
         ),
-        object.products.length > 0 || object.business.length > 0
+        object.products.length > 0 ||
+                object.business.length > 0 ||
+                object.giftCards.length > 0
             ? Utils.blankSliver()
             : EmptyState(
                 title: "Clear Search",
@@ -75,6 +78,11 @@ class _SearchPageState extends State<SearchPage> {
                   searchPageBloc.clearSearch(context);
                 },
               ),
+        TitleWidget(
+          title: "Gift Cards",
+          padding: Constant.padding.copyWith(bottom: 0),
+        ),
+        Utils.cardsList(object.giftCards),
         object.products.length > 0
             ? TitleWidget(
                 title: "Products",
