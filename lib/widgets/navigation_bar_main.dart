@@ -15,6 +15,7 @@ navigationBar(BuildContext context, String title, int num) {
         title,
         style: Theme.of(context).textTheme.headline6,
       ),
+
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

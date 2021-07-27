@@ -63,7 +63,7 @@ class TransactionRow extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${transaction.points} points",
+                                "${transaction.points.toStringAsFixed(2)} points",
                                 style: theme.textTheme.overline.copyWith(
                                     color: Constant.primary,
                                     fontWeight: FontWeight.bold),

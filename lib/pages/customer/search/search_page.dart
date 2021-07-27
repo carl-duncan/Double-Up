@@ -78,11 +78,15 @@ class _SearchPageState extends State<SearchPage> {
                   searchPageBloc.clearSearch(context);
                 },
               ),
-        TitleWidget(
-          title: "Gift Cards",
-          padding: Constant.padding.copyWith(bottom: 0),
-        ),
-        Utils.cardsList(object.giftCards),
+        object.giftCards.length > 0
+            ? TitleWidget(
+                title: "Gift Cards",
+                padding: Constant.padding.copyWith(bottom: 0),
+              )
+            : Utils.blankSliver(),
+        object.giftCards.length > 0
+            ? Utils.cardsList(object.giftCards)
+            : Utils.blankSliver(),
         object.products.length > 0
             ? TitleWidget(
                 title: "Products",
