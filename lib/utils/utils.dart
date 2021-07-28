@@ -238,13 +238,18 @@ class Utils {
     );
   }
 
-  static transactionRow(List<Transaction> objects) {
+  static transactionRow(List<Transaction> objects, {int limit}) {
     return SliverPadding(
       padding: EdgeInsets.only(left: 15, right: 15),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
         return TransactionRow(transaction: objects[index], onTap: () {});
-      }, childCount: objects.length)),
+      },
+              childCount: limit != null
+                  ? limit < objects.length
+                      ? limit
+                      : objects.length
+                  : objects.length)),
     );
   }
 

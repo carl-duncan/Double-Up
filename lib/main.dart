@@ -1,11 +1,13 @@
+import 'package:double_up/pages/web/generate_qr/generate_qr.dart';
 import 'package:double_up/pages/wrapper/wrapper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(!kIsWeb ? MyApp() : MyAppWeb());
 }
 
 ThemeData dark = ThemeData(
@@ -52,6 +54,29 @@ class MyApp extends StatelessWidget {
         darkTheme: dark,
         debugShowCheckedModeBanner: false,
         home: Wrapper(),
+      ),
+    );
+  }
+}
+
+class MyAppWeb extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: MaterialApp(
+        title: 'Double Up',
+        themeMode: ThemeMode.system,
+        theme: light,
+        darkTheme: dark,
+        debugShowCheckedModeBanner: false,
+        home: GenerateQRCode(),
       ),
     );
   }

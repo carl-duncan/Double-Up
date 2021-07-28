@@ -1,50 +1,63 @@
+import 'package:double_up/models/product.dart';
+
 import 'business.dart';
 import 'customer.dart';
 
 class Transaction {
-  String id;
   Business business;
-  double points;
-  int date;
   Customer customer;
+  int date;
+  double points;
+  String id;
+  List<Product> products;
   List<String> quantity;
   bool redeemed;
 
   Transaction(
-      {this.id,
-      this.business,
-      this.points,
-      this.date,
+      {this.business,
       this.customer,
+      this.date,
+      this.points,
+      this.id,
+      this.products,
       this.quantity,
       this.redeemed});
 
   Transaction.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
     business = json['business'] != null
         ? new Business.fromJson(json['business'])
         : null;
-    points = json['points'];
     customer = json['customer'] != null
         ? new Customer.fromJson(json['customer'])
         : null;
-    quantity = json['quantity'].cast<String>();
     date = json['date'];
+    points = json['points'];
+    id = json['id'];
+    if (json['products'] != null) {
+      products = new List<Product>();
+      json['products'].forEach((v) {
+        products.add(new Product.fromJson(v));
+      });
+    }
+    quantity = json['quantity'].cast<String>();
     redeemed = json['redeemed'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     if (this.business != null) {
       data['business'] = this.business.toJson();
     }
-    data['points'] = this.points;
     if (this.customer != null) {
       data['customer'] = this.customer.toJson();
     }
+    data['date'] = this.date;
+    data['points'] = this.points;
+    data['id'] = this.id;
+    if (this.products != null) {
+      data['products'] = this.products.map((v) => v.toJson()).toList();
+    }
     data['quantity'] = this.quantity;
-    data["date"] = this.date;
     data['redeemed'] = this.redeemed;
     return data;
   }

@@ -103,7 +103,7 @@ class _RewardsState extends State<Rewards> {
                   rewardsBloc.changePage();
                 },
               )
-            : Utils.transactionRow(obj.transaction),
+            : Utils.transactionRow(obj.transaction, limit: 3),
 
         Utils.endOfSliver()
       ],
