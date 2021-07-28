@@ -29,14 +29,11 @@ class BusinessRow extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(109),
-                child: Hero(
-                  tag: business.id,
-                  child: CachedNetworkImage(
-                    imageUrl: business.image,
-                    fit: BoxFit.cover,
-                    height: 66,
-                    width: 66,
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl: business.image,
+                  fit: BoxFit.cover,
+                  height: 66,
+                  width: 66,
                 ),
               ),
             ),

@@ -30,14 +30,11 @@ class TransactionRow extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(109),
-                child: Hero(
-                  tag: transaction.id,
-                  child: CachedNetworkImage(
-                    imageUrl: transaction.business.image,
-                    fit: BoxFit.cover,
-                    height: 66,
-                    width: 66,
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl: transaction.business.image,
+                  fit: BoxFit.cover,
+                  height: 66,
+                  width: 66,
                 ),
               ),
             ),
