@@ -6,8 +6,8 @@ class LoginPageBloc {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   LoginPageBloc() {
-    email.text = "carlduncan64@gmail.com";
-    password.text = "Carlduncan123@";
+    // email.text = "carlduncan64@gmail.com";
+    // password.text = "Carlduncan123@";
     // UserRepository.signOut();
   }
   signIn(BuildContext context) {
