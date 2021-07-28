@@ -1,4 +1,5 @@
 import 'package:double_up/repositories/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GenerateQRCodeBloc {
@@ -6,15 +7,15 @@ class GenerateQRCodeBloc {
   BehaviorSubject<String> transaction = BehaviorSubject();
   CombineLatestStream combineLatestStream;
 
-  GenerateQRCodeBloc() {
+  GenerateQRCodeBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream([loading, transaction], (obj) {
       return GenerateQRCodeBlocObject(loading: obj[0], transaction: obj[1]);
     });
 
-    init();
+    init(context);
   }
 
-  init() async {
+  init(BuildContext context) async {
     Repository.initClient();
     generateTransaction();
     updateLoading(false);

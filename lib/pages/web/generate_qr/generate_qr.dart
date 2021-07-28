@@ -12,7 +12,22 @@ class GenerateQRCode extends StatefulWidget {
 }
 
 class _GenerateQRCodeState extends State<GenerateQRCode> {
-  GenerateQRCodeBloc generateQRCode = GenerateQRCodeBloc();
+  GenerateQRCodeBloc generateQRCode;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    generateQRCode = GenerateQRCodeBloc(context);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(AssetImage("asset/4-01.png"), context);
+
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +49,10 @@ class _GenerateQRCodeState extends State<GenerateQRCode> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Image.asset(
+            "asset/4-01.png",
+            height: 100,
+          ),
           Container(
             height: 200,
             child: QrImage(
@@ -41,6 +60,13 @@ class _GenerateQRCodeState extends State<GenerateQRCode> {
               foregroundColor: Colors.white,
             ),
           ),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            "Please reload the page to generate a new QR code",
+            style: Theme.of(context).textTheme.headline6,
+          )
         ],
       ),
     );
