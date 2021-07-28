@@ -21,14 +21,21 @@ class RewardsBloc extends Bloc {
   BehaviorSubject<bool> loading = BehaviorSubject();
 
   RewardsBloc(BuildContext context) {
-    combineLatestStream = CombineLatestStream.combine4(
+    combineLatestStream = CombineLatestStream.combine5(
         userSingleton.giftCards,
         userSingleton.notifications,
         userSingleton.currentUser,
         transactions,
-        (a, b, c, d) => RewardsBlocObject(
-            giftCards: a, notifications: b, customer: c, transaction: d));
+        loading,
+        (a, b, c, d, e) => RewardsBlocObject(
+            giftCards: a,
+            notifications: b,
+            customer: c,
+            transaction: d,
+            loading: e));
     updateGiftCards(context);
+    updateLoading(false);
+
     updateTransaction();
   }
   updateGiftCards(BuildContext context) async {
@@ -37,6 +44,10 @@ class RewardsBloc extends Bloc {
       await precacheImage(CachedNetworkImageProvider(obj.logo), context);
     }
     userSingleton.updateGiftCards();
+  }
+
+  updateLoading(bool value) {
+    loading.add(value);
   }
 
   updateTransaction() async {
@@ -48,6 +59,8 @@ class RewardsBloc extends Bloc {
 
   redeemQrCode(BuildContext context) async {
     var result = await BarcodeScanner.scan();
+    updateLoading(true);
+
     Map<String, dynamic> redeemed =
         await Repository.redeemPoints(result.rawContent);
     if (redeemed != null) {
@@ -68,6 +81,7 @@ class RewardsBloc extends Bloc {
             color: Constant.red);
       }
     }
+    updateLoading(false);
   }
 
   changePage() async {

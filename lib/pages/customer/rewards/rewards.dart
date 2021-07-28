@@ -32,7 +32,10 @@ class _RewardsState extends State<Rewards> {
           stream: rewardsBloc.combineLatestStream,
           builder: (context, snapshot) {
             Widget child = LoadingPage();
-            if (snapshot.hasData) child = loadUI(context, snapshot.data);
+            if (snapshot.hasData) {
+              RewardsBlocObject object = snapshot.data;
+              if (!object.loading) child = loadUI(context, snapshot.data);
+            }
             return AnimatedSwitcher(
               duration: Duration(milliseconds: Constant.load),
               child: child,
