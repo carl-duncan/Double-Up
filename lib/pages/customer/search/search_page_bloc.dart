@@ -73,6 +73,7 @@ class SearchPageBloc extends Bloc {
     controller.text = "";
     updateBusinesses(context, "");
     updateProducts(context, "");
+    updateGiftCards(context, "");
   }
 
   updateProducts(BuildContext context, String search) async {
