@@ -56,9 +56,19 @@ class _GenerateQRCodeState extends State<GenerateQRCode> {
           Container(
             height: 200,
             child: QrImage(
-              data: object.transaction,
+              data: object.transaction.id,
               foregroundColor: Colors.white,
             ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            "${object.transaction.business.name}",
+            style: Theme.of(context)
+                .textTheme
+                .subtitle2
+                .copyWith(color: Constant.primary),
           ),
           SizedBox(
             height: 15,

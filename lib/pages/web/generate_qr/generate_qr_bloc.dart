@@ -1,10 +1,11 @@
+import 'package:double_up/models/transaction.dart';
 import 'package:double_up/repositories/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GenerateQRCodeBloc {
   BehaviorSubject<bool> loading = BehaviorSubject();
-  BehaviorSubject<String> transaction = BehaviorSubject();
+  BehaviorSubject<Transaction> transaction = BehaviorSubject();
   CombineLatestStream combineLatestStream;
 
   GenerateQRCodeBloc(BuildContext context) {
@@ -37,7 +38,7 @@ class GenerateQRCodeBloc {
 
 class GenerateQRCodeBlocObject {
   bool loading;
-  String transaction;
+  Transaction transaction;
 
   GenerateQRCodeBlocObject({this.loading, this.transaction});
 }
