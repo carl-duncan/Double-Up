@@ -18,6 +18,8 @@ import 'package:rxdart/rxdart.dart';
 class RewardsBloc extends Bloc {
   CombineLatestStream combineLatestStream;
   BehaviorSubject<List<Transaction>> transactions = BehaviorSubject();
+  BehaviorSubject<bool> loading = BehaviorSubject();
+
   RewardsBloc(BuildContext context) {
     combineLatestStream = CombineLatestStream.combine4(
         userSingleton.giftCards,
@@ -84,14 +86,21 @@ class RewardsBloc extends Bloc {
 
   dispose() {
     transactions.close();
+    loading.close();
   }
 }
 
 class RewardsBlocObject {
   List<GiftCard> giftCards;
   List<AppNotifications> notifications;
+  bool loading;
+
   List<Transaction> transaction;
   Customer customer;
   RewardsBlocObject(
-      {this.giftCards, this.customer, this.notifications, this.transaction});
+      {this.giftCards,
+      this.customer,
+      this.notifications,
+      this.transaction,
+      this.loading});
 }
