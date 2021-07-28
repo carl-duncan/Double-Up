@@ -53,7 +53,7 @@ class DashboardBloc extends Bloc {
     newList.insert(
         0,
         Category(
-            name: "Recommended Products",
+            name: "Recommended",
             image: null,
             id: "",
             family: iconData.fontFamily,

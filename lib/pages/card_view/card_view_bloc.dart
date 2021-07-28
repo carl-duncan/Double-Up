@@ -3,6 +3,7 @@ import 'package:double_up/models/customer.dart';
 import 'package:double_up/models/gift_card.dart';
 import 'package:double_up/models/send_card_data.dart';
 import 'package:double_up/repositories/repository.dart';
+import 'package:double_up/singleton/user_singleton.dart';
 import 'package:double_up/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,35 +67,76 @@ class CardViewBloc extends Bloc {
     // await userSingleton.updateCurrentUser(user.id);
   }
 
-  sendGiftCard(BuildContext context, GiftCard card, String value) async {
+  sendGiftCard(BuildContext cntxt, GiftCard card, String value) async {
     Customer user = await userSingleton.currentUser.first;
     bool isValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email.text);
     if (isValid) {
-      updateLoading(true);
-      SendCardData cardData = SendCardData(
-        email: email.text,
-        message: message.text,
-        amount: num.parse(value),
-        profile: user.id,
-        card: card.code,
-      );
+      Customer customer = await userSingleton.currentUser.first;
 
-      await Repository.sendGiftCard(cardData);
-      sendNotification(
-          message: "Your Gift Card has been sent",
-          context: context,
-          icon: FontAwesome5Solid.gift,
-          color: Constant.secondary);
-      user.balance -= num.parse(value);
-      userSingleton.currentUser.add(user);
+      if (customer.balance > num.parse(value)) {
+        updateLoading(true);
+        SendCardData cardData = SendCardData(
+          email: email.text,
+          message: message.text,
+          amount: num.parse(value),
+          profile: user.id,
+          card: card.code,
+        );
 
-      updateLoading(false);
+        await Repository.sendGiftCard(cardData);
+        sendNotification(
+            message: "Your Gift Card has been sent",
+            context: cntxt,
+            icon: FontAwesome5Solid.gift,
+            color: Constant.secondary);
+        user.balance -= num.parse(value);
+        userSingleton.currentUser.add(user);
+
+        updateLoading(false);
+      } else {
+        showDialog(
+            context: cntxt,
+            builder: (BuildContext context) => CupertinoAlertDialog(
+                  title: new Text("Add Funds"),
+                  content: new Text(
+                      "You need ${(num.parse(value) - customer.balance).toStringAsFixed(2)} to buy this gift card. Would you like to pay the difference?"),
+                  actions: <Widget>[
+                    CupertinoDialogAction(
+                      isDefaultAction: true,
+                      child: Text("Yes"),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        updateLoading(true);
+
+                        await Repository.addPoints(
+                            "${num.parse(value) - customer.balance}");
+                        await userSingleton
+                            .updateCurrentUser(UserSingleton.userId);
+                        updateLoading(false);
+
+                        sendNotification(
+                            message:
+                                "${(num.parse(value) - customer.balance).toStringAsFixed(2)} points given",
+                            context: cntxt,
+                            icon: FontAwesome5Solid.gift,
+                            color: Constant.secondary);
+                      },
+                    ),
+                    CupertinoDialogAction(
+                      child: Text("No"),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    )
+                  ],
+                ));
+      }
     } else {
       sendNotification(
           message: "Please correct your email.",
-          context: context,
+          context: cntxt,
           icon: Icons.error,
           color: Constant.primary);
     }

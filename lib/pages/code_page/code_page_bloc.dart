@@ -3,8 +3,8 @@ import 'package:double_up/models/user.dart';
 import 'package:double_up/pages/login/login_page.dart';
 import 'package:double_up/repositories/user_repository.dart';
 import 'package:double_up/utils/transition.dart';
+import 'package:double_up/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CodePageBloc {
@@ -20,7 +20,7 @@ class CodePageBloc {
   updateSignUpResults(User user, BuildContext context) async {
     signUpResult.add(
         await UserRepository.signUp(user.name, user.email, user.password, (e) {
-      toast(e.message);
+      Utils.getToast(e.message);
       Navigator.pop(context);
     }));
   }
@@ -30,7 +30,7 @@ class CodePageBloc {
         await UserRepository.confirmCode(user.email, code.text);
     if (signUpResult != null) {
       Navigator.pushReplacement(context, createRoute(LoginPage()));
-      toast(("Your Account has been successfully created"));
+      Utils.getToast(("Your Account has been successfully created"));
     }
   }
 

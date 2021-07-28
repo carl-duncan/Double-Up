@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 class CategoryCard extends StatelessWidget {
   final Category category;
   final VoidCallback onTap;
-  CategoryCard({Key key, @required this.category, this.onTap})
+  final bool selected;
+  CategoryCard(
+      {Key key, @required this.category, this.onTap, this.selected = false})
       : super(key: key);
 
   @override
@@ -27,8 +29,10 @@ class CategoryCard extends StatelessWidget {
                   image: category.image != null
                       ? DecorationImage(
                           colorFilter: new ColorFilter.mode(
-                              Colors.black.withOpacity(0.5),
-                              BlendMode.colorBurn),
+                              selected
+                                  ? Constant.primary.withOpacity(0.5)
+                                  : Constant.secondary.withOpacity(0.5),
+                              BlendMode.srcATop),
                           image: CachedNetworkImageProvider(
                             category.image,
                           ),

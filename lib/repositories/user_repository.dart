@@ -4,7 +4,6 @@ import 'package:double_up/repositories/repository.dart';
 import 'package:double_up/singleton/user_singleton.dart';
 import 'package:double_up/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:overlay_support/overlay_support.dart';
 
 import '../amplifyconfiguration.dart';
 
@@ -45,7 +44,7 @@ class UserRepository {
           username: username, confirmationCode: code);
       return res;
     } on AuthException catch (e) {
-      toast(e.message);
+      Utils.getToast(e.message);
     }
   }
 
@@ -58,7 +57,7 @@ class UserRepository {
           username: email,
           password: password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
-      toast("Please check your email for the confirmation code.");
+      Utils.getToast("Please check your email for the confirmation code.");
 
       return res;
     } on AuthException catch (e) {

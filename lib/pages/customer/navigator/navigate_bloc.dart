@@ -6,7 +6,6 @@ import 'package:double_up/utils/const.dart';
 import 'package:double_up/utils/transition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NavigateBloc extends Bloc {

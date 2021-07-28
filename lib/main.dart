@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:overlay_support/overlay_support.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,17 +43,15 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    return OverlaySupport.global(
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: MaterialApp(
-          title: 'Double Up',
-          themeMode: ThemeMode.system,
-          theme: light,
-          darkTheme: dark,
-          debugShowCheckedModeBanner: false,
-          home: Wrapper(),
-        ),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: MaterialApp(
+        title: 'Double Up',
+        themeMode: ThemeMode.system,
+        theme: light,
+        darkTheme: dark,
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
       ),
     );
   }

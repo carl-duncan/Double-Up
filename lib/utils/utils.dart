@@ -21,6 +21,7 @@ import 'package:double_up/widgets/transaction_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
@@ -307,6 +308,17 @@ class Utils {
         ),
       ])),
     );
+  }
+
+  static getToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Constant.secondary,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   static blankSliver() {
