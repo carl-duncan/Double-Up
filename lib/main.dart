@@ -72,7 +72,7 @@ class MyAppWeb extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: MaterialApp(
         title: 'Double Up',
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.dark,
         theme: light,
         darkTheme: dark,
         debugShowCheckedModeBanner: false,

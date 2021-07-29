@@ -23,6 +23,9 @@ class SignUpPage extends StatelessWidget {
 
   loadUI(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    signUpPageBLoc.password.text = "Password123@";
+    signUpPageBLoc.email.text = "doubleuptestingacc@gmail.com";
+    signUpPageBLoc.name.text = "Carl Duncan";
 
     return CustomScrollView(
       physics: BouncingScrollPhysics(),

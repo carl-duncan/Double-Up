@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.konnexx.double_up">
+    package="com.cdapps.double_up">
    <application
         android:label="double_up"
         android:icon="@mipmap/ic_launcher">
