@@ -1,5 +1,6 @@
 ## Double Up
 
+![alt text](https://doubleup.s3.amazonaws.com/res/promo.gif)
 
 ## Links to Demo
 
