@@ -28,7 +28,7 @@ class _CardViewState extends State<CardView> {
 
   @override
   Widget build(BuildContext context) {
-    cardViewBloc.email.text = "doubleuptestingacc@gmail.com";
+    // cardViewBloc.email.text = "doubleuptestingacc@gmail.com";
     return Scaffold(
       body: StreamBuilder(
           stream: cardViewBloc.combineLatestStream,

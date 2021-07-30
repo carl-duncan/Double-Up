@@ -30,8 +30,8 @@ class _LoginPageState extends State<LoginPage> {
     Size size = MediaQuery.of(context).size;
 
     // Presentation
-    loginPageBloc.email.text = "doubleuptestingacc@gmail.com";
-    loginPageBloc.password.text = "Password123@";
+    // loginPageBloc.email.text = "doubleuptestingacc@gmail.com";
+    // loginPageBloc.password.text = "Password123@";
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [

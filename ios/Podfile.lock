@@ -1,0 +1,149 @@
+PODS:
+  - Amplify (1.12.0):
+    - Amplify/Default (= 1.12.0)
+  - Amplify/Default (1.12.0)
+  - amplify_auth_cognito (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - Flutter
+    - ObjectMapper
+  - amplify_core (0.0.1):
+    - Flutter
+  - amplify_flutter (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - AWSPluginsCore
+    - Flutter
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.12.0):
+    - AWSAuthCore (~> 2.24.0)
+    - AWSCognitoIdentityProvider (~> 2.24.0)
+    - AWSCognitoIdentityProviderASF (~> 2.24.0)
+    - AWSCore (~> 2.24.0)
+    - AWSMobileClient (~> 2.24.0)
+    - AWSPluginsCore (= 1.12.0)
+  - AWSAuthCore (2.24.3):
+    - AWSCore (= 2.24.3)
+  - AWSCognitoIdentityProvider (2.24.3):
+    - AWSCognitoIdentityProviderASF (= 2.24.3)
+    - AWSCore (= 2.24.3)
+  - AWSCognitoIdentityProviderASF (2.24.3)
+  - AWSCore (2.24.3)
+  - AWSMobileClient (2.24.3):
+    - AWSAuthCore (= 2.24.3)
+    - AWSCognitoIdentityProvider (= 2.24.3)
+    - AWSCognitoIdentityProviderASF (= 2.24.3)
+    - AWSCore (= 2.24.3)
+  - AWSPluginsCore (1.12.0):
+    - Amplify (= 1.12.0)
+    - AWSCore (~> 2.24.0)
+  - barcode_scan2 (0.0.1):
+    - Flutter
+    - MTBBarcodeScanner
+    - SwiftProtobuf
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - hexcolor (0.0.1):
+    - Flutter
+  - map_launcher (0.0.1):
+    - Flutter
+  - MTBBarcodeScanner (5.0.11)
+  - ObjectMapper (4.2.0)
+  - path_provider (0.0.1):
+    - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
+  - SwiftProtobuf (1.17.0)
+  - Toast (4.0.0)
+  - url_launcher (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - amplify_auth_cognito (from `.symlinks/plugins/amplify_auth_cognito/ios`)
+  - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
+  - amplify_flutter (from `.symlinks/plugins/amplify_flutter/ios`)
+  - barcode_scan2 (from `.symlinks/plugins/barcode_scan2/ios`)
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
+  - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Amplify
+    - AmplifyPlugins
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPluginsCore
+    - FMDB
+    - MTBBarcodeScanner
+    - ObjectMapper
+    - SwiftProtobuf
+    - Toast
+
+EXTERNAL SOURCES:
+  amplify_auth_cognito:
+    :path: ".symlinks/plugins/amplify_auth_cognito/ios"
+  amplify_core:
+    :path: ".symlinks/plugins/amplify_core/ios"
+  amplify_flutter:
+    :path: ".symlinks/plugins/amplify_flutter/ios"
+  barcode_scan2:
+    :path: ".symlinks/plugins/barcode_scan2/ios"
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  hexcolor:
+    :path: ".symlinks/plugins/hexcolor/ios"
+  map_launcher:
+    :path: ".symlinks/plugins/map_launcher/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
+
+SPEC CHECKSUMS:
+  Amplify: e8b40b8f4eba1b60cc6cd3334b0e5295c6eee6d1
+  amplify_auth_cognito: 2e090a788d0ba4e08f6438170b1e7aac872782b4
+  amplify_core: 8b38d20089fe4f225c14db6892f586bd03824a42
+  amplify_flutter: d64b45e3a016e491bbb2e110fee57e150daf2164
+  AmplifyPlugins: 77415f53580b454673f19331653e0511313f9e00
+  AWSAuthCore: be26dde8246bb9b90a053a9392e9989149ac87d4
+  AWSCognitoIdentityProvider: 35a4d391d10add6293b2e1c9f3ccdb2237ddf8a1
+  AWSCognitoIdentityProviderASF: 48ccaa2ad4ecfba86549cb2023583aa073e2dd56
+  AWSCore: 759cbae2795ec192546187338bd21066c6b9ec0a
+  AWSMobileClient: a16718e842ae5cedc2b68a49f9bdd2e007a159c3
+  AWSPluginsCore: f84365d3194cde865d405b10f20df865bb56a630
+  barcode_scan2: 0af2bb63c81b4565aab6cd78278e4c0fa136dbb0
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
+  map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  SwiftProtobuf: 9c85136c6ba74b0a1b84279dbf0f6db8efb714e0
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+
+PODFILE CHECKSUM: 7cff6d5ffd10a06e5cad2cb875261ddd31916da4
+
+COCOAPODS: 1.10.1
